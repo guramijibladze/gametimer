@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SigninuserComponent } from './signinuser/signinuser.component';
 
 
 @NgModule({
   declarations: [	
-    AppComponent,
+    AppComponent, SigninuserComponent,
    ],
   imports: [
     BrowserModule,

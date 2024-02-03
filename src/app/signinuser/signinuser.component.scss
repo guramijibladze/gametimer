@@ -1,0 +1,48 @@
+.container-fluid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width:1000px;
+    height: 720px;
+    background-image: url("../../assets/img/1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .userform{
+        width: 370px;
+        margin-top: -400px;
+        // margin-top: 150px;
+
+        .form{
+            width: 370px;
+            padding: 20px;
+            border: 1px solid rgb(39, 39, 39);
+            border-radius: 15px;
+            text-align: center;
+            
+
+            .firstname,.lastname{
+                display: flex;
+                justify-content: space-between;
+                margin: 5px;
+        
+                .form-control{
+                    max-width: 250px;
+                }
+            }
+
+            .button{
+                margin-top: 15px;
+            }
+        }
+
+    }
+
+    // .carousel{
+    //     max-width:100%;
+    //     max-height: 100%;
+    //     opacity: 0.5;
+    //     z-index: -1;
+    // }
+}
