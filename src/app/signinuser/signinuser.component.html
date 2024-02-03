@@ -4,7 +4,10 @@
 
             <div class="firstname">
               <label for="validationServer01" class="form-label">სახელი</label>
-              <input type="text" class="form-control " id="validationServer01" required>
+              <input type="text" class="form-control " 
+                    [(ngModel)]="userName" 
+                    name="userName" 
+                    required>
               <!-- <div class="valid-feedback">
                 Looks good!
               </div> -->
@@ -12,14 +15,19 @@
 
             <div class="lastname">
               <label for="validationServer02" class="form-label">გვარი</label>
-              <input type="text" class="form-control" id="validationServer02" required>
+              <input type="text" class="form-control" 
+                    [(ngModel)]="lastName" 
+                    name="lastName" 
+                    required>
               <!-- <div class="valid-feedback">
                 Looks good!
               </div> -->
             </div>
   
             <div class="button">
-              <button class="btn btn-primary" type="submit">დღის დაწყება</button>
+              <button class="btn btn-primary" 
+                    type="submit"
+                    (click)="login()">დღის დაწყება</button>
             </div>
         </form>
     </div>

@@ -4,17 +4,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninuserComponent } from './signinuser/signinuser.component';
+import { FormsModule } from '@angular/forms';
+import { ShellModule } from './shell/shell.module';
 
 
 @NgModule({
   declarations: [	
-    AppComponent, SigninuserComponent,
+    AppComponent, 
+    SigninuserComponent
    ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    // ShellModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
