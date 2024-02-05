@@ -1,1 +1,128 @@
-<p>forcomputers works!</p>
+<div class="main">
+    <div class="computers" >
+        @for (computer of computersArrr; track computer) {
+            <div class="computer">
+
+                <div class="title">
+                    <div class="computername">
+                        {{computer.name}}
+                    </div>
+                    <div class="status">
+                        სტატუსი: {{computer.status}}
+                    </div>
+                </div>
+
+                <div class="timer-info ">
+
+                    <div class="time d-flex justify-content-center">
+                        <span>საათი:{{ computer.times.hours }}</span>
+                        <span style="margin-left: 10px;">წუთი:34</span>
+                        <span style="margin-left: 10px;">წამი:34</span>
+                    </div>
+
+                    <div class="progress mt-5">
+                        <div class="progress-bar" role="progressbar" 
+                            style="width: 25%;"
+                            aria-valuenow="25" 
+                            aria-valuemin="0" 
+                            aria-valuemax="100">25%</div>
+                    </div>
+                </div>
+
+                <!-- <div class="informationoftime rounded-circle" style="background-color: blue; height: 250px;">
+                    <div class="progress rounded-circle" style="height: 250px;">
+                        <div class="progress-bar rounded-circle"
+                            style="height: 250px;" 
+                            role="progressbar" style="width: 25%;" 
+                            aria-valuenow="25" 
+                            aria-valuemin="0" aria-valuemax="100">
+                            25%
+                            <div class="time">
+                                <span class="hours"></span><span class="seconds"></span>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div> -->
+
+                <div class="buttons">
+
+                    <div class="start" style="margin: 2px;">
+                        <button type="button" 
+                                class="btn btn-success" 
+                                style="width: 120px;"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                (click)="startTime(computer.id)">დაწყება</button>
+                    </div>
+
+                    <div class="pause-continue" style="margin: 2px;">
+                        <button type="button" 
+                                style="width: 120px;"
+                                class="btn btn-warning" 
+                                (click)="pause(computer.id)">
+                                {{ computer.pausecontinuoe ? 'გაგრძელება' : 'დაპაუზება' }}</button>
+                    </div>
+
+                    <div class="cancel" style="margin: 2px;"s>
+                        <button type="button" 
+                                style="width: 120px;"
+                                class="btn btn-danger" 
+                                (click)="stopTime()">დასრულება</button>
+                    </div>
+    
+                </div>
+
+            </div>
+
+        }
+    </div>
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">დროის არჩევა</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex justify-content-between">
+
+            <div class="hours d-flex align-items-end " >
+                <label for="exampleFormControlInput1" class="form-label">საათი</label>
+                <select class="form-control ms-1" style="width: 100px;" 
+                        [(ngModel)]="hours" 
+                        name="hours" 
+                        aria-label="Default select example">
+                    <option selected></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <div class="seconds d-flex align-items-end">
+                <label for="exampleFormControlInput1" class="form-label">წუთები</label>
+                <input  type="email" class="form-control ms-1"
+                        [(ngModel)]="seconds" 
+                        name="seconds" 
+                        id="exampleFormControlInput1">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" 
+                class="btn btn-secondary " 
+                aria-label="Close"
+                data-bs-dismiss="modal">დახურვა</button>
+          <button type="button" 
+                    class="btn btn-primary" 
+                    data-bs-dismiss="modal"
+                    (click)="saveTime('save')">შენახვა</button>
+        </div>
+      </div>
+    </div>
+  </div>
