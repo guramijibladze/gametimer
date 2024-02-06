@@ -16,8 +16,8 @@
 
                     <div class="time d-flex justify-content-center">
                         <span>საათი:{{ computer.times.hours }}</span>
-                        <span style="margin-left: 10px;">წუთი:34</span>
-                        <span style="margin-left: 10px;">წამი:34</span>
+                        <span style="margin-left: 10px;">წუთი: {{ computer.times.minutes }}</span>
+                        <span style="margin-left: 10px;">წამი: {{ computer.times.seconds }}</span>
                     </div>
 
                     <div class="progress mt-5">
@@ -68,7 +68,7 @@
                         <button type="button" 
                                 style="width: 120px;"
                                 class="btn btn-danger" 
-                                (click)="stopTime()">დასრულება</button>
+                                (click)="cancelTime()">დასრულება</button>
                     </div>
     
                 </div>
@@ -95,7 +95,7 @@
                         [(ngModel)]="hours" 
                         name="hours" 
                         aria-label="Default select example">
-                    <option selected></option>
+                    <option selected value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -107,8 +107,8 @@
             <div class="seconds d-flex align-items-end">
                 <label for="exampleFormControlInput1" class="form-label">წუთები</label>
                 <input  type="email" class="form-control ms-1"
-                        [(ngModel)]="seconds" 
-                        name="seconds" 
+                        [(ngModel)]="minutes" 
+                        name="minutes" 
                         id="exampleFormControlInput1">
             </div>
 
