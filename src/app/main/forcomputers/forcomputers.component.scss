@@ -1,0 +1,38 @@
+.computers{
+    display: flex;
+    flex-wrap: wrap;
+
+    .computer{
+        position: relative;
+        height: 350px;
+        width: 400px;
+        background-color: rgb(176, 174, 171);
+        margin: 15px;
+        border-radius: 15px;
+
+        .title{
+            margin-left: 10px;
+            // display: flex;
+            text-align: center;
+
+            .status{
+                margin-left: 5px;
+            }
+        }
+
+        .timer-info{
+            position: absolute;
+            bottom: 150px;
+            width: 100%;
+            padding: 15px;
+        }
+
+        .buttons{
+            position: absolute;
+            bottom: 10px;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
