@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ComputersRooms } from '../model';
 
 @Component({
   selector: 'app-forcomputers',
@@ -13,34 +14,29 @@ export class ForcomputersComponent {
  
   private computerId:number = 0
 
-  computersArrr:any[] = [
+  computersArrr:ComputersRooms[] = [
     { id:1, 
       name: 'ოთახი N1', 
+      startButton: false,
       pausecontinuoe:false, 
       times: { hours: 0, minutes: 0, seconds: 0 },
       status:'vip',
       timer: 0
     },
-    { id:2, name: 'ოთახი N2', pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, 
+    { id:2, name: 'ოთახი N2', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, 
       status:'vip', timer: 0},
-    { id:3, name: 'ოთახი N3', pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0},
-    { id:4, name: 'ოთახი N4', pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0},
-    { id:5, name: 'ოთახი N5', pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0},
-    { id:6, name: 'ოთახი N5', pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'', timer: 0}
+    { id:3, name: 'ოთახი N3', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0},
+    { id:4, name: 'ოთახი N4', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0},
+    { id:5, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0},
+    { id:6, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'', timer: 0}
   ]
 
-  // private roomsID:number[] = []
 
-  public cancelTime():void{
-
-  }
-
-  startTime(id:number):void{
+  public startTime(id:number):void{
     this.computerId = id
-    // this.roomsID.push(this.computerId)
   }
 
-  pause(boxid:number):void{
+  public pause(boxid:number):void{
 
     this.computersArrr.forEach((item:any) => {
        item.id == boxid ? item.pausecontinuoe = !item.pausecontinuoe : ''
@@ -48,27 +44,27 @@ export class ForcomputersComponent {
 
   }
 
-  saveTime(str?:string):void{
+  public saveTime(str?:string):void{
  
     if(str =='save'){
       // საათის და წუთების ჩამატება
       this.computersArrr.forEach((item) => {
-
+   
         if(item.id == this.computerId){
+          //დაწყების ღილაკის გამორთვა
+          item.startButton = true
           
-          if(item.times.hours != 0 && item.times.minutes == 0 ){
+          //საათების და წუთების არჩევის ლოგიკა
+          if(this.hours != 0 && this.minutes == 0 ){          
             item.times.hours = this.hours- 1;
-          }else{
-            item.times.hours
+            item.times.minutes = 59;
+            item.times.seconds = 59;
+          }else if(this.minutes == 30){
+            item.times.hours = this.hours;
+            item.times.minutes = 29;
+            item.times.seconds = 59;
           }
 
-          if(item.times.minutes != 0 && item.times.hours == 0){
-            item.times.minutes = this.minutes-1
-          }else{
-            item.times.minutes = 59
-          }
-          
-          item.times.seconds = 59
 
           item.timer = setInterval(() => {
             item.times.seconds--
@@ -101,10 +97,15 @@ export class ForcomputersComponent {
 
   }
 
-
+  public cancelTime(id:number, timer:number):void{
+    clearInterval(timer)
+    this.computersArrr[id-1].times.hours = 0
+    this.computersArrr[id-1].times.minutes = 0
+    this.computersArrr[id-1].times.seconds = 0
+    this.computersArrr[id-1].startButton = false
+  }
 
   private endTime(id:any):void{
-    console.log('endTime', id);
     clearInterval(id)
   }
 

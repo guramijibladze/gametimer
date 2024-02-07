@@ -53,6 +53,7 @@
                                 style="width: 120px;"
                                 data-bs-toggle="modal"
                                 data-bs-target="#exampleModal"
+                                [disabled]="computer.startButton"
                                 (click)="startTime(computer.id)">დაწყება</button>
                     </div>
 
@@ -68,7 +69,7 @@
                         <button type="button" 
                                 style="width: 120px;"
                                 class="btn btn-danger" 
-                                (click)="cancelTime()">დასრულება</button>
+                                (click)="cancelTime(computer.id, computer.timer)">დასრულება</button>
                     </div>
     
                 </div>
@@ -91,7 +92,7 @@
 
             <div class="hours d-flex align-items-end " >
                 <label for="exampleFormControlInput1" class="form-label">საათი</label>
-                <select class="form-control ms-1" style="width: 100px;" 
+                <select class="form-control ms-1" style="width: 130px;" 
                         [(ngModel)]="hours" 
                         name="hours" 
                         aria-label="Default select example">
@@ -105,11 +106,18 @@
             </div>
 
             <div class="seconds d-flex align-items-end">
-                <label for="exampleFormControlInput1" class="form-label">წუთები</label>
-                <input  type="email" class="form-control ms-1"
+                <label for="exampleFormControlInput1" class="form-label">წუთი</label>
+                <select class="form-control ms-1" style="width: 130px;" 
                         [(ngModel)]="minutes" 
                         name="minutes" 
-                        id="exampleFormControlInput1">
+                        aria-label="Default select example">
+                    <option selected value="0">00</option>
+                    <option value="30">30</option>
+                </select>
+                <!-- <input  type="email" class="form-control ms-1"
+                        [(ngModel)]="minutes" 
+                        name="minutes" 
+                        id="exampleFormControlInput1"> -->
             </div>
 
         </div>
