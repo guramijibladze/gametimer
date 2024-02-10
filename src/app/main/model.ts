@@ -5,7 +5,8 @@ export interface ComputersRooms{
     pausecontinuoe:boolean,
     times:Times,
     status:string,
-    timer:any
+    timer:any,
+    progress:any
   }
   
 export interface Times{
