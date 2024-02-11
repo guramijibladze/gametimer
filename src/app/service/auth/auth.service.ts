@@ -31,7 +31,7 @@ export class AuthService {
   login({ userName, lastName }: any): Observable<any> {
     if (userName === 'guram' && lastName === 'jibladze') {
       this.setToken('abcdefghijklmnopqrstuvwxyz');
-      this.router.navigate(['main']);
+      this.router.navigate(['main/computers']);
       return of('you are sign in!');
     }
     return throwError(() => new Error('Failed to login'));
