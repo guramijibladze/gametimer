@@ -9,7 +9,7 @@ import { ComputersRooms } from '../model';
 export class ForcomputersComponent {
 
   hours:number = 0
-  minutes:number = 0
+  minutes:any = '00'
   timer: any;
   conicgradient:any
   conicgradientPercent:number = 0
@@ -21,21 +21,21 @@ export class ForcomputersComponent {
       name: 'ოთახი N1', 
       startButton: false,
       pausecontinuoe:false, 
-      times: { hours: 0, minutes: 0, seconds: 0 },
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 },
       status:'vip',
       timer: 0,
       progress: 0
     },
-    { id:2, name: 'ოთახი N2', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, 
+    { id:2, name: 'ოთახი N2', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
       status:'vip', timer: 0,
       progress: 0},
-    { id:3, name: 'ოთახი N3', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
+    { id:3, name: 'ოთახი N3', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
     progress: 0},
-    { id:4, name: 'ოთახი N4', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
+    { id:4, name: 'ოთახი N4', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
     progress: 0},
-    { id:5, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
+    { id:5, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
     progress: 0},
-    { id:6, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { hours: 0, minutes: 0, seconds: 0 }, status:'', timer: 0,
+    { id:6, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'', timer: 0,
     progress: 0}
   ]
 
@@ -60,38 +60,45 @@ export class ForcomputersComponent {
       this.computersArrr.forEach((item, index) => {
    
         if(item.id == this.computerId){
-          //დაწყების ღილაკის გამორთვა
-          item.startButton = true
+          
           
           //საათების და წუთების არჩევის ლოგიკა
-          if(this.hours != 0 && this.minutes == 0 ){          
-            item.times.hours = this.hours- 1;
+          if(this.hours != 0 && this.minutes == 0 ){     
+            item.times.selectedhour = this.hours + ':' + this.minutes
+            item.times.currenthours = this.hours- 1;
             item.times.minutes = 59;
             item.times.seconds = 59;
             progress = this.getAllTimersInSeconds()
           }else if(this.minutes == 30){
-            item.times.hours = this.hours;
+            item.times.selectedhour = this.hours + ':' + this.minutes
+            item.times.currenthours = this.hours;
             item.times.minutes = 29;
             item.times.seconds = 59;
             progress = this.getAllTimersInSeconds()
+          }else{
+            console.log()
+            alert('დრო არ აგირჩევია ბაჭყატ!!!')
+            return
           }
 
-          // console.log(progress)
+          //დაწყების ღილაკის გამორთვა
+          item.startButton = true
+
           item.timer = setInterval(() => {
             item.times.seconds--;
             item.progress += progress;
             console.log('item.progress',item.progress)
             
             //დროის ამოწურვა
-            if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.hours == 0) {
+            if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
               this.endTime(item.timer);
               return;
             }
 
             //საათის დაკლება
-            if ( item.times.hours >= 1 && item.times.minutes == 0 && item.times.seconds == 0) {
+            if ( item.times.currenthours >= 1 && item.times.minutes == 0 && item.times.seconds == 0) {
               item.times.minutes = 60
-              item.times.hours--;
+              item.times.currenthours--;
             }
 
             //წამზომის 60 დან დაწყება
@@ -113,22 +120,15 @@ export class ForcomputersComponent {
 
   public cancelTime(id:number, timer:number):void{
     clearInterval(timer)
-    this.computersArrr[id-1].times.hours = 0
+    this.computersArrr[id-1].times.currenthours = 0
     this.computersArrr[id-1].times.minutes = 0
     this.computersArrr[id-1].times.seconds = 0
     this.computersArrr[id-1].startButton = false
+    this.computersArrr[id-1].progress = 0
+    this.computersArrr[id-1].progress = 0
   }
 
-  //გადასცემს წამებს პროგრეს ბარს
-  // public getCircleProgress(progressNumb?:number):void{
-  //   // console.log(1 / (this.hours * 3600 + this.minutes * 60)*100)
-  //   // this.computersArrr.forEach((item) => {
-  //   //   this.conicgradient = `conic-gradient(#c4c2c2 ${item.progress}%, #FFCDB2 0)`
-  //   // })
-  //   console.log(this.computersArrr)
-  //   // return 
-  // }
-
+  //გადაყავს დრო წამებში
   private getAllTimersInSeconds():number{
     return (1 / (this.hours * 3600 + this.minutes * 60) * 100) 
   }

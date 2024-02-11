@@ -10,7 +10,8 @@ export interface ComputersRooms{
   }
   
 export interface Times{
-    hours:number,
+    selectedhour:string
+    currenthours:number,
     minutes:number,
     seconds: number
   }
