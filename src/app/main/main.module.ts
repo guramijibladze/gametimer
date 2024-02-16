@@ -6,6 +6,8 @@ import { ForcomputersComponent } from './forcomputers/forcomputers.component';
 import { MainComponent } from './main.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ComputerRoomsService } from './service/computer-rooms.service';
 
 const routes: Routes = [
   { path: '', component: MainComponent, 
@@ -29,6 +31,11 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes)
   ],
+  providers:[
+    ComputerRoomsService,
+    HttpClientModule,
+    HttpClient
+  ]
   // exports: [
   //   MainComponent
   // ]

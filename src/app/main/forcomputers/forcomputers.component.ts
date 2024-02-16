@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ComputersRooms } from '../model';
+import { ComputerRoomsService } from '../service/computer-rooms.service';
 
 @Component({
   selector: 'app-forcomputers',
@@ -10,14 +11,21 @@ export class ForcomputersComponent {
 
   hours:number = 0
   minutes:any = '00'
-  timer: any;
+  // beer:number = 0
+
+  timer: any
   conicgradient:any
   conicgradientPercent:number = 0
  
-  private computerId:number = 0
+  private computerroomsID:number = 0
+
+  constructor(
+    private computerRoomsService: ComputerRoomsService
+  ){}
 
   computersArrr:ComputersRooms[] = [
-    { id:1, 
+    { 
+      roomsID:1, 
       name: 'ოთახი N1', 
       startButton: false,
       pausecontinuoe:false, 
@@ -26,28 +34,28 @@ export class ForcomputersComponent {
       timer: 0,
       progress: 0
     },
-    { id:2, name: 'ოთახი N2', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
+    { roomsID:2, name: 'ოთახი N2', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
       status:'vip', timer: 0,
       progress: 0},
-    { id:3, name: 'ოთახი N3', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
+    { roomsID:3, name: 'ოთახი N3', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
     progress: 0},
-    { id:4, name: 'ოთახი N4', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
+    { roomsID:4, name: 'ოთახი N4', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
     progress: 0},
-    { id:5, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
+    { roomsID:5, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
     progress: 0},
-    { id:6, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'', timer: 0,
+    { roomsID:6, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'', timer: 0,
     progress: 0}
   ]
 
 
-  public startTime(id:number):void{
-    this.computerId = id
+  public startTime(roomsID:number):void{
+    this.computerroomsID = roomsID
   }
 
-  public pause(boxid:number):void{
+  public pause(boxroomsID:number):void{
 
     this.computersArrr.forEach((item:any) => {
-       item.id == boxid ? item.pausecontinuoe = !item.pausecontinuoe : ''
+       item.roomsID == boxroomsID ? item.pausecontinuoe = !item.pausecontinuoe : ''
     })
 
   }
@@ -59,7 +67,7 @@ export class ForcomputersComponent {
       // საათის და წუთების ჩამატება
       this.computersArrr.forEach((item, index) => {
    
-        if(item.id == this.computerId){
+        if(item.roomsID == this.computerroomsID){
           
           
           //საათების და წუთების არჩევის ლოგიკა
@@ -118,14 +126,21 @@ export class ForcomputersComponent {
 
   }
 
-  public cancelTime(id:number, timer:number):void{
+  public cancelTime(roomsID:number, timer:number):void{
+    console.log('cancelTime', this.computersArrr[roomsID-1])
     clearInterval(timer)
-    this.computersArrr[id-1].times.currenthours = 0
-    this.computersArrr[id-1].times.minutes = 0
-    this.computersArrr[id-1].times.seconds = 0
-    this.computersArrr[id-1].startButton = false
-    this.computersArrr[id-1].progress = 0
-    this.computersArrr[id-1].progress = 0
+
+    this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe( response => {
+      console.log('siccessed')
+    })
+
+    this.computersArrr[roomsID-1].times.currenthours = 0
+    this.computersArrr[roomsID-1].times.minutes = 0
+    this.computersArrr[roomsID-1].times.seconds = 0
+    this.computersArrr[roomsID-1].startButton = false
+    this.computersArrr[roomsID-1].progress = 0
+    this.computersArrr[roomsID-1].progress = 0
+    
   }
 
   //გადაყავს დრო წამებში
@@ -133,8 +148,26 @@ export class ForcomputersComponent {
     return (1 / (this.hours * 3600 + this.minutes * 60) * 100) 
   }
 
-  private endTime(id:any):void{
-    clearInterval(id)
+  private endTime(roomsID:any):void{
+    clearInterval(roomsID)
+    
+    // let objcet = {
+
+    // }
+    // this.computerRoomsService.createTimer(objcet).subscribe( response => {
+
+    // })
   }
 
 }
+
+
+// { "roomsID":1, 
+// "name": "ოთახი N1", 
+// "startButton": false,
+// "pausecontinuoe":false, 
+// "times": { "selectedhour": "", "currenthours": 0, "minutes": 0, "seconds": 0 },
+// "status":"vip",
+// "timer": 0,
+// "progress": 0
+// }
