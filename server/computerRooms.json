@@ -1,0 +1,36 @@
+{
+  "computerRooms": [
+    {
+      "roomsID": 2,
+      "name": "ოთახი N2",
+      "startButton": true,
+      "pausecontinuoe": false,
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 51
+      },
+      "status": "vip",
+      "timer": 10,
+      "progress": 0.44444444444444453,
+      "id": 1
+    },
+    {
+      "roomsID": 2,
+      "name": "ოთახი N2",
+      "startButton": true,
+      "pausecontinuoe": false,
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 28,
+        "seconds": 22
+      },
+      "status": "vip",
+      "timer": 19,
+      "progress": 5.388888888888878,
+      "id": 2
+    }
+  ]
+}

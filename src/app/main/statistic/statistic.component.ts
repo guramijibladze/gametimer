@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ComputerRoomsService } from '../service/computer-rooms.service';
 
 @Component({
   selector: 'app-statistic',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class StatisticComponent {
 
+  constructor(
+    private computerRoomsService: ComputerRoomsService
+  ){}
+
+  public getcomputerRooms():void{
+    this.computerRoomsService.getcomputerRooms().subscribe( response => {
+      console.log('getcomputerRooms',response)
+    })
+  }
 }

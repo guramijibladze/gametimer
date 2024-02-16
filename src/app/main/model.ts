@@ -1,5 +1,6 @@
 export interface ComputersRooms{
-    id:number,
+
+    roomsID:number,
     name:string,
     startButton:boolean,
     pausecontinuoe:boolean,
