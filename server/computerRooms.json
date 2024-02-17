@@ -31,6 +31,54 @@
       "timer": 19,
       "progress": 5.388888888888878,
       "id": 2
+    },
+    {
+      "roomsID": 3,
+      "name": "ოთახი N3",
+      "startButton": true,
+      "pausecontinuoe": false,
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 28,
+        "seconds": 43
+      },
+      "status": "vip",
+      "timer": 9,
+      "progress": 4.222222222222215,
+      "id": 3
+    },
+    {
+      "roomsID": 3,
+      "name": "ოთახი N3",
+      "startButton": true,
+      "pausecontinuoe": false,
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 57
+      },
+      "status": "vip",
+      "timer": 9,
+      "progress": 0.1111111111111111,
+      "id": 4
+    },
+    {
+      "roomsID": 3,
+      "name": "ოთახი N3",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 0
+      },
+      "status": "vip",
+      "timer": 0,
+      "progress": 0,
+      "id": 5
     }
   ]
 }

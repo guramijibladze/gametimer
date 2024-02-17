@@ -34,17 +34,22 @@ export class ForcomputersComponent {
       timer: 0,
       progress: 0
     },
-    { roomsID:2, name: 'ოთახი N2', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
+    { roomsID:2, name: 'ოთახი N2', startButton: false, pausecontinuoe:false, 
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
       status:'vip', timer: 0,
       progress: 0},
-    { roomsID:3, name: 'ოთახი N3', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
+    { roomsID:3, name: 'ოთახი N3', startButton: false, pausecontinuoe:false, 
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
+      progress: 0},
+    { roomsID:4, name: 'ოთახი N4', startButton: false, pausecontinuoe:false, 
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
+      progress: 0},
+    { roomsID:5, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, 
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
     progress: 0},
-    { roomsID:4, name: 'ოთახი N4', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
-    progress: 0},
-    { roomsID:5, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'vip', timer: 0,
-    progress: 0},
-    { roomsID:6, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'', timer: 0,
-    progress: 0}
+    { roomsID:6, name: 'ოთახი N5', startButton: false, pausecontinuoe:false, 
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, status:'', timer: 0,
+      progress: 0}
   ]
 
 
@@ -126,12 +131,15 @@ export class ForcomputersComponent {
 
   }
 
+  //დასრულების ივენთი
   public cancelTime(roomsID:number, timer:number):void{
     console.log('cancelTime', this.computersArrr[roomsID-1])
     clearInterval(timer)
 
-    this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe( response => {
-      console.log('siccessed')
+    this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
+      next : (res) => console.log('responese', res),
+      error: (e) => console.error(e),
+      complete: () => console.info('complete') 
     })
 
     this.computersArrr[roomsID-1].times.currenthours = 0
@@ -139,7 +147,7 @@ export class ForcomputersComponent {
     this.computersArrr[roomsID-1].times.seconds = 0
     this.computersArrr[roomsID-1].startButton = false
     this.computersArrr[roomsID-1].progress = 0
-    this.computersArrr[roomsID-1].progress = 0
+    this.computersArrr[roomsID-1].times.selectedhour = ''
     
   }
 
@@ -148,15 +156,15 @@ export class ForcomputersComponent {
     return (1 / (this.hours * 3600 + this.minutes * 60) * 100) 
   }
 
+  //დროის ამოწურვა
   private endTime(roomsID:any):void{
     clearInterval(roomsID)
     
-    // let objcet = {
-
-    // }
-    // this.computerRoomsService.createTimer(objcet).subscribe( response => {
-
-    // })
+    this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
+      next : (res) => console.log('responese', res),
+      error: (e) => console.error(e),
+      complete: () => console.info('complete') 
+    })
   }
 
 }

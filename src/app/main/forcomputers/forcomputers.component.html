@@ -53,31 +53,47 @@
                     </div>
                 </div> -->
 
-                <div class="buttons">
+                <div class="buttons" >
 
-                    <div class="start" style="margin: 2px;">
-                        <button type="button" 
-                                class="btn btn-success" 
-                                style="width: 120px;"
+                    <div class="start m-1" style="max-width: 63px; max-height: 63px;">
+                        <button style="background-color: transparent; color: #3498db; border: none !important;">
+
+                            <img src="../../../assets/icons/play-button (1)64.png"
+                                style="cursor: pointer; max-width: 63px; max-height: 63px;"
                                 data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
-                                [disabled]="computer.startButton"
-                                (click)="startTime(computer.roomsID)">დაწყება</button>
+                                data-bs-target="#exampleModal" 
+                                class="startButton"
+                                (click)="startTime(computer.roomsID)"
+                                alt="...">
+                        </button>
+
                     </div>
 
-                    <div class="pause-continue" style="margin: 2px;">
-                        <button type="button" 
+                    <div class="pause-continue m-1" style="max-width: 63px; max-height: 63px;">
+                        <!-- <button type="button" 
                                 style="width: 120px;"
                                 class="btn btn-warning" 
                                 (click)="pause(computer.roomsID)">
-                                {{ computer.pausecontinuoe ? 'გაგრძელება' : 'დაპაუზება' }}</button>
+                                {{ computer.pausecontinuoe ? 'გაგრძელება' : 'დაპაუზება' }}</button> -->
+
+                        <img src="../../../assets/icons/pause.png"
+                            style="cursor: pointer; max-width: 63px; max-height: 63px;"
+                            class="pause-continue-Button"
+                            (click)="pause(computer.roomsID)"
+                            alt="...">
                     </div>
 
-                    <div class="cancel" style="margin: 2px;"s>
-                        <button type="button" 
+                    <div class="cancel " style="width: 65px; height: 65px;">
+                        <!-- <button type="button" 
                                 style="width: 120px;"
                                 class="btn btn-danger" 
-                                (click)="cancelTime(computer.roomsID, computer.timer)">დასრულება</button>
+                                (click)="cancelTime(computer.roomsID, computer.timer)">დასრულება</button> -->
+
+                        <img src="../../../assets/icons/stop.png"
+                            style="width: 65px; height: 65px; cursor: pointer;"
+                            class="stop-Button"
+                            (click)="cancelTime(computer.roomsID, computer.timer)"
+                            alt="...">
                     </div>
     
                 </div>
