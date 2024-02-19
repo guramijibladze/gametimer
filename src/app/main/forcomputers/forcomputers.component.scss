@@ -17,13 +17,13 @@
         border-radius: 15px;
 
         .title{
-            margin-left: 10px;
-            // display: flex;
-            text-align: center;
+            // margin-left: 10px;
+            display: flex;
+            justify-content: center;
 
-            .status{
-                margin-left: 5px;
-            }
+            // .status{
+            //     margin-left: 5px;
+            // }
         }
 
         .timer-info{
@@ -87,6 +87,10 @@
             width: 100%;
             justify-content: center;
             align-items: center;
+
+            // button:hover{
+            //   background-color: green;
+            // }
 
             .startButton{
               cursor: pointer;
