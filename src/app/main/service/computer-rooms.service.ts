@@ -17,7 +17,6 @@ export class ComputerRoomsService {
     
     const headers = { 'content-type': 'application/json'}  
     const body = JSON.stringify(object);
-    console.log('postTimer',body)
     return this.http.post<any>(this.baseURL + 'computerRooms', body,{'headers':headers});
   }
 
