@@ -156,7 +156,7 @@
                             [(ngModel)]="minutes" 
                             name="minutes" 
                             aria-label="Default select example">
-                        <option selected value="00">00</option>
+                        <option selected value="0">00</option>
                         <option value="30">30</option>
                     </select>
                     <!-- <input  type="email" class="form-control ms-1"
@@ -216,7 +216,7 @@
                 aria-label="Close"
                 data-bs-dismiss="modal">დახურვა</button>
 
-                @if(startcontinuoe){ 
+                @if(startcontinue){ 
                     <button type="button" 
                             class="btn btn-primary" 
                             data-bs-dismiss="modal"
@@ -225,7 +225,7 @@
                     <button type="button" 
                             class="btn btn-primary" 
                             data-bs-dismiss="modal"
-                            (click)="addContinuoetime()">დამატება</button>
+                            (click)="addContinuetime()">დამატება</button>
                 }
 
      

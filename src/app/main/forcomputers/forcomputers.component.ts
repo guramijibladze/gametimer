@@ -10,9 +10,9 @@ import { DatePipe } from '@angular/common';
 })
 export class ForcomputersComponent implements OnInit {
   hours:number = 0
-  minutes:any = '00'
+  minutes:any = 0
   public clientName = '';
-  public startcontinuoe:boolean = true
+  public startcontinue:boolean = true
 
   timer: any
   conicgradient:any
@@ -81,7 +81,7 @@ export class ForcomputersComponent implements OnInit {
       }
 
     })
-    console.log('onChanged',this.computersArrr, e)
+
   }
 
 
@@ -90,7 +90,7 @@ export class ForcomputersComponent implements OnInit {
     this.computerroomsID = roomsID
 
     if( this.computersArrr[roomsID-1].ordertime){
-      this.startcontinuoe = false
+      this.startcontinue = false
     }
   }
 
@@ -102,19 +102,7 @@ export class ForcomputersComponent implements OnInit {
 
   }
 
-  //დროის დამატება
-  public addContinuoetime():void{
-    
-      this.startcontinuoe = false
-      clearInterval(this.computersArrr[this.computerroomsID-1].timer)
 
-      if(this.hours || this.minutes ){
-        // this.addTimeCurrentRoom(roomsID)
-        console.log('addContinuoetime')
-      }
-      
-  
-  }
 
   public saveTime(str?:string):void{
     let progress = 0
@@ -150,7 +138,7 @@ export class ForcomputersComponent implements OnInit {
 
           //დაწყების ღილაკის გამორთვა
           // item.startButton = true
-
+          console.log(item)
           item.timer = setInterval(() => {
             item.times.seconds--;
             item.progress += progress;
@@ -170,16 +158,12 @@ export class ForcomputersComponent implements OnInit {
             //წამზომის 60 დან დაწყება
             if (item.times.seconds == -1) {
               if ( item.times.minutes >= 1) item.times.minutes--;
-              // if (this.hours == 0 && this.minutes == 0) this.minutes = 59;
 
               item.times.seconds = 59;
             }
 
-            // this.getCircleProgress(item.progress)
-            console.log(this.computersArrr)
           }, 1000)
         }
-
       })
     }
 
@@ -195,7 +179,6 @@ export class ForcomputersComponent implements OnInit {
       complete: () => console.info('complete') 
     })
 
-    console.log('cancelTime', this.computersArrr[roomsID-1])
     clearInterval(timer)
 
     this.computersArrr[roomsID-1].times.currenthours = 0
@@ -206,21 +189,17 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr[roomsID-1].times.selectedhour = ''
     this.computersArrr[roomsID-1].ordertime = ''
     this.computersArrr[roomsID-1].ativestatus = true
-    this.startcontinuoe = true
+    this.startcontinue = true
     
   }
 
-  //გადაყავს დრო წამებში
-  private getAllTimersInSeconds():number{
-    return (1 / (this.hours * 3600 + this.minutes * 60) * 100) 
-  }
 
   //დროის ამოწურვა
   private endTime(roomsID:any):void{
     let endTime = this.getCurrentDate()
     this.computersArrr[roomsID-1].endtime = endTime
     this.computersArrr[roomsID-1].ativestatus = true
-    this.startcontinuoe = true
+    this.startcontinue = true
 
     this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
       next : (res) => console.log('responese', res),
@@ -239,35 +218,93 @@ export class ForcomputersComponent implements OnInit {
     let today = new Date();
     let ChangedFormat = pipe.transform(today, 'MMM d, y, h:mm a');
     parseDate = ChangedFormat
-    console.log('getCurrentDate',parseDate)
     return parseDate
   }
 
-  //დროის დამატება ოთახზე
-  private addTimeCurrentRoom(roomsID:any):void{
-        // this.saveTime()
+    //დროის დამატება ოთახზე
+    public addContinuetime():void{
+    
+      this.startcontinue = false
+      clearInterval(this.computersArrr[this.computerroomsID-1].timer)
+      let progress = 0
+      if(this.hours || this.minutes ){
+
           //საათების და წუთების დამატების ლოგიკა
           this.computersArrr.forEach((item) => {
-            if(this.hours != 0 && this.minutes == 0 ){
-              if(item.roomsID == roomsID){
-                item.times.currenthours = this.hours- 1;
-                // item.times.minutes = 59;
-                // item.times.seconds = 59;
-              } 
-            }else if(this.minutes == 30){
-              if(item.roomsID == roomsID){
-                item.times.currenthours = this.hours;
-                item.times.minutes + 30;
+            if(item.roomsID == this.computerroomsID){
+              if(this.hours != 0 && this.minutes == 0 ){
+                item.times.currenthours += Number(this.hours);
+                item.times.minutes += Number(this.minutes);
                 item.times.seconds = 59;
+                item.progress = 0
+                progress = this.getAllTimersInSeconds('addtime')
+              }else if(this.minutes == 30){
+                // item.times.currenthours += Number(this.hours);
+
+                if(item.times.minutes > 30){
+                  // let currentMinutes = item.times.minutes - 30
+                  item.times.currenthours ++;
+                  item.times.minutes = item.times.minutes - 30
+                }else{
+                  item.times.minutes += Number(this.minutes);
+                }
+
+                item.times.seconds = 59;
+                item.progress = 0
+                progress = this.getAllTimersInSeconds('addtime')
+              }else{
+                alert('დრო არ აგირჩევია ბაჭყატ!!!')
+                return
               }
-            }else{
-              alert('დრო არ აგირჩევია ბაჭყატ!!!')
-              return
+  
+              item.timer = setInterval(() => {
+                item.times.seconds--;
+                item.progress += progress;
+                
+                //დროის ამოწურვა
+                if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
+                  this.endTime(item.timer);
+                  return;
+                }
+    
+                //საათის დაკლება
+                if ( item.times.currenthours >= 1 && item.times.minutes == 0 && item.times.seconds == 0) {
+                  item.times.minutes = 60
+                  item.times.currenthours--;
+                }
+    
+                //წამზომის 60 დან დაწყება
+                if (item.times.seconds == -1) {
+                  if ( item.times.minutes >= 1) item.times.minutes--;
+    
+                  item.times.seconds = 59;
+                }
+              }, 1000)
             }
 
           })
-
+    }
   }
+
+    //გადაყავს დრო წამებში
+    private getAllTimersInSeconds(str?:string):number{
+      if(str){
+        let progress = 0
+         this.computersArrr.map((item:any) => {
+          if(item.roomsID == this.computerroomsID) {
+            
+            item.times.progress = 0
+            console.log('getAllTimersInSeconds', item)
+            progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
+          }
+        })
+        return progress
+      }else{
+        return (1 / (this.hours * 3600 + this.minutes * 60) * 100) 
+      }
+      
+    }
+  
 
 }
 
