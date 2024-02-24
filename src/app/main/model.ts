@@ -21,3 +21,15 @@ export interface Times{
     minutes:number,
     seconds: number
   }
+
+  // '#', 'ოთხი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი', 'გადახდის მეთოდი', 'ოთახის სტატუსი'
+  export interface tbodyNames{
+    id:number,
+    name:string,
+    ordertime:any,
+    endtime:any,
+    clientname?:string,
+    paywithcard:boolean,
+    paywithcash:boolean,
+    status:string
+  }
