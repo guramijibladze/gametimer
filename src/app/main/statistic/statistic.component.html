@@ -2,3 +2,34 @@
         class="btn btn-primary" 
         data-bs-dismiss="modal"
         (click)="getcomputerRooms()">შენახვა</button>
+
+        <div class="main">
+                <div class="table p-5" >
+                        <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                        @for(displayedColumns of theadNames; track displayedColumns){
+                                                <th scope="col">{{displayedColumns}}</th>     
+                                        }
+                                  </tr>
+                                </thead>
+                                <tbody> 
+                                        @for(row of tbodyNames; track row){
+                                                <tr>
+                                                        <th scope="row">{{ row.id }}</th>
+                                                        <td>{{ row.name }}</td>
+                                                        <td>{{ row.ordertime }}</td>
+                                                        <td>{{ row.endtime }}</td>
+                                                        <td>{{ row.clientname }}</td>
+                                                        <td>{{ row.paywithcard }}</td>
+                                                        <td>{{ row.paywithcash }}</td>
+                                                        <td>{{ row.status }}</td>
+                                                </tr> 
+                                        }
+                                </tbody>
+                        </table>
+                </div>
+        </div>
+
+
+       

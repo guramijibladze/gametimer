@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
+import { tbodyNames } from '../model';
 
 @Component({
   selector: 'app-statistic',
@@ -8,13 +9,23 @@ import { ComputerRoomsService } from '../service/computer-rooms.service';
 })
 export class StatisticComponent {
 
+  
+  public theadNames:string[] = ['#', 'ოთხი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი', 'გადახდის მეთოდი', 'ოთახის სტატუსი']
+  public tbodyNames: any[] = []
+
   constructor(
     private computerRoomsService: ComputerRoomsService
   ){}
 
   public getcomputerRooms():void{
     this.computerRoomsService.getcomputerRooms().subscribe( response => {
-      console.log('getcomputerRooms',response)
+      
+
+      response.map((item:tbodyNames) => {
+        this.tbodyNames.push(item)
+      })
+
+      // console.log('getcomputerRooms',this.tbodyNames)
     })
   }
 }
