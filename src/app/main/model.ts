@@ -10,6 +10,8 @@ export interface ComputersRooms{
     ativestatus:boolean,
     paywithcard:boolean,
     paywithcash:boolean,
+    amountofmoneywithcash:number,
+    amountofmoneywithcard:number,
     status:string,
     timer:any,
     progress:any

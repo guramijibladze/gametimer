@@ -1,7 +1,4 @@
-<button type="button" 
-        class="btn btn-primary" 
-        data-bs-dismiss="modal"
-        (click)="getcomputerRooms()">შენახვა</button>
+
 
         <div class="main">
                 <div class="table p-5" >
@@ -21,9 +18,9 @@
                                                         <td>{{ row.ordertime }}</td>
                                                         <td>{{ row.endtime }}</td>
                                                         <td>{{ row.clientname }}</td>
-                                                        <td>{{ row.paywithcard }}</td>
-                                                        <td>{{ row.paywithcash }}</td>
-                                                        <td>{{ row.status }}</td>
+                                                        <td>{{ row.paywithcard ? "ბარათით" : "ნაღდით" }} </td>
+                                                        <td>{{ row.paywithcard ? row.amountofmoneywithcard : row.amountofmoneywithcash }} ₾</td>
+                                                        <td style="text-align: center;">{{ row.status }}</td>
                                                 </tr> 
                                         }
                                 </tbody>

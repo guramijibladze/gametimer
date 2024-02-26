@@ -10,12 +10,17 @@ import { tbodyNames } from '../model';
 export class StatisticComponent {
 
   
-  public theadNames:string[] = ['#', 'ოთხი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი', 'გადახდის მეთოდი', 'ოთახის სტატუსი']
+  public theadNames:string[] = ['#', 'ოთხი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი', 'გადახდის მეთოდი',
+  'თანხა ჯამში', 'ოთახის სტატუსი']
   public tbodyNames: any[] = []
 
   constructor(
     private computerRoomsService: ComputerRoomsService
   ){}
+
+  ngOnInit() {
+    this.getcomputerRooms()
+  }
 
   public getcomputerRooms():void{
     this.computerRoomsService.getcomputerRooms().subscribe( response => {
