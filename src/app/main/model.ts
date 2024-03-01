@@ -13,8 +13,10 @@ export interface ComputersRooms{
     amountofmoneywithcash:number,
     amountofmoneywithcard:number,
     status:string,
+    gameTimerType:boolean,
     timer:any,
-    progress:any
+    progress:any,
+    orderedjuss:string
   }
   
 export interface Times{
