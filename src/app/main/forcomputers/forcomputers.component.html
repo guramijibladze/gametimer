@@ -117,6 +117,7 @@
 </div>
 
   <!-- Modal -->
+  @for(computer of computersArrr; track computer){
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content" style="padding: 15px;">
@@ -125,47 +126,60 @@
           <h5 class="modal-title" id="exampleModalLabel">დროის არჩევა</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        
 
         <div class="modal-body">
 
-            <div class="clientName" style="display: flex; justify-content: space-between; align-items: center;">
+            <!-- <div class="game-timer-type">
+                <input class="form-check-input" type="checkbox" [value]=computer.gameTimerType id="flexCheckDefault" 
+                        (change)="chagnegametimertype()">
+                <label class="form-check-label ms-1" for="flexCheckDefault">
+                    მიმდინარე დრო
+                </label>
+            </div> -->
+
+            <div class="clientName mt-1" style="display: flex; justify-content: space-between; align-items: center;">
                 <label for="exampleFormControlInput1" class="form-label">მომხ. სახელი</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" style="width: 320px;" [(ngModel)]="clientName">
             </div>
 
-            <div class="hour-seconds d-flex justify-content-between mt-1 ">
+                @if(computer.gameTimerType == false){
+                    <div class="hour-seconds d-flex justify-content-between mt-1 ">
 
-                <div class="hours d-flex align-items-evenly align-items-baseline" >
-                    <label for="exampleFormControlInput1" class="form-label">საათი</label>
-                    <select class="form-control ms-1" style="width: 160px;" 
-                            [(ngModel)]="hours" 
-                            name="hours" 
-                            aria-label="Default select example">
-                        <option selected value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-    
-                <div class="seconds d-flex align-items-end">
-                    <label for="exampleFormControlInput1" class="form-label">წუთი</label>
-                    <select class="form-control ms-1" style="width: 160px;" 
-                            [(ngModel)]="minutes" 
-                            name="minutes" 
-                            aria-label="Default select example">
-                        <option selected value="0">00</option>
-                        <option value="30">30</option>
-                    </select>
-                    <!-- <input  type="email" class="form-control ms-1"
-                            [(ngModel)]="minutes" 
-                            name="minutes" 
-                            id="exampleFormControlInput1"> -->
-                </div>
+                        <div class="hours d-flex align-items-evenly align-items-baseline" >
+                            <label for="exampleFormControlInput1" class="form-label">საათი</label>
+                            <select class="form-control ms-1" style="width: 160px;" 
+                                    [(ngModel)]="hours" 
+                                    name="hours" 
+                                    aria-label="Default select example">
+                                <option selected value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+            
+                        <div class="seconds d-flex align-items-end">
+                            <label for="exampleFormControlInput1" class="form-label">წუთი</label>
+                            <select class="form-control ms-1" style="width: 160px;" 
+                                    [(ngModel)]="minutes" 
+                                    name="minutes" 
+                                    aria-label="Default select example">
+                                <option selected value="0">00</option>
+                                <option value="30">30</option>
+                            </select>
+                            <!-- <input  type="email" class="form-control ms-1"
+                                    [(ngModel)]="minutes" 
+                                    name="minutes" 
+                                    id="exampleFormControlInput1"> -->
+                        </div>
+        
+                    </div>
+                }
 
-            </div>
+           
 
             <div class="cash-info mt-1">
                 <div class="form-check" style="padding-left: 0px;">
@@ -191,6 +205,14 @@
                         <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="amountofmoneywithcard">
                     </div>
 
+                </div>
+
+                <div class="text">
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="სასმელები, ჩიფსები..." id="floatingTextarea2" style="height: 100px"
+                                    [(ngModel)]="orderedjuss"></textarea>
+                        <label for="floatingTextarea2">სასმელები, ჩიფსები...</label>
+                      </div>
                 </div>
             </div>
 
@@ -237,3 +259,4 @@
       </div>
     </div>
   </div>
+}

@@ -15,6 +15,7 @@ export class ForcomputersComponent implements OnInit {
   public startcontinue:boolean = true
   public amountofmoneywithcash:number = 0
   public amountofmoneywithcard:number = 0
+  public orderedjuss:string = ''
 
   timer: any
   conicgradient:any
@@ -46,6 +47,8 @@ export class ForcomputersComponent implements OnInit {
       amountofmoneywithcash:0,
       amountofmoneywithcard:0,
       status:'vip',
+      gameTimerType:false,
+      orderedjuss: '',
       timer: 0,
       progress: 0
     },
@@ -56,23 +59,23 @@ export class ForcomputersComponent implements OnInit {
       paywithcash:false,
       amountofmoneywithcash:0,
       amountofmoneywithcard:0,
-      status:'vip', timer: 0,
+      status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:3, clientname: '', name: 'ოთახი N3', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, paywithcard:false, paywithcash:false, amountofmoneywithcash:0,
-      amountofmoneywithcard:0, status:'vip', timer: 0,
+      amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:4, clientname: '', name: 'ოთახი N4', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, paywithcard:false, paywithcash:false, amountofmoneywithcash:0,
-      amountofmoneywithcard:0, status:'vip', timer: 0,
+      amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, paywithcard:false, paywithcash:false, amountofmoneywithcash:0,
-      amountofmoneywithcard:0, status:'vip', timer: 0,
+      amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
     progress: 0},
     { roomsID:6, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, paywithcard:false, paywithcash:false, amountofmoneywithcash:0,
-      amountofmoneywithcard:0, status:'', timer: 0,
+      amountofmoneywithcard:0, status:'', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0}
   ]
 
@@ -132,6 +135,7 @@ export class ForcomputersComponent implements OnInit {
             item.ativestatus = false
             item.amountofmoneywithcard = this.amountofmoneywithcard
             item.amountofmoneywithcash = this.amountofmoneywithcash
+            item.orderedjuss = this.orderedjuss
             item.ordertime = this.getCurrentDate()
             progress = this.getAllTimersInSeconds()
           }else if(this.minutes == 30){
@@ -141,10 +145,13 @@ export class ForcomputersComponent implements OnInit {
             item.times.seconds = 59;
             item.clientname = this.clientName
             item.ativestatus = false
+            item.orderedjuss = this.orderedjuss
             item.amountofmoneywithcard = this.amountofmoneywithcard
             item.amountofmoneywithcash = this.amountofmoneywithcash
             item.ordertime = this.getCurrentDate()
             progress = this.getAllTimersInSeconds()
+          }else if(this.minutes ){
+
           }else{
             alert('დრო არ აგირჩევია ბაჭყატ!!!')
             return
@@ -205,6 +212,19 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr[roomsID-1].ativestatus = true
     this.startcontinue = true
     
+  }
+
+  //გადაყავს მიმდინარე დროზე
+  gametimertypeArr:any[] = []
+  public chagnegametimertype():any{
+    // console.log('chagnegametimertype',this.computerroomsID)
+    this.computersArrr.forEach((item) => {
+      if(item.roomsID == this.computerroomsID){
+        item.gameTimerType = !item.gameTimerType
+      }
+    })
+    console.log('chagnegametimertype',this.computersArrr)
+    // if
   }
 
 
