@@ -28,6 +28,16 @@
                         <h3 style="color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">{{computer.times.selectedhour}}</h3>
                         <h3 style="color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">{{computer.ordertime | date: 'shortTime'}}</h3>
                     </div>
+
+                    <div class="selectedhours" style="position: absolute; right: 0px; top: 0px; margin-right: 15px;">
+                        @if(!computer.ativestatus){ 
+                            <img style="cursor: pointer; max-width: 63px; max-height: 63px;" 
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" 
+                            (click)="updateinfo()"
+                                src="../../../assets/icons/add.png" class="pause-continue-Button" alt="...">
+                          }
+                    </div>
                     
                     <!-- <div class="time d-flex justify-content-center">
                         <span>საათი:{{ computer.times.hours }}</span>
@@ -82,11 +92,6 @@
                     </div>
 
                     <div class="pause-continue m-1" style="max-width: 63px; max-height: 63px;">
-                        <!-- <button type="button" 
-                                style="width: 120px;"
-                                class="btn btn-warning" 
-                                (click)="pause(computer.roomsID)">
-                                {{ computer.pausecontinuoe ? 'გაგრძელება' : 'დაპაუზება' }}</button> -->
 
                         <img src="../../../assets/icons/pause.png"
                             style="cursor: pointer; max-width: 63px; max-height: 63px;"
@@ -96,10 +101,6 @@
                     </div>
 
                     <div class="cancel " style="width: 65px; height: 65px;">
-                        <!-- <button type="button" 
-                                style="width: 120px;"
-                                class="btn btn-danger" 
-                                (click)="cancelTime(computer.roomsID, computer.timer)">დასრულება</button> -->
 
                         <img src="../../../assets/icons/stop.png"
                             style="width: 65px; height: 65px; cursor: pointer;"
@@ -118,13 +119,13 @@
 
   <!-- Modal -->
   @for(computer of computersArrr; track computer){
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content" style="padding: 15px;">
 
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">დროის არჩევა</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="mdoalclose()"></button>
         </div>
         
 
@@ -151,7 +152,8 @@
                             <select class="form-control ms-1" style="width: 160px;" 
                                     [(ngModel)]="hours" 
                                     name="hours" 
-                                    aria-label="Default select example">
+                                    aria-label="Default select example"
+                                    [disabled]="infoUpdateButton">
                                 <option selected value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -166,7 +168,8 @@
                             <select class="form-control ms-1" style="width: 160px;" 
                                     [(ngModel)]="minutes" 
                                     name="minutes" 
-                                    aria-label="Default select example">
+                                    aria-label="Default select example"
+                                    [disabled]="infoUpdateButton">
                                 <option selected value="0">00</option>
                                 <option value="30">30</option>
                             </select>
@@ -184,9 +187,9 @@
             <div class="cash-info mt-1">
                 <div class="form-check" style="padding-left: 0px;">
                     <div class="paywithcash d-flex align-items-center">
-                        <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
+                        <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
                             id="flexRadioDefault1"
-                            (change)="onChanged($event.target)">
+                            (change)="onChanged($event.target)"> -->
                         <label class="form-check-label ms-1" for="flexRadioDefault1">
                             ნაღდით გადახდა
                         </label>
@@ -195,10 +198,10 @@
  
                 </div>
 
-                <div class="form-check" style="padding-left: 0px;">
+                <div class="form-check-card" style="padding-left: 0px;">
                     <div class="paywithcard d-flex align-items-center">
-                        <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="paywithcard"
-                            (change)="onChanged($event.target)">
+                        <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="paywithcard"
+                            (change)="onChanged($event.target)"> -->
                         <label class="form-check-label ms-1" for="flexRadioDefault2">
                             ბარათით გდახდა
                         </label>
@@ -240,14 +243,20 @@
           <button type="button" 
                 class="btn btn-secondary " 
                 aria-label="Close"
-                data-bs-dismiss="modal">დახურვა</button>
+                data-bs-dismiss="modal"
+                (click)="mdoalclose()">დახურვა</button>
 
                 @if(startcontinue){ 
                     <button type="button" 
                             class="btn btn-primary" 
                             data-bs-dismiss="modal"
                             (click)="saveTime('save')">დაწყება</button>
-                } @else { 
+                }@else if (infoUpdateButton) {
+                    <button type="button" 
+                            class="btn btn-primary" 
+                            data-bs-dismiss="modal"
+                            (click)="update()">შენახვა</button>
+                }@else { 
                     <button type="button" 
                             class="btn btn-primary" 
                             data-bs-dismiss="modal"
