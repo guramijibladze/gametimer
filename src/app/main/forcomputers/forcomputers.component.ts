@@ -16,6 +16,7 @@ export class ForcomputersComponent implements OnInit {
   public amountofmoneywithcash:number = 0
   public amountofmoneywithcard:number = 0
   public orderedjuss:string = ''
+  public infoUpdateButton:boolean = false
 
   timer: any
   conicgradient:any
@@ -42,8 +43,6 @@ export class ForcomputersComponent implements OnInit {
       endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 },
       ativestatus:true,
-      paywithcard:false,
-      paywithcash:false,
       amountofmoneywithcash:0,
       amountofmoneywithcard:0,
       status:'vip',
@@ -55,47 +54,28 @@ export class ForcomputersComponent implements OnInit {
     { roomsID:2, clientname: '', name: 'ოთახი N2', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
       ativestatus:true,
-      paywithcard:false,
-      paywithcash:false,
       amountofmoneywithcash:0,
       amountofmoneywithcard:0,
       status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:3, clientname: '', name: 'ოთახი N3', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, paywithcard:false, paywithcash:false, amountofmoneywithcash:0,
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
       amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:4, clientname: '', name: 'ოთახი N4', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, paywithcard:false, paywithcash:false, amountofmoneywithcash:0,
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
       amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, paywithcard:false, paywithcash:false, amountofmoneywithcash:0,
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
       amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
     progress: 0},
     { roomsID:6, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, paywithcard:false, paywithcash:false, amountofmoneywithcash:0,
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
       amountofmoneywithcard:0, status:'', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0}
   ]
 
-  public onChanged(e:any){
-
-    this.computersArrr.forEach((item:ComputersRooms) => {
-
-      if(item.roomsID == this.computerroomsID){
-        if(e.value == 'paywithcard'){
-          item.paywithcard = true;
-          item.paywithcash = false;
-        }else{
-          item.paywithcard = false;
-          item.paywithcash = true;
-        }
-      }
-
-    })
-
-  }
 
 
   //მონიშნული ობიექტის აიდი
@@ -115,10 +95,41 @@ export class ForcomputersComponent implements OnInit {
 
   }
 
+  public updateinfo(){
+    this.startcontinue = false
+    this.infoUpdateButton = true
 
+    //მოდალში ანახებს ამ ოთახზე არჩეულ ინფოს
+    this.computersArrr.forEach((item:ComputersRooms) => {
+      if(this.computerroomsID == item.roomsID){
+        this.clientName = item.clientname
+        // this.hours = item.times.currenthours
+        // this.minutes = item.times.minutes
+        this.amountofmoneywithcash = item.amountofmoneywithcash
+        this.amountofmoneywithcard = item.amountofmoneywithcard
+        this.orderedjuss = item.orderedjuss
+      }
+    })
+  }
+
+  public update():void{
+    console.log(this.computerroomsID)
+    this.computersArrr.forEach((item:ComputersRooms) => {
+      if(this.computerroomsID == item.roomsID){
+        item.clientname = this.clientName
+        // this.hours = item.times.currenthours
+        // this.minutes = item.times.minutes
+        item.amountofmoneywithcash = this.amountofmoneywithcash
+        item.amountofmoneywithcard = this.amountofmoneywithcard
+        item.orderedjuss = this.orderedjuss
+      }
+    })
+  }
 
   public saveTime(str?:string):void{
     let progress = 0
+    this.infoUpdateButton = false
+
     if(str =='save'){
       // საათის და წუთების ჩამატება
       this.computersArrr.forEach((item, index) => {
@@ -166,7 +177,7 @@ export class ForcomputersComponent implements OnInit {
             
             //დროის ამოწურვა
             if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
-              this.endTime(item.timer);
+              this.endTime(item.roomsID, item.timer);
               return;
             }
 
@@ -182,7 +193,7 @@ export class ForcomputersComponent implements OnInit {
 
               item.times.seconds = 59;
             }
-            console.log(item.times.seconds)
+            // console.log(item.times)
           }, 1000)
         }
       })
@@ -192,6 +203,7 @@ export class ForcomputersComponent implements OnInit {
 
   //დასრულების ივენთი
   public cancelTime(roomsID:number, timer:number):void{
+    this.infoUpdateButton = false
     let endTime = this.getCurrentDate()
     this.computersArrr[roomsID-1].endtime = endTime
     this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
@@ -200,17 +212,8 @@ export class ForcomputersComponent implements OnInit {
       complete: () => console.info('complete') 
     })
 
-    clearInterval(timer)
-
-    this.computersArrr[roomsID-1].times.currenthours = 0
-    this.computersArrr[roomsID-1].times.minutes = 0
-    this.computersArrr[roomsID-1].times.seconds = 0
-    this.computersArrr[roomsID-1].startButton = false
-    this.computersArrr[roomsID-1].progress = 0
-    this.computersArrr[roomsID-1].times.selectedhour = ''
-    this.computersArrr[roomsID-1].ordertime = ''
-    this.computersArrr[roomsID-1].ativestatus = true
-    this.startcontinue = true
+    clearInterval(timer) 
+    this.resetModalParameters(roomsID)
     
   }
 
@@ -229,11 +232,13 @@ export class ForcomputersComponent implements OnInit {
 
 
   //დროის ამოწურვა
-  private endTime(roomsID:any):void{
+  private endTime(roomsID:any, timer:number):void{
+    this.infoUpdateButton = false
     let endTime = this.getCurrentDate()
     this.computersArrr[roomsID-1].endtime = endTime
     this.computersArrr[roomsID-1].ativestatus = true
     this.startcontinue = true
+    console.log('endTime!!!!!', {...this.computersArrr[roomsID-1]})
 
     this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
       next : (res) => console.log('responese', res),
@@ -241,17 +246,20 @@ export class ForcomputersComponent implements OnInit {
       complete: () => console.info('complete') 
     })
 
-    clearInterval(roomsID)
+    clearInterval(timer)
+    this.resetModalParameters(roomsID)
+
   }
 
 
   
-  private getCurrentDate():string{
+  private getCurrentDate():any{
     let parseDate:any
     let pipe = new DatePipe('en-US');
     let today = new Date();
     let ChangedFormat = pipe.transform(today, 'MMM d, y, h:mm a');
     parseDate = ChangedFormat
+    
     return parseDate
   }
 
@@ -297,7 +305,7 @@ export class ForcomputersComponent implements OnInit {
                 
                 //დროის ამოწურვა
                 if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
-                  this.endTime(item.timer);
+                  this.endTime(item.timer, item.timer);
                   return;
                 }
     
@@ -320,6 +328,10 @@ export class ForcomputersComponent implements OnInit {
     }
   }
 
+  public mdoalclose(){
+    this.infoUpdateButton = false
+  }
+
     //გადაყავს დრო წამებში
     private getAllTimersInSeconds(str?:string):number{
       if(str){
@@ -340,5 +352,23 @@ export class ForcomputersComponent implements OnInit {
     }
   
 
+    private resetModalParameters(roomsID:number):void{
+      this.computersArrr[roomsID-1].times.currenthours = 0
+      this.computersArrr[roomsID-1].times.minutes = 0
+      this.computersArrr[roomsID-1].times.seconds = 0
+      this.computersArrr[roomsID-1].startButton = false
+      this.computersArrr[roomsID-1].progress = 0
+      this.computersArrr[roomsID-1].times.selectedhour = ''
+      this.computersArrr[roomsID-1].ordertime = ''
+      this.computersArrr[roomsID-1].ativestatus = true
+      this.computersArrr[roomsID-1].clientname = ''
+      this.amountofmoneywithcash = 0
+      this.amountofmoneywithcard = 0
+      this.minutes = 0
+      this.hours = 0
+      this.clientName = ''
+      this.orderedjuss = ''
+      this.startcontinue = true
+    }
 }
 

@@ -1,6 +1,6 @@
 export interface ComputersRooms{
     roomsID:number,
-    clientname?:string,
+    clientname:string,
     name:string,
     startButton:boolean,
     pausecontinuoe:boolean,
@@ -8,8 +8,8 @@ export interface ComputersRooms{
     endtime:any,
     times:Times,
     ativestatus:boolean,
-    paywithcard:boolean,
-    paywithcash:boolean,
+    // paywithcard:boolean,
+    // paywithcash:boolean,
     amountofmoneywithcash:number,
     amountofmoneywithcard:number,
     status:string,
@@ -29,11 +29,22 @@ export interface Times{
   // '#', 'ოთხი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი', 'გადახდის მეთოდი', 'ოთახის სტატუსი'
   export interface tbodyNames{
     id:number,
+    roomsID:number,
+    clientname:string,
     name:string,
+    startButton:boolean,
+    pausecontinuoe:boolean,
     ordertime:any,
     endtime:any,
-    clientname?:string,
-    paywithcard:boolean,
-    paywithcash:boolean,
-    status:string
+    times:Times,
+    ativestatus:boolean,
+    // paywithcard:boolean,
+    // paywithcash:boolean,
+    amountofmoneywithcash:number,
+    amountofmoneywithcard:number,
+    status:string,
+    gameTimerType:boolean,
+    timer:any,
+    progress:any,
+    orderedjuss:string
   }

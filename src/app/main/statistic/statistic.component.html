@@ -23,13 +23,13 @@
                                                         <td>{{ row.endtime }}</td>
                                                         <td>{{ row.clientname }}</td>
                                                         <td>{{ row.paywithcard ? "ბარათით" : "ნაღდით" }} </td>
-                                                        <td>{{ row.paywithcard ? row.amountofmoneywithcard : row.amountofmoneywithcash }} ₾</td>
+                                                        <td>{{ row.amount }} ₾</td>
                                                         <td>{{ row.orderedjuss }}</td>
                                                         <td>
                                                                 <button class="btn btn-primary" type="button" 
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#exampleModal" 
-                                                                        (click)="pay()">გადახდა</button> 
+                                                                        (click)="pay(row.id)">გადახდა</button> 
                                                         </td>
                                                 </tr> 
                                         }
@@ -38,36 +38,33 @@
                 </div>
         </div>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" #exampleModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title" id="exampleModalLabel">გადახდის დამატება</h5>
+                      <button id="closebutton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="cash-info mt-1">
                                 <div class="form-check" style="padding-left: 0px;">
                                     <div class="paywithcash d-flex align-items-center">
-                                        <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
-                                            id="flexRadioDefault1"
-                                            >
                                         <label class="form-check-label ms-1" for="flexRadioDefault1">
                                             ნაღდით გადახდა
                                         </label>
-                                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" >
+                                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" 
+                                                [(ngModel)]="amountofmoneywithcash">
                                     </div>
                  
                                 </div>
                 
                                 <div class="form-check" style="padding-left: 0px;">
                                     <div class="paywithcard d-flex align-items-center">
-                                        <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="paywithcard"
-                                            >
                                         <label class="form-check-label ms-1" for="flexRadioDefault2">
                                             ბარათით გდახდა
                                         </label>
-                                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" >
+                                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" 
+                                                [(ngModel)]="amountofmoneywithcard">
                                     </div>
                 
                                 </div>
@@ -75,7 +72,7 @@
                                 <div class="text">
                                     <div class="form-floating">
                                         <textarea class="form-control" placeholder="სასმელები, ჩიფსები..." id="floatingTextarea2" style="height: 100px"
-                                                    ></textarea>
+                                                [(ngModel)]="orderedjuss"></textarea>
                                         <label for="floatingTextarea2">სასმელები, ჩიფსები...</label>
                                       </div>
                                 </div>
@@ -83,7 +80,7 @@
                     </div>
 
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">ცვლილების შენახვა</button>
+                      <button type="button" class="btn btn-primary" (click)="putselectedrow()">ცვლილების შენახვა</button>
                     </div>
                   </div>
                 </div>

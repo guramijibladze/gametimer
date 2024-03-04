@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   login({ userName, lastName }: any): Observable<any> {
-    if (userName === 'guram' && lastName === 'jibladze') {
+    if (userName === 'levan' && lastName === 'megeneishvili') {
       this.setToken('abcdefghijklmnopqrstuvwxyz');
       this.router.navigate(['main/computers']);
       return of('you are sign in!');

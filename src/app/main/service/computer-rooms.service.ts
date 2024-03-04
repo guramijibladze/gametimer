@@ -24,8 +24,9 @@ export class ComputerRoomsService {
     return this.http.get<any>(this.baseURL + 'computerRooms')
   }
 
-  public putcomputerRooms(object:any):Observable<any>{
+  public putcomputerRooms(rowId:number, object:any):Observable<any>{
+    const headers = { 'content-type': 'application/json'}  
     const body = JSON.stringify(object);
-    return this.http.put<any>(this.baseURL + 'computerRooms', body)
+    return this.http.put<any>(this.baseURL + 'computerRooms/' + `${rowId}`, body, {'headers':headers})
   }
 }
