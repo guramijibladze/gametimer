@@ -70,9 +70,9 @@ export class ForcomputersComponent implements OnInit {
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
       amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
     progress: 0},
-    { roomsID:6, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
+    { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
-      amountofmoneywithcard:0, status:'', gameTimerType:false, orderedjuss: '', timer: 0,
+      amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0}
   ]
 
@@ -170,7 +170,7 @@ export class ForcomputersComponent implements OnInit {
 
           //დაწყების ღილაკის გამორთვა
           // item.startButton = true
-          
+          this.resetModalParameters()
           item.timer = setInterval(() => {
             item.times.seconds--;
             item.progress += progress;
@@ -352,16 +352,19 @@ export class ForcomputersComponent implements OnInit {
     }
   
 
-    private resetModalParameters(roomsID:number):void{
-      this.computersArrr[roomsID-1].times.currenthours = 0
-      this.computersArrr[roomsID-1].times.minutes = 0
-      this.computersArrr[roomsID-1].times.seconds = 0
-      this.computersArrr[roomsID-1].startButton = false
-      this.computersArrr[roomsID-1].progress = 0
-      this.computersArrr[roomsID-1].times.selectedhour = ''
-      this.computersArrr[roomsID-1].ordertime = ''
-      this.computersArrr[roomsID-1].ativestatus = true
-      this.computersArrr[roomsID-1].clientname = ''
+    private resetModalParameters(roomsID?:number):void{
+      if(roomsID){
+        this.computersArrr[roomsID-1].times.currenthours = 0
+        this.computersArrr[roomsID-1].times.minutes = 0
+        this.computersArrr[roomsID-1].times.seconds = 0
+        this.computersArrr[roomsID-1].startButton = false
+        this.computersArrr[roomsID-1].progress = 0
+        this.computersArrr[roomsID-1].times.selectedhour = ''
+        this.computersArrr[roomsID-1].ordertime = ''
+        this.computersArrr[roomsID-1].ativestatus = true
+        this.computersArrr[roomsID-1].clientname = ''
+      }
+
       this.amountofmoneywithcash = 0
       this.amountofmoneywithcard = 0
       this.minutes = 0

@@ -1,7 +1,20 @@
 
-
-        <div class="main">
+ <div class="main">
                 <div class="table p-5" >
+
+                        <div class="pocker" style="margin-bottom: 5px;">
+                                <form >
+                                        <!-- <label for="birthday">Birthday:</label> -->
+                                        <input type="date" id="date" name="date" 
+                                                style="border-radius: 5px;"
+                                                [(ngModel)]="currentDate">
+                                        <input type="submit" value="Submit" 
+                                                style="background-color: #0d6efd; margin-left: 5px; border-radius: 5px"
+                                                (click)="getData()">
+                                </form>
+                        </div>
+                       
+
                         <table class="table table-hover">
                                 <thead>
                                   <tr>
@@ -35,10 +48,13 @@
                                         }
                                 </tbody>
                         </table>
-                </div>
-        </div>
 
-        <div class="modal fade" id="exampleModal" #exampleModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                </div>
+
+
+</div>
+
+<div class="modal fade" id="exampleModal" #exampleModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -84,4 +100,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
+</div>
+
+              
