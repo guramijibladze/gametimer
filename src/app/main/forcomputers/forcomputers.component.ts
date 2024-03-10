@@ -77,7 +77,6 @@ export class ForcomputersComponent implements OnInit {
   ]
 
 
-
   //მონიშნული ობიექტის აიდი
   public startTime(roomsID:number):void{
     this.computerroomsID = roomsID
