@@ -17,6 +17,8 @@ export class ForcomputersComponent implements OnInit {
   public amountofmoneywithcard:number = 0
   public orderedjuss:string = ''
   public infoUpdateButton:boolean = false
+  public checkbox:boolean = false
+  public selectedArr:any[] = []
 
   timer: any
   conicgradient:any
@@ -84,6 +86,8 @@ export class ForcomputersComponent implements OnInit {
     if( this.computersArrr[roomsID-1].ordertime){
       this.startcontinue = false
     }
+
+    
   }
 
   public pause(boxroomsID:number):void{
@@ -94,13 +98,14 @@ export class ForcomputersComponent implements OnInit {
 
   }
 
-  public updateinfo(){
+  public updateinfo(updateRoomsID:number){
     this.startcontinue = false
     this.infoUpdateButton = true
 
     //მოდალში ანახებს ამ ოთახზე არჩეულ ინფოს
     this.computersArrr.forEach((item:ComputersRooms) => {
-      if(this.computerroomsID == item.roomsID){
+      if(updateRoomsID == item.roomsID){
+        
         this.clientName = item.clientname
         // this.hours = item.times.currenthours
         // this.minutes = item.times.minutes
@@ -112,7 +117,6 @@ export class ForcomputersComponent implements OnInit {
   }
 
   public update():void{
-    console.log(this.computerroomsID)
     this.computersArrr.forEach((item:ComputersRooms) => {
       if(this.computerroomsID == item.roomsID){
         item.clientname = this.clientName
@@ -149,6 +153,7 @@ export class ForcomputersComponent implements OnInit {
             item.ordertime = this.getCurrentDate()
             progress = this.getAllTimersInSeconds()
           }else if(this.minutes == 30){
+            console.log('30')
             item.times.selectedhour = this.hours + ':' + this.minutes
             item.times.currenthours = this.hours;
             item.times.minutes = 29;
@@ -160,41 +165,66 @@ export class ForcomputersComponent implements OnInit {
             item.amountofmoneywithcash = this.amountofmoneywithcash
             item.ordertime = this.getCurrentDate()
             progress = this.getAllTimersInSeconds()
-          }else if(this.minutes ){
-
-          }else{
+          }else if(item.gameTimerType == true){
+            item.clientname = this.clientName
+            item.ativestatus = false
+            item.amountofmoneywithcard = this.amountofmoneywithcard
+            item.amountofmoneywithcash = this.amountofmoneywithcash
+            item.orderedjuss = this.orderedjuss
+            item.ordertime = this.getCurrentDate()
+          }else if(this.hours == 0 && this.minutes == 0 && item.gameTimerType == false ){
             alert('დრო არ აგირჩევია ბაჭყატ!!!')
             return
           }
 
-          //დაწყების ღილაკის გამორთვა
-          // item.startButton = true
           this.resetModalParameters()
-          item.timer = setInterval(() => {
-            item.times.seconds--;
-            item.progress += progress;
-            
-            //დროის ამოწურვა
-            if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
-              this.endTime(item.roomsID, item.timer);
-              return;
-            }
+          //ტაიმერი და მიმდინარე დრო
+          if(item.gameTimerType == true){
 
-            //საათის დაკლება
-            if ( item.times.currenthours >= 1 && item.times.minutes == 0 && item.times.seconds == 0) {
-              item.times.minutes = 60
-              item.times.currenthours--;
-            }
+            item.timer = setInterval(() => {
+              item.times.seconds++
 
-            //წამზომის 60 დან დაწყება
-            if (item.times.seconds == -1) {
-              if ( item.times.minutes >= 1) item.times.minutes--;
+              if(item.times.minutes == 59 && item.times.seconds == 59){
+                item.times.currenthours++
+                item.times.minutes = 0
+                item.times.seconds = 0
+              }
 
-              item.times.seconds = 59;
-            }
-            // console.log(item.times)
-          }, 1000)
+              if(item.times.seconds == 60){
+                item.times.minutes += 1
+                item.times.seconds = 0
+              }
+            }, 1000)
+          }else{
+            item.timer = setInterval(() => {
+              item.times.seconds--;
+              item.progress += progress;
+              
+              //დროის ამოწურვა
+              if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
+                this.endTime(item.roomsID, item.timer);
+                return;
+              }
+  
+              //საათის დაკლება
+              if ( item.times.currenthours >= 1 && item.times.minutes == 0 && item.times.seconds == 0) {
+                item.times.minutes = 60
+                item.times.currenthours--;
+              }
+  
+              //წამზომის 60 დან დაწყება
+              if (item.times.seconds == -1) {
+                if ( item.times.minutes >= 1) item.times.minutes--;
+  
+                item.times.seconds = 59;
+              }
+              // console.log(item.times)
+            }, 1000)
+          }
+          
         }
+
+
       })
     }
 
@@ -218,15 +248,16 @@ export class ForcomputersComponent implements OnInit {
 
   //გადაყავს მიმდინარე დროზე
   gametimertypeArr:any[] = []
-  public chagnegametimertype():any{
-    // console.log('chagnegametimertype',this.computerroomsID)
+  public changametimertype():any{
+
+    console.log('chagnegametimertype',this.checkbox)
     this.computersArrr.forEach((item) => {
       if(item.roomsID == this.computerroomsID){
-        item.gameTimerType = !item.gameTimerType
+        item.gameTimerType = this.checkbox
+        item.gameTimerType ? this.infoUpdateButton = true : this.infoUpdateButton = false
       }
     })
-    console.log('chagnegametimertype',this.computersArrr)
-    // if
+
   }
 
 
@@ -329,6 +360,15 @@ export class ForcomputersComponent implements OnInit {
 
   public mdoalclose(){
     this.infoUpdateButton = false
+    this.checkbox = false
+    this.startcontinue = true
+
+    this.amountofmoneywithcash = 0
+    this.amountofmoneywithcard = 0
+    this.minutes = 0
+    this.hours = 0
+    this.clientName = ''
+    this.orderedjuss = ''
   }
 
     //გადაყავს დრო წამებში
@@ -371,6 +411,7 @@ export class ForcomputersComponent implements OnInit {
       this.clientName = ''
       this.orderedjuss = ''
       this.startcontinue = true
+      this.checkbox = false
     }
 }
 

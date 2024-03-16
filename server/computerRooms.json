@@ -1,5 +1,196 @@
 {
   "computerRooms": [
-  
+    {
+      "roomsID": 2,
+      "pausecontinuoe": false,
+      "ordertime": "Mar 16, 2024, 6:49 PM",
+      "endtime": "Mar 16, 2024, 6:51 PM",
+      "amountofmoneywithcash": "5",
+      "amountofmoneywithcard": "3",
+      "ativestatus": false,
+      "status": "vip",
+      "gameTimerType": true,
+      "timer": 9,
+      "progress": 0,
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 2,
+        "seconds": 9
+      },
+      "clientname": "megena",
+      "name": "ოთახი N2",
+      "orderedjuss": "cola",
+      "id": 1
+    },
+    {
+      "roomsID": 2,
+      "clientname": "gio",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "Mar 16, 2024, 6:52 PM",
+      "endtime": "Mar 16, 2024, 6:53 PM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 1,
+        "seconds": 11
+      },
+      "ativestatus": false,
+      "amountofmoneywithcash": "5",
+      "amountofmoneywithcard": "5",
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "cola",
+      "timer": 18,
+      "progress": 0,
+      "id": 2
+    },
+    {
+      "roomsID": 4,
+      "clientname": "",
+      "name": "ოთახი N4",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "",
+      "endtime": "Mar 16, 2024, 7:10 PM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 30,
+        "seconds": 37,
+        "progress": 0
+      },
+      "ativestatus": true,
+      "amountofmoneywithcash": 0,
+      "amountofmoneywithcard": 0,
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 102,
+      "progress": 1.2222222222222225,
+      "id": 3
+    },
+    {
+      "roomsID": 2,
+      "clientname": "გურამ ჯიბლაძე",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "Mar 16, 2024, 7:46 PM",
+      "endtime": "Mar 16, 2024, 8:18 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 15,
+        "seconds": 14
+      },
+      "ativestatus": false,
+      "amountofmoneywithcash": "5",
+      "amountofmoneywithcard": 0,
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "ewqeqe",
+      "timer": 9,
+      "progress": 49.16666666666756,
+      "id": 4
+    },
+    {
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "Mar 16, 2024, 8:56 PM",
+      "endtime": "Mar 16, 2024, 8:57 PM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 23
+      },
+      "ativestatus": false,
+      "amountofmoneywithcash": 0,
+      "amountofmoneywithcard": 0,
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 18,
+      "progress": 0,
+      "id": 5
+    },
+    {
+      "roomsID": 2,
+      "clientname": "megena",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "Mar 16, 2024, 8:42 PM",
+      "endtime": "Mar 16, 2024, 8:58 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 23,
+        "seconds": 57
+      },
+      "ativestatus": false,
+      "amountofmoneywithcash": "5",
+      "amountofmoneywithcard": 0,
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 9,
+      "progress": 20.111111111111178,
+      "id": 6
+    },
+    {
+      "roomsID": 2,
+      "clientname": "gio",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "Mar 16, 2024, 9:24 PM",
+      "endtime": "Mar 16, 2024, 10:18 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 0
+      },
+      "ativestatus": true,
+      "amountofmoneywithcash": "5",
+      "amountofmoneywithcard": 0,
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 18,
+      "progress": 99.94444444444677,
+      "id": 7
+    },
+    {
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "Mar 16, 2024, 9:24 PM",
+      "endtime": "Mar 16, 2024, 11:22 PM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 1,
+        "minutes": 34,
+        "seconds": 32
+      },
+      "ativestatus": false,
+      "amountofmoneywithcash": 0,
+      "amountofmoneywithcard": 0,
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 9,
+      "progress": 0,
+      "id": 8
+    }
   ]
 }
