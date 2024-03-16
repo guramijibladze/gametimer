@@ -8,8 +8,6 @@ export interface ComputersRooms{
     endtime:any,
     times:Times,
     ativestatus:boolean,
-    // paywithcard:boolean,
-    // paywithcash:boolean,
     amountofmoneywithcash:number,
     amountofmoneywithcard:number,
     status:string,

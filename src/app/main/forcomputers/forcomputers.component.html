@@ -34,16 +34,11 @@
                             <img style="cursor: pointer; max-width: 63px; max-height: 63px;" 
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal" 
-                            (click)="updateinfo()"
+                            (click)="updateinfo(computer.roomsID)"
                                 src="../../../assets/icons/add.png" class="pause-continue-Button" alt="...">
                           }
                     </div>
                     
-                    <!-- <div class="time d-flex justify-content-center">
-                        <span>საათი:{{ computer.times.hours }}</span>
-                        <span style="margin-left: 10px;">წუთი: {{ computer.times.minutes }}</span>
-                        <span style="margin-left: 10px;">წამი: {{ computer.times.seconds }}</span>
-                    </div> -->
 
                     <div class="mt-2" >
                         <div class="wrap-circles">
@@ -58,21 +53,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="informationoftime rounded-circle" style="background-color: blue; height: 250px;">
-                    <div class="progress rounded-circle" style="height: 250px;">
-                        <div class="progress-bar rounded-circle"
-                            style="height: 250px;" 
-                            role="progressbar" style="width: 25%;" 
-                            aria-valuenow="25" 
-                            aria-valuemin="0" aria-valuemax="100">
-                            25%
-                            <div class="time">
-                                <span class="hours"></span><span class="seconds"></span>
-                            </div>
-                        </div>
-    
-                    </div>
-                </div> -->
 
                 <div class="buttons" >
 
@@ -118,154 +98,133 @@
 </div>
 
   <!-- Modal -->
-  @for(computer of computersArrr; track computer){
-  <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content" style="padding: 15px;">
+        <div class="modal-content" style="padding: 15px;">
 
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">დროის არჩევა</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="mdoalclose()"></button>
-        </div>
-        
-
-        <div class="modal-body">
-
-            <!-- <div class="game-timer-type">
-                <input class="form-check-input" type="checkbox" [value]=computer.gameTimerType id="flexCheckDefault" 
-                        (change)="chagnegametimertype()">
-                <label class="form-check-label ms-1" for="flexCheckDefault">
-                    მიმდინარე დრო
-                </label>
-            </div> -->
-
-            <div class="clientName mt-1" style="display: flex; justify-content: space-between; align-items: center;">
-                <label for="exampleFormControlInput1" class="form-label">მომხ. სახელი</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" style="width: 320px;" [(ngModel)]="clientName">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">დროის არჩევა</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="mdoalclose()"></button>
             </div>
-
-                @if(computer.gameTimerType == false){
-                    <div class="hour-seconds d-flex justify-content-between mt-1 ">
-
-                        <div class="hours d-flex align-items-evenly align-items-baseline" >
-                            <label for="exampleFormControlInput1" class="form-label">საათი</label>
-                            <select class="form-control ms-1" style="width: 160px;" 
-                                    [(ngModel)]="hours" 
-                                    name="hours" 
-                                    aria-label="Default select example"
-                                    [disabled]="infoUpdateButton">
-                                <option selected value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
             
-                        <div class="seconds d-flex align-items-end">
-                            <label for="exampleFormControlInput1" class="form-label">წუთი</label>
-                            <select class="form-control ms-1" style="width: 160px;" 
-                                    [(ngModel)]="minutes" 
-                                    name="minutes" 
-                                    aria-label="Default select example"
-                                    [disabled]="infoUpdateButton">
-                                <option selected value="0">00</option>
-                                <option value="30">30</option>
-                            </select>
-                            <!-- <input  type="email" class="form-control ms-1"
-                                    [(ngModel)]="minutes" 
-                                    name="minutes" 
-                                    id="exampleFormControlInput1"> -->
-                        </div>
-        
-                    </div>
-                }
 
-           
+            <div class="modal-body">
 
-            <div class="cash-info mt-1">
-                <div class="form-check" style="padding-left: 0px;">
-                    <div class="paywithcash d-flex align-items-center">
-                        <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
-                            id="flexRadioDefault1"
-                            (change)="onChanged($event.target)"> -->
-                        <label class="form-check-label ms-1" for="flexRadioDefault1">
-                            ნაღდით გადახდა
-                        </label>
-                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="amountofmoneywithcash">
-                    </div>
- 
+                <div class="game-timer-type">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="checkbox"  id="flexCheckDefault" 
+                            (change)="changametimertype()">
+                    <label class="form-check-label ms-1" for="flexCheckDefault">
+                        მიმდინარე დრო
+                    </label>
                 </div>
 
-                <div class="form-check-card" style="padding-left: 0px;">
-                    <div class="paywithcard d-flex align-items-center">
-                        <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="paywithcard"
-                            (change)="onChanged($event.target)"> -->
-                        <label class="form-check-label ms-1" for="flexRadioDefault2">
-                            ბარათით გდახდა
-                        </label>
-                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="amountofmoneywithcard">
-                    </div>
-
+                <div class="clientName mt-1" style="display: flex; justify-content: space-between; align-items: center;">
+                    <label for="exampleFormControlInput1" class="form-label">მომხ. სახელი</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" style="width: 320px;" [(ngModel)]="clientName">
                 </div>
 
-                <div class="text">
-                    <div class="form-floating">
-                        <textarea class="form-control" placeholder="სასმელები, ჩიფსები..." id="floatingTextarea2" style="height: 100px"
-                                    [(ngModel)]="orderedjuss"></textarea>
-                        <label for="floatingTextarea2">სასმელები, ჩიფსები...</label>
-                      </div>
-                </div>
-            </div>
+                
+                        <div class="hour-seconds d-flex justify-content-between mt-1 ">
 
-        </div>
-
-        <!-- <hr>
-
-        <div class="products">
-            <div class="hours d-flex align-items-end " >
-                <label for="exampleFormControlInput1" class="form-label">საათი</label>
-                <select class="form-control ms-1" style="width: 130px;" 
-                        [(ngModel)]="beer" 
-                        name="beer" 
-                        aria-label="Default select example">
-                    <option selected value="0">0</option>
-                    <option value="heineken">heineken</option>
-                    <option value="lovenbrau">lovenbrau</option>
-                    <option value="bavaria">bavaria</option>
-                </select>
-            </div>
-        </div> -->
-
-        <div class="modal-footer">
+                                <div class="hours d-flex align-items-evenly align-items-baseline" >
+                                    <label for="exampleFormControlInput1" class="form-label">საათი</label>
+                                    <select class="form-control ms-1" style="width: 160px;" 
+                                            [(ngModel)]="hours" 
+                                            name="hours" 
+                                            aria-label="Default select example"
+                                            [disabled]="infoUpdateButton">
+                                        <option selected value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                    
+                                <div class="seconds d-flex align-items-end">
+                                    <label for="exampleFormControlInput1" class="form-label">წუთი</label>
+                                    <select class="form-control ms-1" style="width: 160px;" 
+                                            [(ngModel)]="minutes" 
+                                            name="minutes" 
+                                            aria-label="Default select example"
+                                            [disabled]="infoUpdateButton">
+                                        <option selected value="0">00</option>
+                                        <option value="30">30</option>
+                                    </select>
+                                    <!-- <input  type="email" class="form-control ms-1"
+                                            [(ngModel)]="minutes" 
+                                            name="minutes" 
+                                            id="exampleFormControlInput1"> -->
+                                </div>
             
-          <button type="button" 
-                class="btn btn-secondary " 
-                aria-label="Close"
-                data-bs-dismiss="modal"
-                (click)="mdoalclose()">დახურვა</button>
+                        </div>
+                    
+                <div class="cash-info mt-1">
+                    <div class="form-check" style="padding-left: 0px;">
+                        <div class="paywithcash d-flex align-items-center">
+                            <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
+                                id="flexRadioDefault1"
+                                (change)="onChanged($event.target)"> -->
+                            <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                ნაღდით გადახდა
+                            </label>
+                            <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="amountofmoneywithcash">
+                        </div>
+    
+                    </div>
 
-                @if(startcontinue){ 
-                    <button type="button" 
-                            class="btn btn-primary" 
-                            data-bs-dismiss="modal"
-                            (click)="saveTime('save')">დაწყება</button>
-                }@else if (infoUpdateButton) {
-                    <button type="button" 
-                            class="btn btn-primary" 
-                            data-bs-dismiss="modal"
-                            (click)="update()">შენახვა</button>
-                }@else { 
-                    <button type="button" 
-                            class="btn btn-primary" 
-                            data-bs-dismiss="modal"
-                            (click)="addContinuetime()">დამატება</button>
-                }
+                    <div class="form-check-card" style="padding-left: 0px;">
+                        <div class="paywithcard d-flex align-items-center">
+                            <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="paywithcard"
+                                (change)="onChanged($event.target)"> -->
+                            <label class="form-check-label ms-1" for="flexRadioDefault2">
+                                ბარათით გდახდა
+                            </label>
+                            <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="amountofmoneywithcard">
+                        </div>
 
-     
+                    </div>
+
+                    <div class="text">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="სასმელები, ჩიფსები..." id="floatingTextarea2" style="height: 100px"
+                                        [(ngModel)]="orderedjuss"></textarea>
+                            <label for="floatingTextarea2">სასმელები, ჩიფსები...</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+                
+            <button type="button" 
+                    class="btn btn-secondary " 
+                    aria-label="Close"
+                    data-bs-dismiss="modal"
+                    (click)="mdoalclose()">დახურვა</button>
+
+                    @if(startcontinue){ 
+                        <button type="button" 
+                                class="btn btn-primary" 
+                                data-bs-dismiss="modal"
+                                (click)="saveTime('save')">დაწყება</button>
+                    }@else if (infoUpdateButton) {
+                        <button type="button" 
+                                class="btn btn-primary" 
+                                data-bs-dismiss="modal"
+                                (click)="update()">შენახვა</button>
+                    }@else { 
+                        <button type="button" 
+                                class="btn btn-primary" 
+                                data-bs-dismiss="modal"
+                                (click)="addContinuetime()">დამატება</button>
+                    }
+
+        
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-}
+</div>
