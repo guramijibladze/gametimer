@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { ComputersRooms, tbodyNames } from '../model';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-statistic',
@@ -20,7 +22,9 @@ export class StatisticComponent {
   public tbodyNames: any[] = []
 
   constructor(
-    private computerRoomsService: ComputerRoomsService
+    private computerRoomsService: ComputerRoomsService,
+    private router: Router,
+    private authService: AuthService
   ){}
 
   ngOnInit() {
@@ -40,7 +44,6 @@ export class StatisticComponent {
       ordertime: ChangedFormat ? ChangedFormat : this.getCurrentDate()
     }
 
-    console.log(getObject)
     this.tbodyNames = []
     this.computerRoomsService.getcomputerRooms().subscribe( response => {
       
@@ -53,14 +56,6 @@ export class StatisticComponent {
         }
       })
 
-      // response.map((item:tbodyNames) => {
-      //   this.tbodyNames.push({
-      //     amount: Number(item.amountofmoneywithcard) + Number(item.amountofmoneywithcash),
-      //     ...item,
-      //   })
-      // })
-
-      // console.log('getcomputerRooms',this.tbodyNames)
     })
   }
 
@@ -134,6 +129,28 @@ export class StatisticComponent {
       error: (e) => console.error(e),
       complete: () => { closebutton?.click(),
         this.getcomputerRooms() }})
+  }
+
+  public amount:number = 0
+  public amountWithCard:number = 0
+  public amountWithCash:number = 0
+  public getDayInfo():void{
+    this.amount = 0
+    this.amountWithCard = 0
+    this.amountWithCash = 0
+
+    this.amount = this.tbodyNames.reduce((accumulator, currentValue:tbodyNames) => 
+        (accumulator + Number(currentValue.amountofmoneywithcard) + Number(currentValue.amountofmoneywithcash)), this.amount)
+
+    this.amountWithCard = this.tbodyNames.reduce((accumulator, currentValue:tbodyNames) => 
+        (accumulator + Number(currentValue.amountofmoneywithcard)), this.amountWithCard)
+
+    this.amountWithCash = this.tbodyNames.reduce((accumulator, currentValue:tbodyNames) => 
+        (accumulator + Number(currentValue.amountofmoneywithcash) ), this.amountWithCash)
+  }
+
+  public dayOff():void{
+    this.authService.logout()
   }
 
   private getCurrentDate():string{

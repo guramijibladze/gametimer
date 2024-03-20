@@ -1,0 +1,20 @@
+.statistis-footer{
+    position: absolute;
+    bottom: 0;
+    height: 55px;
+    background-color: rgb(247, 246, 246);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    .footer{
+        float: right;
+        margin-right: 20px;
+    }
+}
+
+.list-group-item{
+    display: flex;
+    justify-content: space-between;
+}
