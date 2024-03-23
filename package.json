@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"npm run json-server\" \"ng serve\"",
     "build": "ng build",
-    "serve-json": "json-server  --watch computerRooms.json",
-    "test": "ng test"
+    "test": "ng test",
+    "json-server": " json-server --watch server/computerRooms.json --port 3000"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +28,7 @@
     "@angular/cli": "^17.1.1",
     "@angular/compiler-cli": "^17.1.0",
     "@types/jasmine": "~5.1.0",
+    "concurrently": "^8.2.2",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
