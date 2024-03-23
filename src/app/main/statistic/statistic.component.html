@@ -124,14 +124,14 @@
             </div>
             <div class="modal-body">
                 <ul class="list-group">
-                        <li class="list-group-item"><span> თანხა ანგარიშზე:</span><span>{{amountWithCard}}ლ</span></li>
-                        <li class="list-group-item"><span> თანხა ქეშად:</span><span>{{amountWithCash}}ლ</span></li>
+                        <li class="list-group-item"><span> თანხა ანგარიშზე:</span><span>{{amountWithCard}}₾</span></li>
+                        <li class="list-group-item"><span> თანხა ქეშად:</span><span>{{amountWithCash}}₾</span></li>
                         <li class="list-group-item"><span> თანხა:</span> <span>{{amount}}₾</span></li>
                 </ul>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">გაუქმება</button>
-              <button type="button" class="btn btn-primary" (click)="dayOff()">დახურვა</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="dayOff()">დახურვა</button>
             </div>
           </div>
         </div>

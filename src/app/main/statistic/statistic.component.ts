@@ -48,7 +48,7 @@ export class StatisticComponent {
     this.computerRoomsService.getcomputerRooms().subscribe( response => {
       
       response.map((item:tbodyNames) => {
-        if( pipe.transform(item.ordertime, 'MMM d, y') == getObject.ordertime){
+        if( pipe.transform(item.openDayTime, 'MMM d, y') == pipe.transform(getObject.ordertime, 'MMM d, y') ){
             this.tbodyNames.push({
               amount: Number(item.amountofmoneywithcard) + Number(item.amountofmoneywithcash),
               ...item,
@@ -151,6 +151,7 @@ export class StatisticComponent {
 
   public dayOff():void{
     this.authService.logout()
+    localStorage.removeItem('openDayTime');
   }
 
   private getCurrentDate():string{

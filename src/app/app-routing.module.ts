@@ -5,7 +5,12 @@ import { authGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', component: SigninuserComponent },
+  { path: 'sign-in', component: SigninuserComponent },
+  // {
+  //   path: '',
+  //   pathMatch: 'full',
+  //   redirectTo: 'sing-in'
+  // },
   {
     path: 'main',
     canActivate: [authGuard],

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../service/auth/auth.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-signinuser',
@@ -21,9 +22,21 @@ export class SigninuserComponent {
       lastName: this.lastName,
     }
 
+    let openDateTime = this.getCurrentDate()
+
     this.authService.login({...sendObj}).subscribe( res =>{
-      console.log(res)
+      if( res == 'you are sign in!') localStorage.setItem('openDayTime', openDateTime)
     })
    
+  }
+
+  private getCurrentDate():any{
+    let parseDate:any
+    let pipe = new DatePipe('en-US');
+    let today = new Date();
+    let ChangedFormat = pipe.transform(today, 'MMM d, y');
+    parseDate = ChangedFormat
+    
+    return parseDate
   }
 }
