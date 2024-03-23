@@ -5,6 +5,7 @@ export interface ComputersRooms{
     startButton:boolean,
     pausecontinuoe:boolean,
     ordertime:any,
+    openDayTime:any,
     endtime:any,
     times:Times,
     ativestatus:boolean,
@@ -24,7 +25,6 @@ export interface Times{
     seconds: number
   }
 
-  // '#', 'ოთხი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი', 'გადახდის მეთოდი', 'ოთახის სტატუსი'
   export interface tbodyNames{
     id:number,
     roomsID:number,
@@ -32,6 +32,7 @@ export interface Times{
     name:string,
     startButton:boolean,
     pausecontinuoe:boolean,
+    openDayTime:any,
     ordertime:any,
     endtime:any,
     times:Times,

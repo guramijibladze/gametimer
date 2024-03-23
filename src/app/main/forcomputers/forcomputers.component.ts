@@ -42,6 +42,7 @@ export class ForcomputersComponent implements OnInit {
       startButton: false,
       pausecontinuoe:false, 
       ordertime: '',
+      openDayTime:'',
       endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 },
       ativestatus:true,
@@ -53,26 +54,26 @@ export class ForcomputersComponent implements OnInit {
       timer: 0,
       progress: 0
     },
-    { roomsID:2, clientname: '', name: 'ოთახი N2', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
+    { roomsID:2, clientname: '', name: 'ოთახი N2', startButton: false, pausecontinuoe:false, ordertime: '', openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
       ativestatus:true,
       amountofmoneywithcash:0,
       amountofmoneywithcard:0,
       status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
-    { roomsID:3, clientname: '', name: 'ოთახი N3', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
+    { roomsID:3, clientname: '', name: 'ოთახი N3', startButton: false, pausecontinuoe:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
       amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
-    { roomsID:4, clientname: '', name: 'ოთახი N4', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
+    { roomsID:4, clientname: '', name: 'ოთახი N4', startButton: false, pausecontinuoe:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
       amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
-    { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
+    { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
       amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
     progress: 0},
-    { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, ordertime: '', endtime: '',
+    { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
       amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0}
@@ -149,6 +150,7 @@ export class ForcomputersComponent implements OnInit {
             item.ativestatus = false
             item.amountofmoneywithcard = this.amountofmoneywithcard
             item.amountofmoneywithcash = this.amountofmoneywithcash
+            item.openDayTime = localStorage.getItem('openDayTime')
             item.orderedjuss = this.orderedjuss
             item.ordertime = this.getCurrentDate()
             progress = this.getAllTimersInSeconds()
@@ -163,6 +165,7 @@ export class ForcomputersComponent implements OnInit {
             item.orderedjuss = this.orderedjuss
             item.amountofmoneywithcard = this.amountofmoneywithcard
             item.amountofmoneywithcash = this.amountofmoneywithcash
+            item.openDayTime = localStorage.getItem('openDayTime')
             item.ordertime = this.getCurrentDate()
             progress = this.getAllTimersInSeconds()
           }else if(item.gameTimerType == true){
@@ -170,6 +173,7 @@ export class ForcomputersComponent implements OnInit {
             item.ativestatus = false
             item.amountofmoneywithcard = this.amountofmoneywithcard
             item.amountofmoneywithcash = this.amountofmoneywithcash
+            item.openDayTime = localStorage.getItem('openDayTime')
             item.orderedjuss = this.orderedjuss
             item.ordertime = this.getCurrentDate()
           }else if(this.hours == 0 && this.minutes == 0 && item.gameTimerType == false ){
