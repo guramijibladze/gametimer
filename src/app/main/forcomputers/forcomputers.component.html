@@ -41,15 +41,30 @@
                     
 
                     <div class="mt-2" >
-                        <div class="wrap-circles">
-                            <div class="circle per-25" [ngStyle]="{'background-image': 'conic-gradient(#7e8083 '+ computer.progress + '%, #37a5e6e7 0)'}">
-                                <div class="inner">
-                                    <div class="time d-flex justify-content-center">
-                                        <span class="timers-number"><h2>{{computer.times.currenthours}}:{{computer.times.minutes}}:{{computer.times.seconds }}</h2> </span>
+                        <!-- ტაიმერის ანიმაციები -->
+                        @if(!computer.gameTimerType){
+                            <div class="wrap-circles">
+                                <div class="circle per-25" [ngStyle]="{'background-image': 'conic-gradient(#7e8083 '+ computer.progress + '%, #37a5e6e7 0)'}">
+                                    <div class="inner">
+                                        <div class="time d-flex justify-content-center">
+                                            <span class="timers-number"><h2>{{computer.times.currenthours}}:{{computer.times.minutes}}:{{computer.times.seconds }}</h2> </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }@else {
+                            <div class="wrap-circles">
+                                <div class = "centered">
+                                    <div class = "blob-1"></div>
+                                    <div class = "blob-2"></div>
+                                </div>
+                                <div style="position: absolute; top: 480%;">
+                                    <span class="timers-number"><h2>{{computer.times.currenthours}}:{{computer.times.minutes}}:{{computer.times.seconds }}</h2> </span>
+                                </div>
+                                
+                            </div>
+                        }
+
                     </div>
                 </div>
 
