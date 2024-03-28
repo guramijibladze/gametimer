@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ComputersRooms } from '../model';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { DatePipe } from '@angular/common';
+import { SharingService } from '../service/sharing.service';
 
 @Component({
   selector: 'app-forcomputers',
@@ -9,6 +10,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './forcomputers.component.scss'
 })
 export class ForcomputersComponent implements OnInit {
+
   public hours:number = 0
   public minutes:any = 0
   public clientName = '';
@@ -27,8 +29,10 @@ export class ForcomputersComponent implements OnInit {
   private computerroomsID:number = 0
 
   constructor(
-    private computerRoomsService: ComputerRoomsService
-  ){}
+    private computerRoomsService: ComputerRoomsService,
+    private sharingService: SharingService
+  ){
+  }
 
   ngOnInit() {
     this.getCurrentDate()
@@ -240,9 +244,13 @@ export class ForcomputersComponent implements OnInit {
     let endTime = this.getCurrentDate()
     this.computersArrr[roomsID-1].endtime = endTime
     this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
-      next : (res) => console.log('responese', res),
+      next : (res) => {
+        this.sharingService.sendClickEvent()
+      },
       error: (e) => console.error(e),
-      complete: () => console.info('complete') 
+      complete: () => {
+        this.sharingService.sendClickEvent()
+      }
     })
 
     clearInterval(timer) 
@@ -270,18 +278,20 @@ export class ForcomputersComponent implements OnInit {
     this.infoUpdateButton = false
     let endTime = this.getCurrentDate()
     this.computersArrr[roomsID-1].endtime = endTime
-    this.computersArrr[roomsID-1].ativestatus = true
+    // this.computersArrr[roomsID-1].ativestatus = true
     this.startcontinue = true
     console.log('endTime!!!!!', {...this.computersArrr[roomsID-1]})
 
-    this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
-      next : (res) => console.log('responese', res),
-      error: (e) => console.error(e),
-      complete: () => console.info('complete') 
-    })
+    // this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
+    //   next : (res) => {
+        
+    //   },
+    //   error: (e) => console.error(e),
+    //   complete: () => {}
+    // })
 
     clearInterval(timer)
-    this.resetModalParameters(roomsID)
+    // this.resetModalParameters(roomsID)
 
   }
 
@@ -396,6 +406,7 @@ export class ForcomputersComponent implements OnInit {
   
 
     private resetModalParameters(roomsID?:number):void{
+
       if(roomsID){
         this.computersArrr[roomsID-1].times.currenthours = 0
         this.computersArrr[roomsID-1].times.minutes = 0

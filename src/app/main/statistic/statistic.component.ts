@@ -4,6 +4,8 @@ import { ComputersRooms, tbodyNames } from '../model';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth/auth.service';
+import { Subscription } from 'rxjs';
+import { SharingService } from '../service/sharing.service';
 
 @Component({
   selector: 'app-statistic',
@@ -11,6 +13,7 @@ import { AuthService } from '../../service/auth/auth.service';
   styleUrl: './statistic.component.scss'
 })
 export class StatisticComponent {
+  clickEventsubscription?:Subscription;
   private selectedRow:any
   public amountofmoneywithcash = 0
   public amountofmoneywithcard = 0
@@ -23,12 +26,13 @@ export class StatisticComponent {
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
-    private router: Router,
     private authService: AuthService
-  ){}
+  ){
+  }
 
   ngOnInit() {
     this.getcomputerRooms()
+
   }
 
   public getData(){

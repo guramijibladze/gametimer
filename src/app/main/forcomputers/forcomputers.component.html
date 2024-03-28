@@ -56,20 +56,39 @@
 
                 <div class="buttons" >
 
-                    <div class="start m-1" style="max-width: 63px; max-height: 63px;">
-                        <button style="background-color: transparent; color: #3498db; border: none !important;"
-                                    >
+                    @if(computer.ordertime){
+                        <div class="start m-1" style="max-width: 63px; max-height: 63px;">
+                            <button style="background-color: transparent; color: #3498db; border: none !important;"
+                                        >
+    
+                                <img src="../../../assets/icons/play-button (1)64.png"
+                                    style="cursor: pointer; max-width: 63px; max-height: 63px;"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop" 
+                                    class="startButton"
+                                    (click)="startTime(computer.roomsID)"
+                                    alt="...">
+                            </button>
+    
+                        </div>
+                    }@else{
+                        <div class="start m-1" style="max-width: 63px; max-height: 63px;">
+                            <button style="background-color: transparent; color: #3498db; border: none !important;"
+                                        >
+    
+                                <img src="../../../assets/icons/play-button (1)64.png"
+                                    style="cursor: pointer; max-width: 63px; max-height: 63px;"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" 
+                                    class="startButton"
+                                    (click)="startTime(computer.roomsID)"
+                                    alt="...">
+                            </button>
+    
+                        </div>
+                    }
 
-                            <img src="../../../assets/icons/play-button (1)64.png"
-                                style="cursor: pointer; max-width: 63px; max-height: 63px;"
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" 
-                                class="startButton"
-                                (click)="startTime(computer.roomsID)"
-                                alt="...">
-                        </button>
 
-                    </div>
 
                     <div class="pause-continue m-1" style="max-width: 63px; max-height: 63px;">
 
@@ -226,5 +245,58 @@
         
             </div>
         </div>
+    </div>
+</div>
+
+
+<!-- დამატების მოდალი -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" 
+        data-bs-keyboard="false" tabindex="-1" 
+        aria-labelledby="staticBackdropLabel" 
+        aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">დროის დამატება</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="hour-seconds d-flex justify-content-between mt-1 ">
+
+                <div class="hours d-flex align-items-evenly align-items-baseline" >
+                    <label for="exampleFormControlInput1" class="form-label">საათი</label>
+                    <select class="form-control ms-1" style="width: 160px;" 
+                            [(ngModel)]="hours" 
+                            name="hours" 
+                            aria-label="Default select example"
+                            >
+                        <option selected value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+    
+                <div class="seconds d-flex align-items-end">
+                    <label for="exampleFormControlInput1" class="form-label">წუთი</label>
+                    <select class="form-control ms-1" style="width: 160px;" 
+                            [(ngModel)]="minutes" 
+                            name="minutes" 
+                            aria-label="Default select example"
+                            >
+                        <option selected value="0">00</option>
+                        <option value="30">30</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">დახურვა</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addContinuetime()">დამატება</button>
+        </div>
+      </div>
     </div>
 </div>
