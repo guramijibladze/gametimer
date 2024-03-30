@@ -3,14 +3,22 @@ import { ComputersRooms } from '../model';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { DatePipe } from '@angular/common';
 import { SharingService } from '../service/sharing.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-forcomputers',
   templateUrl: './forcomputers.component.html',
-  styleUrl: './forcomputers.component.scss'
+  styleUrl: './forcomputers.component.scss',
+  animations: [
+    trigger('openClose', [
+      state('true', style({ height: '*' })),
+      state('false', style({ height: '0px' })),
+      transition('false <=> true', [ animate(500) ])
+    ])
+  ]
 })
 export class ForcomputersComponent implements OnInit {
-
+  isOpen = true;
   public hours:number = 0
   public minutes:any = 0
   public clientName = '';
@@ -27,6 +35,7 @@ export class ForcomputersComponent implements OnInit {
   conicgradientPercent:number = 0
  
   private computerroomsID:number = 0
+  private updateRoomsID:number = 0
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
@@ -106,10 +115,11 @@ export class ForcomputersComponent implements OnInit {
   public updateinfo(updateRoomsID:number){
     this.startcontinue = false
     this.infoUpdateButton = true
+    this.updateRoomsID = updateRoomsID
 
     //მოდალში ანახებს ამ ოთახზე არჩეულ ინფოს
     this.computersArrr.forEach((item:ComputersRooms) => {
-      if(updateRoomsID == item.roomsID){
+      if(this.updateRoomsID == item.roomsID){
         
         this.clientName = item.clientname
         // this.hours = item.times.currenthours
@@ -123,7 +133,7 @@ export class ForcomputersComponent implements OnInit {
 
   public update():void{
     this.computersArrr.forEach((item:ComputersRooms) => {
-      if(this.computerroomsID == item.roomsID){
+      if(this.updateRoomsID == item.roomsID){
         item.clientname = this.clientName
         // this.hours = item.times.currenthours
         // this.minutes = item.times.minutes
@@ -245,7 +255,6 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr[roomsID-1].endtime = endTime
     this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
       next : (res) => {
-        this.sharingService.sendClickEvent()
       },
       error: (e) => console.error(e),
       complete: () => {
@@ -417,6 +426,7 @@ export class ForcomputersComponent implements OnInit {
         this.computersArrr[roomsID-1].ordertime = ''
         this.computersArrr[roomsID-1].ativestatus = true
         this.computersArrr[roomsID-1].clientname = ''
+        this.computersArrr[roomsID-1].gameTimerType = false
       }
 
       this.amountofmoneywithcash = 0
