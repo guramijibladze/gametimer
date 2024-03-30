@@ -15,6 +15,7 @@ import { SharingService } from '../service/sharing.service';
 export class StatisticComponent {
   clickEventsubscription?:Subscription;
   private selectedRow:any
+  private openDayTime:any
   public amountofmoneywithcash = 0
   public amountofmoneywithcard = 0
   public orderedjuss = ''
@@ -32,7 +33,7 @@ export class StatisticComponent {
 
   ngOnInit() {
     this.getcomputerRooms()
-
+    this.openDayTime = localStorage.getItem('openDayTime')
   }
 
   public getData(){
@@ -78,7 +79,7 @@ export class StatisticComponent {
     })
     
   }
-
+  
 
   public putselectedrow():void{
     let closebutton = document.getElementById('closebutton')
@@ -88,6 +89,7 @@ export class StatisticComponent {
       roomsID: 0,
       pausecontinuoe: false,
       ordertime: '',
+      openDayTime:'',
       endtime: '',
       amountofmoneywithcash: 0,
       amountofmoneywithcard: 0,
@@ -103,7 +105,6 @@ export class StatisticComponent {
     }
 
 
-
     this.tbodyNames.forEach((item:tbodyNames) => {
       if(rowId == item.id){
         sendObject.amountofmoneywithcash = this.amountofmoneywithcash
@@ -112,6 +113,7 @@ export class StatisticComponent {
         sendObject.roomsID = item.roomsID,
         sendObject.pausecontinuoe = item.pausecontinuoe,
         sendObject.ordertime = item.ordertime,
+        sendObject.openDayTime = this.openDayTime,
         sendObject.endtime = item.endtime,
         sendObject.ativestatus = item.ativestatus,
         sendObject.status = item.status,
