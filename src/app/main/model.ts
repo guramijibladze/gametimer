@@ -15,7 +15,9 @@ export interface ComputersRooms{
     gameTimerType:boolean,
     timer:any,
     progress:any,
-    orderedjuss:string
+    orderedjuss:string,
+    moneyForRooms:number,
+    moneyForJuss:number
   }
   
 export interface Times{

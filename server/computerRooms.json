@@ -119,6 +119,33 @@
       "timer": 9,
       "progress": 1.1111111111111114,
       "id": 5
+    },
+    {
+      "roomsID": 2,
+      "clientname": "გურამ ჯიბლაძე",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "Apr 8, 2024, 10:54 PM",
+      "openDayTime": "Apr 8, 2024",
+      "endtime": "Apr 8, 2024, 10:55 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 9
+      },
+      "ativestatus": false,
+      "amountofmoneywithcash": "10",
+      "amountofmoneywithcard": "5",
+      "moneyForRooms": "10",
+      "moneyForJuss": "5",
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 9,
+      "progress": 1.3888888888888877,
+      "id": 6
     }
   ]
 }
