@@ -46,6 +46,79 @@
       "name": "ოთახი N2",
       "orderedjuss": "",
       "id": 2
+    },
+    {
+      "roomsID": 1,
+      "pausecontinuoe": false,
+      "ordertime": "Apr 8, 2024, 9:04 PM",
+      "openDayTime": "Apr 8, 2024",
+      "endtime": "Apr 8, 2024, 9:04 PM",
+      "amountofmoneywithcash": "9",
+      "amountofmoneywithcard": "5",
+      "ativestatus": false,
+      "status": "vip",
+      "gameTimerType": true,
+      "timer": 9,
+      "progress": 0,
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 42
+      },
+      "clientname": "",
+      "name": "ოთახი N1",
+      "orderedjuss": "",
+      "id": 3
+    },
+    {
+      "roomsID": 2,
+      "pausecontinuoe": false,
+      "ordertime": "Apr 8, 2024, 9:04 PM",
+      "openDayTime": "Apr 8, 2024",
+      "endtime": "Apr 8, 2024, 9:04 PM",
+      "amountofmoneywithcash": "6",
+      "amountofmoneywithcard": "",
+      "ativestatus": false,
+      "status": "vip",
+      "gameTimerType": false,
+      "timer": 18,
+      "progress": 2.055555555555556,
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 22
+      },
+      "clientname": "megena",
+      "name": "ოთახი N2",
+      "orderedjuss": "",
+      "id": 4
+    },
+    {
+      "roomsID": 2,
+      "clientname": "გურამ ჯიბლაძე",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "Apr 8, 2024, 10:03 PM",
+      "openDayTime": "Apr 8, 2024",
+      "endtime": "Apr 8, 2024, 10:03 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 39
+      },
+      "ativestatus": false,
+      "amountofmoneywithcash": "9",
+      "amountofmoneywithcard": "8",
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 9,
+      "progress": 1.1111111111111114,
+      "id": 5
     }
   ]
 }

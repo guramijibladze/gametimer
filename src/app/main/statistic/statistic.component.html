@@ -35,7 +35,8 @@
                                                         <td>{{ row.ordertime }}</td>
                                                         <td>{{ row.endtime }}</td>
                                                         <td>{{ row.clientname }}</td>
-                                                        <td>{{ row.paywithcard ? "ბარათით" : "ნაღდით" }} </td>
+                                                        <td>{{ row.amountofmoneywithcash && row.amountofmoneywithcard ? "ბარათით-ნაღდი" : 
+                                                                row.amountofmoneywithcard ? "ბარათით" : row.amountofmoneywithcash ? "ნაღდი" : '' }} </td>
                                                         <td>{{ row.amount }} ₾</td>
                                                         <td>{{ row.orderedjuss }}</td>
                                                         <td>
