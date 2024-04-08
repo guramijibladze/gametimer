@@ -29,6 +29,8 @@ export class ForcomputersComponent implements OnInit {
   public infoUpdateButton:boolean = false
   public checkbox:boolean = false
   public selectedArr:any[] = []
+  public moneyForRooms:number = 0
+  public moneyForJuss:number = 0
 
   timer: any
   conicgradient:any
@@ -61,6 +63,8 @@ export class ForcomputersComponent implements OnInit {
       ativestatus:true,
       amountofmoneywithcash:0,
       amountofmoneywithcard:0,
+      moneyForRooms:0,
+      moneyForJuss:0,
       status:'vip',
       gameTimerType:false,
       orderedjuss: '',
@@ -72,23 +76,29 @@ export class ForcomputersComponent implements OnInit {
       ativestatus:true,
       amountofmoneywithcash:0,
       amountofmoneywithcard:0,
+      moneyForRooms:0,
+      moneyForJuss:0,
       status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:3, clientname: '', name: 'ოთახი N3', startButton: false, pausecontinuoe:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
-      amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      amountofmoneywithcard:0,    moneyForRooms:0,
+      moneyForJuss:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:4, clientname: '', name: 'ოთახი N4', startButton: false, pausecontinuoe:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
-      amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      amountofmoneywithcard:0,    moneyForRooms:0,
+      moneyForJuss:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
-      amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      amountofmoneywithcard:0,    moneyForRooms:0,
+      moneyForJuss:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
     progress: 0},
     { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, amountofmoneywithcash:0,
-      amountofmoneywithcard:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      amountofmoneywithcard:0,    moneyForRooms:0,
+      moneyForJuss:0, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0}
   ]
 
@@ -164,6 +174,8 @@ export class ForcomputersComponent implements OnInit {
             item.ativestatus = false
             item.amountofmoneywithcard = this.amountofmoneywithcard
             item.amountofmoneywithcash = this.amountofmoneywithcash
+            item.moneyForRooms = this.moneyForRooms
+            item.moneyForJuss = this.moneyForJuss
             item.openDayTime = localStorage.getItem('openDayTime')
             item.orderedjuss = this.orderedjuss
             item.ordertime = this.getCurrentDate()
@@ -179,6 +191,8 @@ export class ForcomputersComponent implements OnInit {
             item.orderedjuss = this.orderedjuss
             item.amountofmoneywithcard = this.amountofmoneywithcard
             item.amountofmoneywithcash = this.amountofmoneywithcash
+            item.moneyForRooms = this.moneyForRooms
+            item.moneyForJuss = this.moneyForJuss
             item.openDayTime = localStorage.getItem('openDayTime')
             item.ordertime = this.getCurrentDate()
             progress = this.getAllTimersInSeconds()
