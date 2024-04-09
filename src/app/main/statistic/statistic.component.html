@@ -32,13 +32,13 @@
                                                         <th scope="row">{{ row.id }}</th>
                                                         <td>{{ row.name }}</td>
                                                         <td style="text-align: center;">{{ row.status }}</td>
-                                                        <td>{{ row.ordertime }}</td>
-                                                        <td>{{ row.endtime }}</td>
-                                                        <td>{{ row.clientname }}</td>
-                                                        <td>{{ row.amountofmoneywithcash && row.amountofmoneywithcard ? "ბარათით-ნაღდი" : 
-                                                                row.amountofmoneywithcard ? "ბარათით" : row.amountofmoneywithcash ? "ნაღდი" : '' }} </td>
-                                                        <td>{{ row.amount }} ₾</td>
-                                                        <td>{{ row.orderedjuss }}</td>
+                                                        <td style="text-align: center;">{{ row.ordertime }}</td>
+                                                        <td style="text-align: center;">{{ row.endtime }}</td>
+                                                        <td style="text-align: center;">{{ row.clientname }}</td>
+                                                        <!-- <td>{{ row.moneyForRooms && row.amountofmoneywithcard ? "ბარათით-ნაღდი" : 
+                                                                row.amountofmoneywithcard ? "ბარათით" : row.amountofmoneywithcash ? "ნაღდი" : '' }} </td> -->
+                                                        <td style="text-align: center;">{{ row.amount }} ₾</td>
+                                                        <td style="text-align: center;">{{ row.orderedjuss }}</td>
                                                         <td>
                                                                 <button class="btn btn-primary" type="button" 
                                                                         data-bs-toggle="modal"
@@ -74,27 +74,58 @@
             </div>
             <div class="modal-body">
                 <div class="cash-info mt-1">
-                        <div class="form-check" style="padding-left: 0px;">
-                            <div class="paywithcash d-flex align-items-center">
-                                <label class="form-check-label ms-1" for="flexRadioDefault1">
-                                    ნაღდით გადახდა
-                                </label>
-                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" 
-                                        [(ngModel)]="amountofmoneywithcash">
-                            </div>
-         
-                        </div>
+                        <div class="pay d-flex justify-content-between">
+                                <div class="form-check" style="padding-left: 0px;">
         
-                        <div class="form-check" style="padding-left: 0px;">
-                            <div class="paywithcard d-flex align-items-center">
-                                <label class="form-check-label ms-1" for="flexRadioDefault2">
-                                    ბარათით გდახდა
-                                </label>
-                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" 
-                                        [(ngModel)]="amountofmoneywithcard">
-                            </div>
+                                    <h5 style="text-align: center;">PS 5</h5>
+            
+                                    <div class="paywithcash d-flex align-items-center justify-content-between">
+                                        <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
+                                            id="flexRadioDefault1"
+                                            (change)="onChanged($event.target)"> -->
+                                        <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                            ნაღდით გადახდა
+                                        </label>
+                                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRoomsCash">
+                                    </div>
+            
+                                    <div class="paywithcash d-flex align-items-center justify-content-between mt-1">
+                                        <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
+                                            id="flexRadioDefault1"
+                                            (change)="onChanged($event.target)"> -->
+                                        <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                            ბარათით გადახდა
+                                        </label>
+                                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRoomsCard">
+                                    </div>
+            
+                                </div>
+            
+                                <div class="form-check-card " style="padding-left: 0px;">
         
-                        </div>
+                                    <h5 style="text-align: center;">Snacks & Beer</h5>
+            
+                                    <div class="paywithcard d-flex align-items-center justify-content-between">
+                                        <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="paywithcard"
+                                            (change)="onChanged($event.target)"> -->
+                                        <label class="form-check-label ms-1" for="flexRadioDefault2">
+                                            ნაღდით გადახდა
+                                        </label>
+                                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForSnacksCash">
+                                    </div>
+            
+                                    <div class="paywithcash d-flex align-items-center justify-content-between mt-1">
+                                        <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
+                                            id="flexRadioDefault1"
+                                            (change)="onChanged($event.target)"> -->
+                                        <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                            ბარათით გადახდა
+                                        </label>
+                                        <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForSnacksCard">
+                                    </div>
+            
+                                </div>
+                            </div>
         
                         <div class="text">
                             <div class="form-floating">
@@ -127,7 +158,9 @@
                 <ul class="list-group">
                         <li class="list-group-item"><span> თანხა ანგარიშზე:</span><span>{{amountWithCard}}₾</span></li>
                         <li class="list-group-item"><span> თანხა ქეშად:</span><span>{{amountWithCash}}₾</span></li>
-                        <li class="list-group-item"><span> თანხა:</span> <span>{{amount}}₾</span></li>
+                        <li class="list-group-item"><span> თანხა ოთახებიდან:</span><span>{{moneyFromComputerRooms}}₾</span></li>
+                        <li class="list-group-item"><span> თანხა წვენებიდან:</span><span>{{moneyFromSnacks}}₾</span></li>
+                        <li class="list-group-item"><span style="font-weight: bold;"> თანხა ჯამში:</span> <span style="font-weight: bold;">{{amount}}₾</span></li>
                 </ul>
             </div>
             <div class="modal-footer">

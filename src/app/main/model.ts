@@ -9,16 +9,24 @@ export interface ComputersRooms{
     endtime:any,
     times:Times,
     ativestatus:boolean,
-    amountofmoneywithcash:number,
-    amountofmoneywithcard:number,
     status:string,
     gameTimerType:boolean,
     timer:any,
     progress:any,
     orderedjuss:string,
-    moneyForRooms:number,
-    moneyForJuss:number
+    moneyForRooms:ForRooms,
+    moneyForSnacks:Snacks,
   }
+
+interface ForRooms{
+  cash:number,
+  card:number
+}
+
+interface Snacks{
+  cash:number,
+  card:number
+}
   
 export interface Times{
     selectedhour:string
@@ -39,10 +47,8 @@ export interface Times{
     endtime:any,
     times:Times,
     ativestatus:boolean,
-    // paywithcard:boolean,
-    // paywithcash:boolean,
-    amountofmoneywithcash:number,
-    amountofmoneywithcard:number,
+    moneyForRooms:ForRooms,
+    moneyForSnacks:Snacks,
     status:string,
     gameTimerType:boolean,
     timer:any,

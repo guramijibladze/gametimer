@@ -13,34 +13,37 @@ import { SharingService } from '../service/sharing.service';
   styleUrl: './statistic.component.scss'
 })
 export class StatisticComponent {
-  clickEventsubscription?:Subscription;
-  private selectedRow:any
-  private openDayTime:any
-  public amountofmoneywithcash = 0
-  public amountofmoneywithcard = 0
+  
+  public moneyFromComputerRooms:number = 0
+  public moneyFromSnacks:number = 0
+  public amount:number = 0
+  public amountWithCard:number = 0
+  public amountWithCash:number = 0
+  public moneyForRoomsCash:number = 0
+  public moneyForRoomsCard:number = 0
+  public moneyForSnacksCash:number = 0
+  public moneyForSnacksCard:number = 0
   public orderedjuss = ''
   public currentDate = ''
-  
-  public theadNames:string[] = ['#', 'ოთხი', 'ოთახის სტატუსი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი', 'გადახდის მეთოდი',
+  public theadNames:string[] = ['#', 'ოთხი', 'ოთახის სტატუსი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი',
   'თანხა ჯამში','შეკვეთები', '' ]
   public tbodyNames: any[] = []
+
+  private computerRoomsSubscription?:Subscription;
+  private selectedRow:any
+  private openDayTime:any
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
     private authService: AuthService
-  ){
-  }
-
-  ngOnInit() {
-    this.getcomputerRooms()
-    this.openDayTime = localStorage.getItem('openDayTime')
-  }
+  ){}
 
   public getData(){
     let pipe = new DatePipe('en-US');
     let ChangedFormat = pipe.transform(this.currentDate, 'MMM d, y');
-    this.getcomputerRooms(ChangedFormat)
     console.log(ChangedFormat)
+    this.getcomputerRooms(ChangedFormat)
+    
   }
 
   public getcomputerRooms(ChangedFormat?:any):void{
@@ -50,18 +53,18 @@ export class StatisticComponent {
     }
 
     this.tbodyNames = []
-    this.computerRoomsService.getcomputerRooms().subscribe( response => {
-      
+    this.computerRoomsSubscription = this.computerRoomsService.getcomputerRooms().subscribe( response => {
       response.map((item:tbodyNames) => {
         if( pipe.transform(item.openDayTime, 'MMM d, y') == pipe.transform(getObject.ordertime, 'MMM d, y') ){
             this.tbodyNames.push({
-              amount: Number(item.amountofmoneywithcard) + Number(item.amountofmoneywithcash),
+              amount: Number(item.moneyForRooms.cash) + Number(item.moneyForRooms.card) + Number(item.moneyForSnacks.cash) + Number(item.moneyForSnacks.card),
               ...item,
             })
         }
       })
 
     })
+    
   }
 
   public selectedItem(item:any){
@@ -72,8 +75,10 @@ export class StatisticComponent {
   public pay(id:number):void{
     this.tbodyNames.forEach((item:tbodyNames) => {
       if(id == item.id){
-        this.amountofmoneywithcash = item.amountofmoneywithcash
-        this.amountofmoneywithcard = item.amountofmoneywithcard
+        this.moneyForRoomsCash = item.moneyForRooms.cash
+        this.moneyForRoomsCard = item.moneyForRooms.card
+        this.moneyForSnacksCash = item.moneyForSnacks.cash
+        this.moneyForSnacksCard = item.moneyForSnacks.card
         this.orderedjuss = item.orderedjuss
       }
     })
@@ -91,8 +96,14 @@ export class StatisticComponent {
       ordertime: '',
       openDayTime:'',
       endtime: '',
-      amountofmoneywithcash: 0,
-      amountofmoneywithcard: 0,
+      moneyForRooms: {
+        cash: 0,
+        card: 0
+      },
+      moneyForSnacks: {
+        cash: 0,
+        card: 0
+      },
       ativestatus:true,
       status:'',
       gameTimerType:false,
@@ -107,8 +118,10 @@ export class StatisticComponent {
 
     this.tbodyNames.forEach((item:tbodyNames) => {
       if(rowId == item.id){
-        sendObject.amountofmoneywithcash = this.amountofmoneywithcash
-        sendObject.amountofmoneywithcard = this.amountofmoneywithcard
+        sendObject.moneyForRooms.cash = this.moneyForRoomsCash
+        sendObject.moneyForRooms.card = this.moneyForRoomsCard
+        sendObject.moneyForSnacks.cash = this.moneyForSnacksCash
+        sendObject.moneyForSnacks.card = this.moneyForSnacksCard
         sendObject.orderedjuss = this.orderedjuss,
         sendObject.roomsID = item.roomsID,
         sendObject.pausecontinuoe = item.pausecontinuoe,
@@ -137,22 +150,27 @@ export class StatisticComponent {
         this.getcomputerRooms() }})
   }
 
-  public amount:number = 0
-  public amountWithCard:number = 0
-  public amountWithCash:number = 0
+
   public getDayInfo():void{
     this.amount = 0
     this.amountWithCard = 0
     this.amountWithCash = 0
+    // this.moneyFromComputerRooms = 0
 
     this.amount = this.tbodyNames.reduce((accumulator, currentValue:tbodyNames) => 
-        (accumulator + Number(currentValue.amountofmoneywithcard) + Number(currentValue.amountofmoneywithcash)), this.amount)
+        (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card) + Number(currentValue.moneyForSnacks.cash) + Number(currentValue.moneyForSnacks.card)), this.amount)
 
     this.amountWithCard = this.tbodyNames.reduce((accumulator, currentValue:tbodyNames) => 
-        (accumulator + Number(currentValue.amountofmoneywithcard)), this.amountWithCard)
+        (accumulator + Number(currentValue.moneyForRooms.card) + Number(currentValue.moneyForSnacks.card)), this.amountWithCard)
 
     this.amountWithCash = this.tbodyNames.reduce((accumulator, currentValue:tbodyNames) => 
-        (accumulator + Number(currentValue.amountofmoneywithcash) ), this.amountWithCash)
+        (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForSnacks.cash)), this.amountWithCash)
+
+    this.moneyFromComputerRooms = this.tbodyNames.reduce((accumulator, curentItem:tbodyNames) => accumulator + Number(curentItem.moneyForRooms.card)  + 
+        Number(curentItem.moneyForRooms.cash), 0)
+
+    this.moneyFromSnacks = this.tbodyNames.reduce((accumulator:number, curentItem:tbodyNames) => accumulator + Number(curentItem.moneyForSnacks.card) + 
+        Number(curentItem.moneyForSnacks.cash) , 0)
   }
 
   public dayOff():void{
@@ -169,4 +187,13 @@ export class StatisticComponent {
     
     return parseDate
   }
+
+  ngOnInit() {
+    this.getcomputerRooms()
+    this.openDayTime = localStorage.getItem('openDayTime')
+  }
+
+  ngOnDestroy() {
+    this.computerRoomsSubscription ? this.computerRoomsSubscription.unsubscribe() : ''
+   }
 }
