@@ -1,51 +1,11 @@
 {
   "computerRooms": [
     {
-      "roomsID": 2,
+      "roomsID": 3,
       "pausecontinuoe": false,
-      "ordertime": "Apr 9, 2024, 3:53 PM",
+      "ordertime": "Apr 9, 2024, 10:47 PM",
       "openDayTime": "Apr 9, 2024",
-      "endtime": "Apr 9, 2024, 4:00 PM",
-      "moneyForRooms": {
-        "cash": "10",
-        "card": "5"
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": "10"
-      },
-      "ativestatus": false,
-      "status": "vip",
-      "gameTimerType": false,
-      "timer": 58,
-      "progress": 25.33333333333355,
-      "times": {
-        "selectedhour": "0:30",
-        "currenthours": 0,
-        "minutes": 22,
-        "seconds": 23
-      },
-      "clientname": "ufc",
-      "name": "ოთახი N2",
-      "orderedjuss": "cola",
-      "id": 10
-    },
-    {
-      "roomsID": 2,
-      "clientname": "ps 2024",
-      "name": "ოთახი N2",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "ordertime": "Apr 9, 2024, 5:02 PM",
-      "openDayTime": "Apr 9, 2024",
-      "endtime": "Apr 9, 2024, 5:02 PM",
-      "times": {
-        "selectedhour": "1:0",
-        "currenthours": 0,
-        "minutes": 59,
-        "seconds": 52
-      },
-      "ativestatus": false,
+      "endtime": "Apr 9, 2024, 10:47 PM",
       "moneyForRooms": {
         "cash": "10",
         "card": 0
@@ -54,43 +14,82 @@
         "cash": 0,
         "card": 0
       },
+      "ativestatus": false,
       "status": "vip",
-      "gameTimerType": false,
+      "gameTimerType": true,
+      "timer": 18,
+      "progress": 0,
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 7
+      },
+      "clientname": "",
+      "name": "ოთახი N3",
       "orderedjuss": "",
-      "timer": 9,
-      "progress": 0.19444444444444448,
-      "id": 11
+      "id": 13
     },
     {
       "roomsID": 1,
-      "clientname": "ufc",
-      "name": "ოთახი N1",
-      "startButton": false,
       "pausecontinuoe": false,
-      "ordertime": "Apr 9, 2024, 5:59 PM",
+      "ordertime": "Apr 9, 2024, 10:58 PM",
       "openDayTime": "Apr 9, 2024",
-      "endtime": "Apr 9, 2024, 6:00 PM",
-      "times": {
-        "selectedhour": "1:0",
-        "currenthours": 0,
-        "minutes": 58,
-        "seconds": 52
-      },
-      "ativestatus": false,
+      "endtime": "Apr 9, 2024, 10:58 PM",
       "moneyForRooms": {
-        "cash": "10",
-        "card": "5"
+        "cash": "5",
+        "card": 0
       },
       "moneyForSnacks": {
         "cash": 0,
-        "card": "15"
+        "card": 0
+      },
+      "ativestatus": false,
+      "status": "vip",
+      "gameTimerType": true,
+      "timer": 9,
+      "progress": 0,
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 7
+      },
+      "clientname": "",
+      "name": "ოთახი N1",
+      "orderedjuss": "",
+      "id": 14
+    },
+    {
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "ordertime": "Apr 9, 2024, 11:31 PM",
+      "openDayTime": "Apr 9, 2024",
+      "endtime": "Apr 9, 2024, 11:42 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 24,
+        "seconds": 4
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
       },
       "status": "vip",
       "gameTimerType": false,
       "orderedjuss": "",
-      "timer": 9,
-      "progress": 1.8611111111111083,
-      "id": 12
+      "timer": 17,
+      "progress": 19.72222222222228,
+      "id": 15
     }
   ]
 }

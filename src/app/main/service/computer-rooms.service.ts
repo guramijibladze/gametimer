@@ -29,4 +29,8 @@ export class ComputerRoomsService {
     const body = JSON.stringify(object);
     return this.http.put<any>(this.baseURL + 'computerRooms/' + `${rowId}`, body, {'headers':headers})
   }
+
+  public deleteItemTable(rowId:number):Observable<any>{
+    return this.http.delete<any>(this.baseURL + 'computerRooms/' + `${rowId}`)
+  }
 }

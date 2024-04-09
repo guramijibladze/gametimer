@@ -44,6 +44,10 @@
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#exampleModal" 
                                                                         (click)="pay(row.id)">გადახდა</button> 
+
+                                                                <button class="btn btn-danger ms-1" type="button"
+                                                                        data-bs-toggle="modal"
+                                                                        (click)="deleteItem(row)">წაშლა</button>
                                                         </td>
                                                 </tr> 
                                         }
@@ -65,7 +69,10 @@
 </div>
 
 <!-- დასრულებულზე ცვლილების შეტანის მოდალი --> 
-<div class="modal fade" id="exampleModal" #exampleModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" #exampleModal tabindex="-1" 
+        aria-labelledby="staticBackdropLabel" 
+        data-bs-config={backdrop:true}
+        aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">

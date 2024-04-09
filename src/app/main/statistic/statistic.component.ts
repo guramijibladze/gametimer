@@ -29,7 +29,8 @@ export class StatisticComponent {
   'თანხა ჯამში','შეკვეთები', '' ]
   public tbodyNames: any[] = []
 
-  private computerRoomsSubscription?:Subscription;
+  private computerRoomsSubscription?:Subscription
+  private computerRoomsDeleteSubscription?:Subscription
   private selectedRow:any
   private openDayTime:any
 
@@ -178,6 +179,20 @@ export class StatisticComponent {
     localStorage.removeItem('openDayTime');
   }
 
+  public deleteItem(item:any):void{
+    let rowID = item.id
+    this.computerRoomsDeleteSubscription = this.computerRoomsService.deleteItemTable(rowID).subscribe( {
+      next : (res) => {
+        this.getcomputerRooms()
+      },
+      error: (e) => console.error(e),
+      complete: () => {
+        console.log('complete',item)
+      }
+    })
+  
+  }
+
   private getCurrentDate():string{
     let parseDate:any
     let pipe = new DatePipe('en-US');
@@ -195,5 +210,6 @@ export class StatisticComponent {
 
   ngOnDestroy() {
     this.computerRoomsSubscription ? this.computerRoomsSubscription.unsubscribe() : ''
+    this.computerRoomsDeleteSubscription ? this.computerRoomsDeleteSubscription.unsubscribe() : ''
    }
 }
