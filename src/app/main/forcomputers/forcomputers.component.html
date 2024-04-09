@@ -194,51 +194,60 @@
             
                         </div>
                     
-                <div class="cash-info mt-1">
-                    <div class="form-check d-flex justify-content-between" style="padding-left: 0px;">
-                        <div class="paywithcash d-flex align-items-center">
-                            <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
-                                id="flexRadioDefault1"
-                                (change)="onChanged($event.target)"> -->
-                            <label class="form-check-label ms-1" for="flexRadioDefault1">
-                                ნაღდით გადახდა
-                            </label>
-                            <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="amountofmoneywithcash">
-                        </div>
+                <div class="cash-info mt-1 ">
+                    <div class="pay d-flex justify-content-between">
+                        <div class="form-check" style="padding-left: 0px;">
 
-                        <div class="paywithcash d-flex align-items-center">
-                            <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
-                                id="flexRadioDefault1"
-                                (change)="onChanged($event.target)"> -->
-                            <label class="form-check-label ms-1" for="flexRadioDefault1">
-                                ოთახის საფასური
-                            </label>
-                            <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRooms">
+                            <h5 style="text-align: center;">PS 5</h5>
+    
+                            <div class="paywithcash d-flex align-items-center justify-content-between">
+                                <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
+                                    id="flexRadioDefault1"
+                                    (change)="onChanged($event.target)"> -->
+                                <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                    ნაღდით გადახდა
+                                </label>
+                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRoomsCash">
+                            </div>
+    
+                            <div class="paywithcash d-flex align-items-center justify-content-between mt-1">
+                                <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
+                                    id="flexRadioDefault1"
+                                    (change)="onChanged($event.target)"> -->
+                                <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                    ბარათით გადახდა
+                                </label>
+                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRoomsCard">
+                            </div>
+    
                         </div>
     
+                        <div class="form-check-card " style="padding-left: 0px;">
+
+                            <h5 style="text-align: center;">Snacks & Beer</h5>
+    
+                            <div class="paywithcard d-flex align-items-center justify-content-between">
+                                <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="paywithcard"
+                                    (change)="onChanged($event.target)"> -->
+                                <label class="form-check-label ms-1" for="flexRadioDefault2">
+                                    ნაღდით გადახდა
+                                </label>
+                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForSnacksCash">
+                            </div>
+    
+                            <div class="paywithcash d-flex align-items-center justify-content-between mt-1">
+                                <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
+                                    id="flexRadioDefault1"
+                                    (change)="onChanged($event.target)"> -->
+                                <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                    ბარათით გადახდა
+                                </label>
+                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForSnacksCard">
+                            </div>
+    
+                        </div>
                     </div>
 
-                    <div class="form-check-card d-flex justify-content-between" style="padding-left: 0px;">
-                        <div class="paywithcard d-flex align-items-center">
-                            <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="paywithcard"
-                                (change)="onChanged($event.target)"> -->
-                            <label class="form-check-label ms-1" for="flexRadioDefault2">
-                                ბარათით გდახდა
-                            </label>
-                            <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="amountofmoneywithcard">
-                        </div>
-
-                        <div class="paywithcash d-flex align-items-center">
-                            <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
-                                id="flexRadioDefault1"
-                                (change)="onChanged($event.target)"> -->
-                            <label class="form-check-label ms-1" for="flexRadioDefault1">
-                                წვენების საფასური
-                            </label>
-                            <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForJuss">
-                        </div>
-
-                    </div>
 
                     <div class="text mt-1">
                         <div class="form-floating">
