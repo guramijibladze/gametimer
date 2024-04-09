@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, DoCheck, OnInit } from '@angular/core';
 import { ComputersRooms } from '../model';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { DatePipe } from '@angular/common';
@@ -40,6 +40,7 @@ export class ForcomputersComponent implements OnInit {
   private updateRoomsID:number = 0
 
   constructor(
+    private changeDetector: ChangeDetectorRef,
     private computerRoomsService: ComputerRoomsService,
     private sharingService: SharingService
   ){
@@ -224,6 +225,7 @@ export class ForcomputersComponent implements OnInit {
                 item.times.minutes += 1
                 item.times.seconds = 0
               }
+              // this.changeDetector.markForCheck();
             }, 1000)
           }else{
             item.timer = setInterval(() => {
@@ -248,6 +250,7 @@ export class ForcomputersComponent implements OnInit {
   
                 item.times.seconds = 59;
               }
+              // this.changeDetector.markForCheck();
               // console.log(item.times)
             }, 1000)
           }
@@ -259,6 +262,12 @@ export class ForcomputersComponent implements OnInit {
     }
 
   }
+
+  // ngDoCheck(){
+
+  //   this.changeDetector.markForCheck();
+  //   console.log('ngDoCheck')
+  // }
 
   //დასრულების ივენთი
   public cancelTime(roomsID:number, timer:number):void{
