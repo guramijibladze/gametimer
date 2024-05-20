@@ -17,7 +17,14 @@ export interface ComputersRooms{
     orderedjuss:string,
     moneyForRooms:ForRooms,
     moneyForSnacks:Snacks,
-  }
+}
+
+export interface roomsReservation{
+  person:string,
+  tel:string,
+  time:string,
+  text:string
+}
 
 interface ForRooms{
   cash:number,

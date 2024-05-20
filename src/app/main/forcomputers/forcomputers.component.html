@@ -28,13 +28,15 @@
                                     alt="..." 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#reservationModal"
-                                    (click)="addaReservation(computer.roomsID)">
+                                    >
                             }@else{
                                 <img src="../../../assets/icons/booking (1).png" 
                                     class="pause-continue-Button" 
                                     style="cursor: pointer;"
                                     alt="..."
-                                    (click)="showMeReservation()">
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#reservationModal"
+                                    >
                             }
                         </div>
                         
@@ -369,21 +371,52 @@
     </div>
 </div>
 
+
 <!-- ჯავშნის მოდალი -->
 <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModal" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">ჯავშნები</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <div class="reservation-info">
+            <div class="person-info d-flex">
+
+                <input class="form-control form-control-sm m-1" 
+                        style="height: 37.6px;" 
+                        [(ngModel)]="reservationPersonName" 
+                        type="text" 
+                        placeholder="სახელი" >
+                <input class="form-control form-control-sm m-1" 
+                        style="height: 37.6px;" 
+                        [(ngModel)]="reservationPersonPhoneNumber" 
+                        type="text" 
+                        placeholder="ტელ." >
+                <input class="form-control form-control-sm m-1" 
+                        style="height: 37.6px;" 
+                        [(ngModel)]="reservationTime" 
+                        type="text" 
+                        placeholder="საათი" >
+
+            </div>
+
+            <div class="reservation-text">
+                <textarea class="form-control" 
+                        id="exampleFormControlTextarea1" 
+                        [(ngModel)]="reservationText" 
+                        rows="2"></textarea>
+            </div>
+            
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">დახურვა</button>
+          <button type="button" 
+                    class="btn btn-primary" 
+                    (click)="addaReservation()">შენახვა</button>
         </div>
       </div>
     </div>
-  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { ComputersRooms } from '../model';
+import { ComputersRooms, roomsReservation } from '../model';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { DatePipe } from '@angular/common';
 import { SharingService } from '../service/sharing.service';
@@ -33,6 +33,12 @@ export class ForcomputersComponent implements OnInit {
   public moneyForSnacksCard:number = 0
   public reservationModalIsHidden:boolean = false
 
+  //ჯავშნები
+  public reservationPersonName:string = ''
+  public reservationPersonPhoneNumber:string = ''
+  public reservationTime:string = ''
+  public reservationText:string = ''
+
   timer: any
   conicgradient:any
   conicgradientPercent:number = 0
@@ -48,7 +54,10 @@ export class ForcomputersComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentDate()
+    localStorage.setItem('reservationArr', JSON.stringify(this.reservationArr))
   }
+
+  reservationArr:roomsReservation[] = []
 
   computersArrr:ComputersRooms[] = [
     { 
@@ -412,13 +421,31 @@ export class ForcomputersComponent implements OnInit {
     this.orderedjuss = ''
   }
 
-  public addaReservation(id?:number):void{
-    console.log(id)
-    this.reservationModalIsHidden = !this.reservationModalIsHidden
 
+  // ჯავშანი
+  public addaReservation(id?:number):void{
+
+    let reservartionArr = String(localStorage.getItem('reservationArr')) 
+    let retrievedArray = JSON.parse(reservartionArr);
+    console.log(typeof retrievedArray, retrievedArray )
+
+    const reservationInfo = {
+      person: this.reservationPersonName,
+      tel: this.reservationPersonPhoneNumber,
+      time: this.reservationTime,
+      text: this.reservationText
+    }
+
+    this.reservationArr.push(reservationInfo)
+    localStorage.setItem('reservationArr',JSON.stringify(this.reservationArr))
+    // reservartionArr.forEach(element => {
+      
+    // });
+
+    console.log(reservartionArr)
     // this.computersArrr.forEach((item) => {
     //   if(id == item.roomsID)
-    //     this.reservationModalIsHidden = !this.reservationModalIsHidden
+    //     item.roomsReservation= !this.reservationModalIsHidden
     // })
   }
 
