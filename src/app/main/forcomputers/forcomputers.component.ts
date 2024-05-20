@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { ComputersRooms } from '../model';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { DatePipe } from '@angular/common';
@@ -31,6 +31,7 @@ export class ForcomputersComponent implements OnInit {
   public moneyForRoomsCard:number = 0
   public moneyForSnacksCash:number = 0
   public moneyForSnacksCard:number = 0
+  public reservationModalIsHidden:boolean = false
 
   timer: any
   conicgradient:any
@@ -40,7 +41,6 @@ export class ForcomputersComponent implements OnInit {
   private updateRoomsID:number = 0
 
   constructor(
-    private changeDetector: ChangeDetectorRef,
     private computerRoomsService: ComputerRoomsService,
     private sharingService: SharingService
   ){
@@ -57,6 +57,7 @@ export class ForcomputersComponent implements OnInit {
       name: 'ოთახი N1', 
       startButton: false,
       pausecontinuoe:false, 
+      roomsReservation:false,
       ordertime: '',
       openDayTime:'',
       endtime: '',
@@ -70,26 +71,26 @@ export class ForcomputersComponent implements OnInit {
       timer: 0,
       progress: 0
     },
-    { roomsID:2, clientname: '', name: 'ოთახი N2', startButton: false, pausecontinuoe:false, ordertime: '', openDayTime:'', endtime: '',
+    { roomsID:2, clientname: '', name: 'ოთახი N2', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
       ativestatus:true,
       moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0},
       status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
-    { roomsID:3, clientname: '', name: 'ოთახი N3', startButton: false, pausecontinuoe:false, ordertime: '',openDayTime:'', endtime: '',
+    { roomsID:3, clientname: '', name: 'ოთახი N3', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
-    { roomsID:4, clientname: '', name: 'ოთახი N4', startButton: false, pausecontinuoe:false, ordertime: '',openDayTime:'', endtime: '',
+    { roomsID:4, clientname: '', name: 'ოთახი N4', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
-    { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, ordertime: '',openDayTime:'', endtime: '',
+    { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
     progress: 0},
-    { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, ordertime: '', openDayTime:'',endtime: '',
+    { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0}
@@ -225,7 +226,7 @@ export class ForcomputersComponent implements OnInit {
                 item.times.minutes += 1
                 item.times.seconds = 0
               }
-              // this.changeDetector.markForCheck();
+
             }, 1000)
           }else{
             item.timer = setInterval(() => {
@@ -250,8 +251,7 @@ export class ForcomputersComponent implements OnInit {
   
                 item.times.seconds = 59;
               }
-              // this.changeDetector.markForCheck();
-              // console.log(item.times)
+
             }, 1000)
           }
           
@@ -263,11 +263,6 @@ export class ForcomputersComponent implements OnInit {
 
   }
 
-  // ngDoCheck(){
-
-  //   this.changeDetector.markForCheck();
-  //   console.log('ngDoCheck')
-  // }
 
   //დასრულების ივენთი
   public cancelTime(roomsID:number, timer:number):void{
@@ -415,6 +410,20 @@ export class ForcomputersComponent implements OnInit {
     this.hours = 0
     this.clientName = ''
     this.orderedjuss = ''
+  }
+
+  public addaReservation(id?:number):void{
+    console.log(id)
+    this.reservationModalIsHidden = !this.reservationModalIsHidden
+
+    // this.computersArrr.forEach((item) => {
+    //   if(id == item.roomsID)
+    //     this.reservationModalIsHidden = !this.reservationModalIsHidden
+    // })
+  }
+
+  public showMeReservation():void{
+
   }
 
     //გადაყავს დრო წამებში

@@ -3,6 +3,7 @@ export interface ComputersRooms{
     clientname:string,
     name:string,
     startButton:boolean,
+    roomsReservation:boolean,
     pausecontinuoe:boolean,
     ordertime:any,
     openDayTime:any,
