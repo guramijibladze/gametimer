@@ -44,6 +44,7 @@ export class ForcomputersComponent implements OnInit {
   conicgradientPercent:number = 0
  
   private computerroomsID:number = 0
+  private reservationID:number = 0
   private updateRoomsID:number = 0
 
   constructor(
@@ -54,10 +55,11 @@ export class ForcomputersComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentDate()
-    localStorage.setItem('reservationArr', JSON.stringify(this.reservationArr))
+    // localStorage.setItem('reservationArr', JSON.stringify(this.reservationArr))
   }
 
-  reservationArr:roomsReservation[] = []
+  public theadNames:string[] = ['პიროვნება', 'ტელეფონი', 'დრო', 'ტექსტი', '' ]
+  public tbodyNames: roomsReservation[] = []
 
   computersArrr:ComputersRooms[] = [
     { 
@@ -423,35 +425,48 @@ export class ForcomputersComponent implements OnInit {
 
 
   // ჯავშანი
-  public addaReservation(id?:number):void{
+  public selectedReservationRoomsID(id:number){
+    this.reservationID = id
+    this.showReservation(id)
+  }
 
-    let reservartionArr = String(localStorage.getItem('reservationArr')) 
-    let retrievedArray = JSON.parse(reservartionArr);
-    console.log(typeof retrievedArray, retrievedArray )
+  public addaReservation():void{
 
     const reservationInfo = {
+      roomsID: this.reservationID,
       person: this.reservationPersonName,
       tel: this.reservationPersonPhoneNumber,
       time: this.reservationTime,
       text: this.reservationText
     }
 
-    this.reservationArr.push(reservationInfo)
-    localStorage.setItem('reservationArr',JSON.stringify(this.reservationArr))
-    // reservartionArr.forEach(element => {
-      
-    // });
+    this.computerRoomsService.addReservation(reservationInfo).subscribe({
+      next : (res) => {
 
-    console.log(reservartionArr)
-    // this.computersArrr.forEach((item) => {
-    //   if(id == item.roomsID)
-    //     item.roomsReservation= !this.reservationModalIsHidden
-    // })
+        this.computersArrr.forEach((item) => {
+          if(this.reservationID == item.roomsID){
+            item.roomsReservation = true
+          }
+        })
+
+        this.showReservation(reservationInfo.roomsID)
+      },
+      error: (e) => console.error(e),
+      complete: () => {
+        console.log('complete')
+      }
+    })
+
   }
 
-  public showMeReservation():void{
+  public updateReserve():void{
 
   }
+
+  public deleteReservedItem():void{
+
+  }
+
 
     //გადაყავს დრო წამებში
     private getAllTimersInSeconds(str?:string):number{
@@ -498,6 +513,30 @@ export class ForcomputersComponent implements OnInit {
       this.orderedjuss = ''
       this.startcontinue = true
       this.checkbox = false
+    }
+
+    private showReservation(roomsID:number):void{
+
+      this.reservationPersonName = ''
+      this.reservationPersonPhoneNumber = ''
+      this.reservationTime = ''
+      this.reservationText = ''
+      this.tbodyNames = []
+
+      this.computerRoomsService.getreservations().subscribe({
+        next : (res) => {
+
+          res.forEach((item:roomsReservation) => {
+            if(roomsID == item.roomsID){
+              this.tbodyNames.push(item)
+            }
+          })
+        },
+        error: (e) => console.error(e),
+        complete: () => {
+          console.log('complete')
+        }
+      })
     }
 }
 

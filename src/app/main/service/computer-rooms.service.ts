@@ -20,8 +20,19 @@ export class ComputerRoomsService {
     return this.http.post<any>(this.baseURL + 'computerRooms', body,{'headers':headers});
   }
 
+  public addReservation(object:any):Observable<any>{
+
+    const headers = { 'content-type': 'application/json'}  
+    const body = JSON.stringify(object);
+    return this.http.post<any>(this.baseURL + 'reservationArr', body,{'headers':headers})
+  }
+
   public getcomputerRooms():Observable<any>{
     return this.http.get<any>(this.baseURL + 'computerRooms')
+  }
+
+  public getreservations():Observable<any>{
+    return this.http.get<any>(this.baseURL + 'reservationArr')
   }
 
   public putcomputerRooms(rowId:number, object:any):Observable<any>{

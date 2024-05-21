@@ -1,4 +1,22 @@
 {
+  "reservationArr": [
+    {
+      "id": "278b",
+      "roomsID": 3,
+      "person": "guram",
+      "tel": "591700487",
+      "time": "22:10",
+      "text": ""
+    },
+    {
+      "id": "23ff",
+      "roomsID": 3,
+      "person": "jibo",
+      "tel": "591700478",
+      "time": "22:00",
+      "text": "cola, energetiki"
+    }
+  ],
   "computerRooms": [
     {
       "roomsID": 3,
@@ -121,6 +139,38 @@
       "orderedjuss": "",
       "timer": 16,
       "progress": 0.8888888888888892
+    },
+    {
+      "id": "7fc8",
+      "roomsID": 2,
+      "clientname": "ada",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "May 21, 2024, 3:18 PM",
+      "openDayTime": "May 21, 2024",
+      "endtime": "May 21, 2024, 3:19 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 39
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": "10",
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "ga",
+      "timer": 82,
+      "progress": 0.5555555555555557
     }
   ]
 }

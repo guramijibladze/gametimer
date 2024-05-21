@@ -20,6 +20,7 @@ export interface ComputersRooms{
 }
 
 export interface roomsReservation{
+  roomsID:number,
   person:string,
   tel:string,
   time:string,

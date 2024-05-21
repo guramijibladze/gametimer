@@ -28,6 +28,7 @@
                                     alt="..." 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#reservationModal"
+                                    (click)="selectedReservationRoomsID(computer.roomsID)"
                                     >
                             }@else{
                                 <img src="../../../assets/icons/booking (1).png" 
@@ -407,6 +408,43 @@
                         id="exampleFormControlTextarea1" 
                         [(ngModel)]="reservationText" 
                         rows="2"></textarea>
+            </div>
+
+            <div class="reservation-table">
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                            @for(displayedColumns of theadNames; track displayedColumns){
+                                    <th scope="col">{{displayedColumns}}</th>     
+                            }
+                      </tr>
+                    </thead>
+                    <tbody>
+                            @for(row of tbodyNames; track row){
+                                    <tr data-bs-toggle="offcanvas" 
+                                            data-bs-target="#offcanvasBottom"
+                                            aria-controls="offcanvasBottom"
+                                            >
+                                            <!-- <th scope="row">{{ row.roomsID }}</th> -->
+                                            <td>{{ row.person }}</td>
+                                            <td style="text-align: center;">{{ row.tel }}</td>
+                                            <td style="text-align: center;">{{ row.time }}</td>
+                                            <td style="text-align: center;">{{ row.text }}</td>
+
+                                            <td>
+                                                    <button class="btn btn-primary" type="button" 
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal" 
+                                                            (click)="updateReserve()">შეცვლა</button> 
+
+                                                    <button class="btn btn-danger ms-1" type="button"
+                                                            data-bs-toggle="modal"
+                                                            (click)="deleteReservedItem()">წაშლა</button>
+                                            </td>
+                                    </tr> 
+                            }
+                    </tbody>
+                </table> 
             </div>
             
           </div>
