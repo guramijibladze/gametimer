@@ -464,8 +464,19 @@ export class ForcomputersComponent implements OnInit {
 
   }
 
-  public deleteReservedItem():void{
+  public deleteReservedItem(item:any):void{
 
+    this.computerRoomsService.deleteReservation(item.id).subscribe({
+      next : (res) => {
+
+        // console.log(this.computersArrr[0])
+        this.showReservation(this.reservationID)
+      },
+      error: (e) => console.error(e),
+      complete: () => {
+        console.log('complete')
+      }
+    })
   }
 
 

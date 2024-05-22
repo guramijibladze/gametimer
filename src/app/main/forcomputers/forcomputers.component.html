@@ -379,7 +379,7 @@
 
 <!-- ჯავშნის მოდალი -->
 <div class="modal fade" id="reservationModal" tabindex="-1" 
-    
+    data-bs-backdrop="static"
     aria-labelledby="reservationModal" 
     aria-hidden="true">
     <div class="modal-dialog" style="width: 650px;">
@@ -438,10 +438,13 @@
                                             <td style="text-align: center;">{{ row.text }}</td>
                                         
                                             <td>
-                                                <img type="button" src="../../../assets/icons/refresh.png" data-bs-toggle="modal" (click)="updateReserve()">
+                                                <img type="button" 
+                                                    src="../../../assets/icons/refresh.png"
+                                                    (click)="updateReserve()">
                                         
-                                                <img type="button" class="ms-1" src="../../../assets/icons/trash.png" data-bs-toggle="modal"
-                                                    (click)="deleteReservedItem()">
+                                                <img type="button" class="ms-1" 
+                                                    src="../../../assets/icons/trash.png"
+                                                    (click)="deleteReservedItem(row)">
                                         
                                         
                                             </td>

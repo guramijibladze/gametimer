@@ -44,4 +44,8 @@ export class ComputerRoomsService {
   public deleteItemTable(rowId:number):Observable<any>{
     return this.http.delete<any>(this.baseURL + 'computerRooms/' + `${rowId}`)
   }
+
+  public deleteReservation(rowId:number):Observable<any>{
+    return this.http.delete<any>(this.baseURL + 'reservationArr/' + `${rowId}`)
+  }
 }
