@@ -4,42 +4,46 @@
             <div class="computer">
 
                 <div class="title">
-                    <div class="computername d-flex" style="margin-left: 40px; margin-top: 5px;">
+                    <div class="computername d-flex justify-content-around" style="margin-top: 5px; width: 100%;">
                         <div class="texts" style="color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">
                             <p style="margin: 0;">{{computer.name}}</p>
-                            <p style="margin: 0;">სტატუსი: {{computer.status}}</p>
+                            <!-- <p style="margin: 0;">სტატუსი: {{computer.status}}</p> -->
                         </div>
                         
 
-                        <div class="statusimg">
+                        <div class="statusimg d-flex">
                           
-                            @if(computer.ativestatus){ 
-                                <img src="../../../assets/icons/free.png" class="pause-continue-Button" alt="...">
-                              } @else { 
-                                <img src="../../../assets/icons/occupied (1).png" class="pause-continue-Button" alt="...">
-                              }
+                            <div class="active-status">
+                                @if(computer.ativestatus){ 
+                                    <img src="../../../assets/icons/free.png" class="pause-continue-Button" alt="...">
+                                  } @else { 
+                                    <img src="../../../assets/icons/occupied (1).png" class="pause-continue-Button" alt="...">
+                                  }
+                            </div>
+
+                              <div class="booking-status">
+                                @if(!computer.roomsReservation){
+                                    <img src="../../../assets/icons/booking.png" 
+                                        class="pause-continue-Button" 
+                                        style="cursor: pointer;"
+                                        alt="..." 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#reservationModal"
+                                        (click)="selectedReservationRoomsID(computer.roomsID)"
+                                        >
+                                }@else{
+                                    <img src="../../../assets/icons/booking (1).png" 
+                                        class="pause-continue-Button" 
+                                        style="cursor: pointer;"
+                                        alt="..."
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#reservationModal"
+                                        >
+                                }
+                            </div>
                         </div>
 
-                        <div class="booking-status">
-                            @if(!computer.roomsReservation){
-                                <img src="../../../assets/icons/booking.png" 
-                                    class="pause-continue-Button" 
-                                    style="cursor: pointer;"
-                                    alt="..." 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#reservationModal"
-                                    (click)="selectedReservationRoomsID(computer.roomsID)"
-                                    >
-                            }@else{
-                                <img src="../../../assets/icons/booking (1).png" 
-                                    class="pause-continue-Button" 
-                                    style="cursor: pointer;"
-                                    alt="..."
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#reservationModal"
-                                    >
-                            }
-                        </div>
+
                         
                     </div>
                 </div>
@@ -374,8 +378,11 @@
 
 
 <!-- ჯავშნის მოდალი -->
-<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModal" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="reservationModal" tabindex="-1" 
+    
+    aria-labelledby="reservationModal" 
+    aria-hidden="true">
+    <div class="modal-dialog" style="width: 650px;">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">ჯავშნები</h5>
@@ -411,40 +418,39 @@
             </div>
 
             <div class="reservation-table">
-                <table class="table table-hover">
-                    <thead>
-                      <tr>
-                            @for(displayedColumns of theadNames; track displayedColumns){
-                                    <th scope="col">{{displayedColumns}}</th>     
-                            }
-                      </tr>
-                    </thead>
-                    <tbody>
-                            @for(row of tbodyNames; track row){
-                                    <tr data-bs-toggle="offcanvas" 
-                                            data-bs-target="#offcanvasBottom"
-                                            aria-controls="offcanvasBottom"
-                                            >
+                @if(tbodyNames.length){
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                                @for(displayedColumns of theadNames; track displayedColumns){
+                                        <th scope="col">{{displayedColumns}}</th>     
+                                }
+                        </tr>
+                        </thead>
+                        <tbody>
+                                @for(row of tbodyNames; track row){
+                                
+                                        <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
                                             <!-- <th scope="row">{{ row.roomsID }}</th> -->
                                             <td>{{ row.person }}</td>
                                             <td style="text-align: center;">{{ row.tel }}</td>
                                             <td style="text-align: center;">{{ row.time }}</td>
                                             <td style="text-align: center;">{{ row.text }}</td>
-
+                                        
                                             <td>
-                                                    <button class="btn btn-primary" type="button" 
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal" 
-                                                            (click)="updateReserve()">შეცვლა</button> 
-
-                                                    <button class="btn btn-danger ms-1" type="button"
-                                                            data-bs-toggle="modal"
-                                                            (click)="deleteReservedItem()">წაშლა</button>
+                                                <img type="button" src="../../../assets/icons/refresh.png" data-bs-toggle="modal" (click)="updateReserve()">
+                                        
+                                                <img type="button" class="ms-1" src="../../../assets/icons/trash.png" data-bs-toggle="modal"
+                                                    (click)="deleteReservedItem()">
+                                        
+                                        
                                             </td>
-                                    </tr> 
-                            }
-                    </tbody>
-                </table> 
+                                        </tr>
+                                    
+                                }
+                        </tbody>
+                    </table> 
+                }
             </div>
             
           </div>

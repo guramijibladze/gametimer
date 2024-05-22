@@ -449,6 +449,7 @@ export class ForcomputersComponent implements OnInit {
           }
         })
 
+        // console.log(this.computersArrr[0])
         this.showReservation(reservationInfo.roomsID)
       },
       error: (e) => console.error(e),

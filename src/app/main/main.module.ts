@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComputerRoomsService } from './service/computer-rooms.service';
-import { ReservationComponent } from './forcomputers/reservation/reservation.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent, 
@@ -23,8 +22,7 @@ const routes: Routes = [
   declarations: [
     StatisticComponent,
     MainComponent,
-    ForcomputersComponent,
-    ReservationComponent
+    ForcomputersComponent
   ],
   imports: [
     RouterModule,

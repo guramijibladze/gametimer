@@ -1,20 +1,20 @@
 {
   "reservationArr": [
     {
-      "id": "278b",
-      "roomsID": 3,
+      "id": "a0d8",
+      "roomsID": 2,
       "person": "guram",
       "tel": "591700487",
-      "time": "22:10",
+      "time": "22:00",
       "text": ""
     },
     {
-      "id": "23ff",
-      "roomsID": 3,
-      "person": "jibo",
-      "tel": "591700478",
-      "time": "22:00",
-      "text": "cola, energetiki"
+      "id": "da30",
+      "roomsID": 2,
+      "person": "",
+      "tel": "",
+      "time": "",
+      "text": ""
     }
   ],
   "computerRooms": [
@@ -171,6 +171,70 @@
       "orderedjuss": "ga",
       "timer": 82,
       "progress": 0.5555555555555557
+    },
+    {
+      "id": "94dc",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "May 22, 2024, 4:33 PM",
+      "openDayTime": "May 22, 2024",
+      "endtime": "May 22, 2024, 4:34 PM",
+      "times": {
+        "selectedhour": "2:0",
+        "currenthours": 1,
+        "minutes": 59,
+        "seconds": 44
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 15,
+      "progress": 0.2083333333333334
+    },
+    {
+      "id": "d0c4",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": true,
+      "ordertime": "May 22, 2024, 4:36 PM",
+      "openDayTime": "May 22, 2024",
+      "endtime": "May 22, 2024, 4:36 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 19
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 49,
+      "progress": 1.111111111111111
     }
   ]
 }
