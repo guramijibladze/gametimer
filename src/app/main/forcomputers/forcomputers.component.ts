@@ -38,6 +38,7 @@ export class ForcomputersComponent implements OnInit {
   public reservationPersonPhoneNumber:string = ''
   public reservationTime:string = ''
   public reservationText:string = ''
+  public selectedReservationRoom = ''
 
   timer: any
   conicgradient:any
@@ -425,8 +426,9 @@ export class ForcomputersComponent implements OnInit {
 
 
   // ჯავშანი
-  public selectedReservationRoomsID(id:number){
+  public selectedReservationRoomsID(id:number, comuterRooms:any){
     this.reservationID = id
+    this.selectedReservationRoom = comuterRooms.name
     this.showReservation(id)
   }
 

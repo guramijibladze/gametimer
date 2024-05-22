@@ -29,7 +29,7 @@
                                         alt="..." 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#reservationModal"
-                                        (click)="selectedReservationRoomsID(computer.roomsID)"
+                                        (click)="selectedReservationRoomsID(computer.roomsID, computer)"
                                         >
                                 }@else{
                                     <img src="../../../assets/icons/booking (1).png" 
@@ -385,7 +385,7 @@
     <div class="modal-dialog" style="width: 650px;">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ჯავშნები</h5>
+          <h5 class="modal-title" id="exampleModalLabel">ოთახი: {{selectedReservationRoom}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -406,7 +406,8 @@
                         style="height: 37.6px;" 
                         [(ngModel)]="reservationTime" 
                         type="text" 
-                        placeholder="საათი" >
+                        placeholder="საათი" 
+                        (keydown.enter)="addaReservation()">
 
             </div>
 

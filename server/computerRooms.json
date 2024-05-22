@@ -1,19 +1,11 @@
 {
   "reservationArr": [
     {
-      "id": "9e65",
+      "id": "6129",
       "roomsID": 2,
-      "person": "guram",
-      "tel": "591700",
-      "time": "22:00",
-      "text": ""
-    },
-    {
-      "id": "f67c",
-      "roomsID": 2,
-      "person": "ლერი",
-      "tel": "598878919",
-      "time": "24:59",
+      "person": "gurami",
+      "tel": "591700487",
+      "time": "18:00",
       "text": ""
     }
   ],
