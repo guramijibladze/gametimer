@@ -38,6 +38,7 @@
                                         alt="..."
                                         data-bs-toggle="modal" 
                                         data-bs-target="#reservationModal"
+                                        (click)="selectedReservationRoomsID(computer.roomsID, computer)"
                                         >
                                 }
                             </div>
@@ -435,7 +436,8 @@
                         <tbody>
                                 @for(row of tbodyNames; track row){
                                 
-                                        <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" 
+                                        <tr data-bs-toggle="offcanvas" 
+                                            data-bs-target="#offcanvasBottom" 
                                             aria-controls="offcanvasBottom">
                                             <!-- <th scope="row"></th> -->
                                             <td>{{ row?.person }}</td>

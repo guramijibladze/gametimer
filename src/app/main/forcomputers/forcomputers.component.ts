@@ -476,6 +476,9 @@ export class ForcomputersComponent implements OnInit {
 
         // console.log(this.computersArrr[0])
         this.showReservation(this.reservationID)
+        // this.computersArrr.forEach((item) => {
+        //   if(item.)
+        // })
       },
       error: (e) => console.error(e),
       complete: () => {
@@ -555,6 +558,11 @@ export class ForcomputersComponent implements OnInit {
               this.tbodyNames.push(item)
             }
           })
+
+          //ცვლის ჯავშნის სტატუსს
+          if(this.tbodyNames.length == 0){
+            this.computersArrr[roomsID-1].roomsReservation = false
+          }
         },
         error: (e) => console.error(e),
         complete: () => {
