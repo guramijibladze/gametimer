@@ -40,6 +40,9 @@ export class ForcomputersComponent implements OnInit {
   public reservationText:string = ''
   public selectedReservationRoom = ''
 
+  //დაჯავშნილის ცვლილება
+  public clickReservationInfo:boolean = false
+
   timer: any
   conicgradient:any
   conicgradientPercent:number = 0
@@ -479,6 +482,13 @@ export class ForcomputersComponent implements OnInit {
         console.log('complete')
       }
     })
+  }
+
+
+  public editReservationValue(item:any):void{
+    console.log(item)
+    this.clickReservationInfo = !this.clickReservationInfo
+    this.reservationText = item.text
   }
 
 

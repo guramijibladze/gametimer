@@ -1,10 +1,10 @@
 {
   "reservationArr": [
     {
-      "id": "6129",
-      "roomsID": 2,
-      "person": "gurami",
-      "tel": "591700487",
+      "id": "2f08",
+      "roomsID": 1,
+      "person": "gu",
+      "tel": "5591105444",
       "time": "18:00",
       "text": ""
     }
@@ -133,53 +133,21 @@
       "progress": 0.8888888888888892
     },
     {
-      "id": "7fc8",
-      "roomsID": 2,
-      "clientname": "ada",
-      "name": "ოთახი N2",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": false,
-      "ordertime": "May 21, 2024, 3:18 PM",
-      "openDayTime": "May 21, 2024",
-      "endtime": "May 21, 2024, 3:19 PM",
-      "times": {
-        "selectedhour": "1:0",
-        "currenthours": 0,
-        "minutes": 59,
-        "seconds": 39
-      },
-      "ativestatus": false,
-      "moneyForRooms": {
-        "cash": "10",
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": false,
-      "orderedjuss": "ga",
-      "timer": 82,
-      "progress": 0.5555555555555557
-    },
-    {
-      "id": "94dc",
+      "id": "6d23",
       "roomsID": 2,
       "clientname": "",
       "name": "ოთახი N2",
       "startButton": false,
       "pausecontinuoe": false,
       "roomsReservation": false,
-      "ordertime": "May 22, 2024, 4:33 PM",
-      "openDayTime": "May 22, 2024",
-      "endtime": "May 22, 2024, 4:34 PM",
+      "ordertime": "May 23, 2024, 1:53 PM",
+      "openDayTime": "May 23, 2024",
+      "endtime": "May 23, 2024, 1:53 PM",
       "times": {
-        "selectedhour": "2:0",
-        "currenthours": 1,
+        "selectedhour": "1:0",
+        "currenthours": 0,
         "minutes": 59,
-        "seconds": 44
+        "seconds": 57
       },
       "ativestatus": false,
       "moneyForRooms": {
@@ -193,40 +161,8 @@
       "status": "vip",
       "gameTimerType": false,
       "orderedjuss": "",
-      "timer": 15,
-      "progress": 0.2083333333333334
-    },
-    {
-      "id": "d0c4",
-      "roomsID": 2,
-      "clientname": "",
-      "name": "ოთახი N2",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": true,
-      "ordertime": "May 22, 2024, 4:36 PM",
-      "openDayTime": "May 22, 2024",
-      "endtime": "May 22, 2024, 4:36 PM",
-      "times": {
-        "selectedhour": "1:0",
-        "currenthours": 0,
-        "minutes": 59,
-        "seconds": 19
-      },
-      "ativestatus": false,
-      "moneyForRooms": {
-        "cash": 0,
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": false,
-      "orderedjuss": "",
-      "timer": 49,
-      "progress": 1.111111111111111
+      "timer": 72,
+      "progress": 0.05555555555555555
     }
   ]
 }

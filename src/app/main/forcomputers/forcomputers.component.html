@@ -294,11 +294,11 @@
 
             <div class="modal-footer">
                 
-            <button type="button" 
-                    class="btn btn-secondary " 
-                    aria-label="Close"
-                    data-bs-dismiss="modal"
-                    (click)="mdoalclose()">დახურვა</button>
+                    <button type="button" 
+                            class="btn btn-secondary " 
+                            aria-label="Close"
+                            data-bs-dismiss="modal"
+                            (click)="mdoalclose()">დახურვა</button>
 
                     @if(startcontinue){ 
                         <button type="button" 
@@ -380,9 +380,11 @@
 <!-- ჯავშნის მოდალი -->
 <div class="modal fade" id="reservationModal" tabindex="-1" 
     data-bs-backdrop="static"
+    data-bs-keyboard="false"
     aria-labelledby="reservationModal" 
+    data-bs-config={backdrop:true}
     aria-hidden="true">
-    <div class="modal-dialog" style="width: 650px;">
+    <div class="modal-dialog" >
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">ოთახი: {{selectedReservationRoom}}</h5>
@@ -415,12 +417,14 @@
                 <textarea class="form-control" 
                         id="exampleFormControlTextarea1" 
                         [(ngModel)]="reservationText" 
-                        rows="2"></textarea>
+                        (keydown.enter)="addaReservation()"
+                        rows="2">
+                </textarea>
             </div>
 
-            <div class="reservation-table">
+            <div class="reservation-table" data-bs-config={backdrop:true} data-bs-keyboard="false" data-bs-backdrop="static">
                 @if(tbodyNames.length){
-                    <table class="table table-hover">
+                    <table class="table table-hover" data-bs-config={backdrop:true}>
                         <thead>
                         <tr>
                                 @for(displayedColumns of theadNames; track displayedColumns){
@@ -431,22 +435,30 @@
                         <tbody>
                                 @for(row of tbodyNames; track row){
                                 
-                                        <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-                                            <!-- <th scope="row">{{ row.roomsID }}</th> -->
-                                            <td>{{ row.person }}</td>
-                                            <td style="text-align: center;">{{ row.tel }}</td>
-                                            <td style="text-align: center;">{{ row.time }}</td>
-                                            <td style="text-align: center;">{{ row.text }}</td>
+                                        <tr data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" 
+                                            aria-controls="offcanvasBottom">
+                                            <!-- <th scope="row"></th> -->
+                                            <td>{{ row?.person }}</td>
+                                            <td style="text-align: center;">{{ row?.tel }}</td>
+                                            <td style="text-align: center;">{{ row?.time }}</td>
+                                            <td style="text-align: center;"
+                                                (dblclick)="editReservationValue(row)">
+                                                @if(clickReservationInfo){
+                                                    <input class="form-control form-control-sm" 
+                                                            type="text"
+                                                            [(ngModel)]="reservationText" >
+                                                }@else{
+                                                    {{ row?.text }}
+                                                }
+                                                
+                                            </td>
                                         
                                             <td>
-                                                <img type="button" 
-                                                    src="../../../assets/icons/refresh.png"
-                                                    (click)="updateReserve()">
                                         
                                                 <img type="button" class="ms-1" 
+                                                    value="Delete"
                                                     src="../../../assets/icons/trash.png"
-                                                    (click)="deleteReservedItem(row)">
-                                        
+                                                    (click)="deleteReservedItem(row)"/>
                                         
                                             </td>
                                         </tr>
