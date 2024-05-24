@@ -443,16 +443,8 @@
                                             <td>{{ row?.person }}</td>
                                             <td style="text-align: center;">{{ row?.tel }}</td>
                                             <td style="text-align: center;">{{ row?.time }}</td>
-                                            <td style="text-align: center;"
-                                                (dblclick)="editReservationValue(row)">
-                                                @if(clickReservationInfo){
-                                                    <input class="form-control form-control-sm" 
-                                                            type="text"
-                                                            [(ngModel)]="reservationText" >
-                                                }@else{
-                                                    {{ row?.text }}
-                                                }
-                                                
+                                            <td style="text-align: center;">
+                                                {{ row?.text }}
                                             </td>
                                         
                                             <td>

@@ -40,8 +40,8 @@ export class ForcomputersComponent implements OnInit {
   public reservationText:string = ''
   public selectedReservationRoom = ''
 
-  //დაჯავშნილის ცვლილება
-  public clickReservationInfo:boolean = false
+  // //დაჯავშნილის ცვლილება
+  // public clickReservationInfo:boolean = false
 
   timer: any
   conicgradient:any
@@ -488,11 +488,11 @@ export class ForcomputersComponent implements OnInit {
   }
 
 
-  public editReservationValue(item:any):void{
-    console.log(item)
-    this.clickReservationInfo = !this.clickReservationInfo
-    this.reservationText = item.text
-  }
+  // public editReservationValue(item:any):void{
+  //   console.log(item)
+  //   this.clickReservationInfo = !this.clickReservationInfo
+  //   this.reservationText = item.text
+  // }
 
 
     //გადაყავს დრო წამებში
