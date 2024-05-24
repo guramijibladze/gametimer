@@ -15,9 +15,13 @@
                           
                             <div class="active-status">
                                 @if(computer.ativestatus){ 
-                                    <img src="../../../assets/icons/free.png" class="pause-continue-Button" alt="...">
+                                    <img src="../../../assets/icons/free.png" 
+                                        style="width: 50px;"
+                                        class="pause-continue-Button" alt="...">
                                   } @else { 
-                                    <img src="../../../assets/icons/occupied (1).png" class="pause-continue-Button" alt="...">
+                                    <img src="../../../assets/icons/occupied (1).png" 
+                                        style="width: 50px;"
+                                        class="pause-continue-Button" alt="...">
                                   }
                             </div>
 
@@ -25,7 +29,7 @@
                                 @if(!computer.roomsReservation){
                                     <img src="../../../assets/icons/booking.png" 
                                         class="pause-continue-Button" 
-                                        style="cursor: pointer;"
+                                        style="cursor: pointer;width: 50px;"
                                         alt="..." 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#reservationModal"
@@ -34,7 +38,7 @@
                                 }@else{
                                     <img src="../../../assets/icons/booking (1).png" 
                                         class="pause-continue-Button" 
-                                        style="cursor: pointer;"
+                                        style="cursor: pointer; width: 50px;"
                                         alt="..."
                                         data-bs-toggle="modal" 
                                         data-bs-target="#reservationModal"

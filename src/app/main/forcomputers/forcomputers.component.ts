@@ -562,6 +562,8 @@ export class ForcomputersComponent implements OnInit {
           //ცვლის ჯავშნის სტატუსს
           if(this.tbodyNames.length == 0){
             this.computersArrr[roomsID-1].roomsReservation = false
+          }else{
+            this.computersArrr[roomsID-1].roomsReservation = true
           }
         },
         error: (e) => console.error(e),
