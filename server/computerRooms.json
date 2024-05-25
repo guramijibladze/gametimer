@@ -1,20 +1,12 @@
 {
   "reservationArr": [
     {
-      "id": "a456",
+      "id": "d862",
       "roomsID": 1,
-      "person": "gio",
-      "tel": "59654131",
-      "time": "21:00",
-      "text": ""
-    },
-    {
-      "id": "097b",
-      "roomsID": 2,
-      "person": "გურამ",
+      "person": "guram",
       "tel": "591700487",
       "time": "18:00",
-      "text": "ცოლა, ფანტა"
+      "text": ""
     }
   ],
   "computerRooms": [

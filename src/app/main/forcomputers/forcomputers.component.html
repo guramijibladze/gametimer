@@ -4,7 +4,8 @@
             <div class="computer">
 
                 <div class="title">
-                    <div class="computername d-flex justify-content-around" style="margin-top: 5px; width: 100%;">
+                    <div class="computername d-flex justify-content-between" 
+                        style="margin-top: 5px; width: 100%; padding-left: 15px; padding-right: 30px;">
                         <div class="texts" style="color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">
                             <p style="margin: 0;">{{computer.name}}</p>
                             <!-- <p style="margin: 0;">სტატუსი: {{computer.status}}</p> -->
@@ -29,7 +30,7 @@
                                 @if(!computer.roomsReservation){
                                     <img src="../../../assets/icons/booking.png" 
                                         class="pause-continue-Button" 
-                                        style="cursor: pointer;width: 50px;"
+                                        style="cursor: pointer; width: 47px; margin-left: 10px;"
                                         alt="..." 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#reservationModal"
@@ -38,7 +39,7 @@
                                 }@else{
                                     <img src="../../../assets/icons/booking (1).png" 
                                         class="pause-continue-Button" 
-                                        style="cursor: pointer; width: 50px;"
+                                        style="cursor: pointer; width: 47px; margin-left: 10px;"
                                         alt="..."
                                         data-bs-toggle="modal" 
                                         data-bs-target="#reservationModal"
@@ -117,7 +118,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop" 
                                     class="startButton"
-                                    (click)="startTime(computer.roomsID)"
+                                    (click)="startTime(computer.roomsID, computer)"
                                     alt="...">
                             </button>
     
@@ -132,7 +133,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" 
                                     class="startButton"
-                                    (click)="startTime(computer.roomsID)"
+                                    (click)="startTime(computer.roomsID, computer)"
                                     alt="...">
                             </button>
     
@@ -173,7 +174,7 @@
         <div class="modal-content" style="padding: 15px;">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">დროის არჩევა</h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{selectedComputerRoom?.name}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="mdoalclose()"></button>
             </div>
             

@@ -32,6 +32,7 @@ export class ForcomputersComponent implements OnInit {
   public moneyForSnacksCash:number = 0
   public moneyForSnacksCard:number = 0
   public reservationModalIsHidden:boolean = false
+  public selectedComputerRoom:any 
 
   //ჯავშნები
   public reservationPersonName:string = ''
@@ -113,8 +114,10 @@ export class ForcomputersComponent implements OnInit {
 
 
   //მონიშნული ობიექტის აიდი
-  public startTime(roomsID:number):void{
+  public startTime(roomsID:number, computerRoom:any):void{
     this.computerroomsID = roomsID
+    this.selectedComputerRoom = computerRoom
+    console.log('startTime',this.selectedComputerRoom)
 
     if( this.computersArrr[roomsID-1].ordertime){
       this.startcontinue = false
