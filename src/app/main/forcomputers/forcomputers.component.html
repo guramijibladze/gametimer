@@ -30,7 +30,7 @@
                                 @if(!computer.roomsReservation){
                                     <img src="../../../assets/icons/booking.png" 
                                         class="pause-continue-Button" 
-                                        style="cursor: pointer; width: 47px; margin-left: 10px;"
+                                        style="cursor: pointer; width: 47px; margin-left: 10px; margin-top: 3px;"
                                         alt="..." 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#reservationModal"
@@ -129,7 +129,7 @@
                                         >
     
                                 <img src="../../../assets/icons/play-button (1)64.png"
-                                    style="cursor: pointer; max-width: 63px; max-height: 63px;"
+                                    style="cursor: pointer; max-width: 58px; max-height: 58px;"
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" 
                                     class="startButton"
@@ -144,10 +144,10 @@
 
                     <div class="pause-continue m-1" style="max-width: 63px; max-height: 63px;">
 
-                        <img src="../../../assets/icons/pause.png"
+                        <img src="../../../assets/icons/refresh (1).png"
                             style="cursor: pointer; max-width: 63px; max-height: 63px;"
                             class="pause-continue-Button"
-                            (click)="pause(computer.roomsID)"
+                            (click)="refresh(computer)"
                             alt="...">
                     </div>
 

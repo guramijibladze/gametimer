@@ -1,14 +1,5 @@
 {
-  "reservationArr": [
-    {
-      "id": "d862",
-      "roomsID": 1,
-      "person": "guram",
-      "tel": "591700487",
-      "time": "18:00",
-      "text": ""
-    }
-  ],
+  "reservationArr": [],
   "computerRooms": [
     {
       "roomsID": 3,
@@ -163,6 +154,70 @@
       "orderedjuss": "",
       "timer": 72,
       "progress": 0.05555555555555555
+    },
+    {
+      "id": "5cb1",
+      "roomsID": 1,
+      "clientname": "ps 5",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "May 26, 2024, 9:46 AM",
+      "openDayTime": "May 26, 2024",
+      "endtime": "May 26, 2024, 9:47 AM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 28,
+        "seconds": 58
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": "10",
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "cola",
+      "timer": 17,
+      "progress": 3.3888888888888844
+    },
+    {
+      "id": "ad9a",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "May 26, 2024, 9:46 AM",
+      "openDayTime": "May 26, 2024",
+      "endtime": "May 26, 2024, 9:47 AM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 1,
+        "seconds": 3
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 29,
+      "progress": 0
     }
   ]
 }

@@ -117,21 +117,16 @@ export class ForcomputersComponent implements OnInit {
   public startTime(roomsID:number, computerRoom:any):void{
     this.computerroomsID = roomsID
     this.selectedComputerRoom = computerRoom
-    console.log('startTime',this.selectedComputerRoom)
 
     if( this.computersArrr[roomsID-1].ordertime){
       this.startcontinue = false
     }
-
-    
   }
 
-  public pause(boxroomsID:number):void{
+  public refresh(box:ComputersRooms):void{
+    this.computerroomsID = box.roomsID
 
-    this.computersArrr.forEach((item:any) => {
-       item.roomsID == boxroomsID ? item.pausecontinuoe = !item.pausecontinuoe : ''
-    })
-
+    this.saveTime('refresh')
   }
 
   public updateinfo(updateRoomsID:number){
@@ -174,57 +169,58 @@ export class ForcomputersComponent implements OnInit {
     let progress = 0
     this.infoUpdateButton = false
 
-    if(str =='save'){
+    if(str =='save' || str == 'refresh'){
       // საათის და წუთების ჩამატება
+      
       this.computersArrr.forEach((item, index) => {
-   
         if(item.roomsID == this.computerroomsID){
           
           //საათების და წუთების არჩევის ლოგიკა
-          if(this.hours != 0 && this.minutes == 0 ){     
-            item.times.selectedhour = this.hours + ':' + this.minutes
-            item.times.currenthours = this.hours- 1;
-            item.times.minutes = 59;
-            item.times.seconds = 59;
-            item.clientname = this.clientName
-            item.ativestatus = false
-            item.moneyForRooms.cash = this.moneyForRoomsCash
-            item.moneyForRooms.card = this.moneyForRoomsCard
-            item.moneyForSnacks.cash = this.moneyForSnacksCash
-            item.moneyForSnacks.card = this.moneyForSnacksCard
-            item.openDayTime = localStorage.getItem('openDayTime')
-            item.orderedjuss = this.orderedjuss
-            item.ordertime = this.getCurrentDate()
-            progress = this.getAllTimersInSeconds()
-          }else if(this.minutes == 30){
-            console.log('30')
-            item.times.selectedhour = this.hours + ':' + this.minutes
-            item.times.currenthours = this.hours;
-            item.times.minutes = 29;
-            item.times.seconds = 59;
-            item.clientname = this.clientName
-            item.ativestatus = false
-            item.orderedjuss = this.orderedjuss
-            item.moneyForRooms.cash = this.moneyForRoomsCash
-            item.moneyForRooms.card = this.moneyForRoomsCard
-            item.moneyForSnacks.cash = this.moneyForSnacksCash
-            item.moneyForSnacks.card = this.moneyForSnacksCard
-            item.openDayTime = localStorage.getItem('openDayTime')
-            item.ordertime = this.getCurrentDate()
-            progress = this.getAllTimersInSeconds()
-          }else if(item.gameTimerType == true){
-            item.clientname = this.clientName
-            item.ativestatus = false
-            item.moneyForRooms.cash = this.moneyForRoomsCash
-            item.moneyForRooms.card = this.moneyForRoomsCard
-            item.moneyForSnacks.cash = this.moneyForSnacksCash
-            item.moneyForSnacks.card = this.moneyForSnacksCard
-            item.openDayTime = localStorage.getItem('openDayTime')
-            item.orderedjuss = this.orderedjuss
-            item.ordertime = this.getCurrentDate()
-          }else if(this.hours == 0 && this.minutes == 0 && item.gameTimerType == false ){
-            alert('დრო არ აგირჩევია ბაჭყატ!!!')
-            return
+          if(str == "save"){
+            if(this.hours != 0 && this.minutes == 0 ){     
+              item.times.selectedhour = this.hours + ':' + this.minutes
+              item.times.currenthours = this.hours- 1;
+              item.times.minutes = 59;
+              item.times.seconds = 59;
+              item.clientname = this.clientName
+              item.ativestatus = false
+              item.moneyForRooms.cash = this.moneyForRoomsCash
+              item.moneyForRooms.card = this.moneyForRoomsCard
+              item.moneyForSnacks.cash = this.moneyForSnacksCash
+              item.moneyForSnacks.card = this.moneyForSnacksCard
+              item.openDayTime = localStorage.getItem('openDayTime')
+              item.orderedjuss = this.orderedjuss
+              item.ordertime = this.getCurrentDate()
+              progress = this.getAllTimersInSeconds()
+            }else if(this.minutes == 30){
+              item.times.selectedhour = this.hours + ':' + this.minutes
+              item.times.currenthours = this.hours;
+              item.times.minutes = 29;
+              item.times.seconds = 59;
+              item.clientname = this.clientName
+              item.ativestatus = false
+              item.orderedjuss = this.orderedjuss
+              item.moneyForRooms.cash = this.moneyForRoomsCash
+              item.moneyForRooms.card = this.moneyForRoomsCard
+              item.moneyForSnacks.cash = this.moneyForSnacksCash
+              item.moneyForSnacks.card = this.moneyForSnacksCard
+              item.openDayTime = localStorage.getItem('openDayTime')
+              item.ordertime = this.getCurrentDate()
+              progress = this.getAllTimersInSeconds()
+            }else if(item.gameTimerType == true){
+              item.clientname = this.clientName
+              item.ativestatus = false
+              item.moneyForRooms.cash = this.moneyForRoomsCash
+              item.moneyForRooms.card = this.moneyForRoomsCard
+              item.moneyForSnacks.cash = this.moneyForSnacksCash
+              item.moneyForSnacks.card = this.moneyForSnacksCard
+              item.openDayTime = localStorage.getItem('openDayTime')
+              item.orderedjuss = this.orderedjuss
+              item.ordertime = this.getCurrentDate()
+            }else if(this.hours == 0 && this.minutes == 0 && item.gameTimerType == false ){
+              alert('დრო არ აგირჩევია ბაჭყატ!!!')
+              return
+            }
           }
 
           this.resetModalParameters()
@@ -271,8 +267,10 @@ export class ForcomputersComponent implements OnInit {
               }
 
             }, 1000)
+            
           }
-          
+
+
         }
 
 
@@ -305,7 +303,6 @@ export class ForcomputersComponent implements OnInit {
   gametimertypeArr:any[] = []
   public changametimertype():any{
 
-    console.log('chagnegametimertype',this.checkbox)
     this.computersArrr.forEach((item) => {
       if(item.roomsID == this.computerroomsID){
         item.gameTimerType = this.checkbox
