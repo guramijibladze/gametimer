@@ -55,8 +55,7 @@ export class ForcomputersComponent implements OnInit {
   constructor(
     private computerRoomsService: ComputerRoomsService,
     private sharingService: SharingService
-  ){
-  }
+  ){}
 
   ngOnInit() {
     this.getCurrentDate()
@@ -152,8 +151,6 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr.forEach((item:ComputersRooms) => {
       if(this.updateRoomsID == item.roomsID){
         item.clientname = this.clientName
-        // this.hours = item.times.currenthours
-        // this.minutes = item.times.minutes
         item.moneyForRooms.cash = this.moneyForRoomsCash
         item.moneyForRooms.card = this.moneyForRoomsCard
         item.moneyForSnacks.cash = this.moneyForSnacksCash
@@ -171,7 +168,6 @@ export class ForcomputersComponent implements OnInit {
 
     if(str =='save' || str == 'refresh'){
       // საათის და წუთების ჩამატება
-      
       this.computersArrr.forEach((item, index) => {
         if(item.roomsID == this.computerroomsID){
           
@@ -269,14 +265,9 @@ export class ForcomputersComponent implements OnInit {
             }, 1000)
             
           }
-
-
         }
-
-
       })
     }
-
   }
 
 
