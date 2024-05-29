@@ -60,6 +60,7 @@ export class ForcomputersComponent implements OnInit {
   ngOnInit() {
     this.getCurrentDate()
     // localStorage.setItem('reservationArr', JSON.stringify(this.reservationArr))
+    document.addEventListener('visibilitychange', this.visible.bind(this))
   }
 
   public theadNames:string[] = ['პიროვნება', 'ტელეფონი', 'დრო', 'ტექსტი', '' ]
@@ -261,7 +262,7 @@ export class ForcomputersComponent implements OnInit {
   
                 item.times.seconds = 59;
               }
-
+              console.log(item)
             }, 1000)
             
           }
@@ -332,7 +333,7 @@ export class ForcomputersComponent implements OnInit {
     let parseDate:any
     let pipe = new DatePipe('en-US');
     let today = new Date();
-    let ChangedFormat = pipe.transform(today, 'MMM d, y, h:mm a');
+    let ChangedFormat = pipe.transform(today, 'MMM d, y, h:mm:ss a');
     parseDate = ChangedFormat
     
     return parseDate
@@ -479,11 +480,17 @@ export class ForcomputersComponent implements OnInit {
   }
 
 
-  // public editReservationValue(item:any):void{
-  //   console.log(item)
-  //   this.clickReservationInfo = !this.clickReservationInfo
-  //   this.reservationText = item.text
-  // }
+  //ამოწმებს დროს როცა სხვა ტაბიდა ბრუნდები იგივე გვერდზე
+  private visible(){
+    if(document.hidden){
+      console.log('hidden')
+    }else{
+    
+      const currentDate = this.getCurrentDate()
+      const differenceTime = this.computersArrr[0].ordertime - currentDate
+      console.log('open', differenceTime,this.computersArrr[0].ordertime)
+    }
+  }
 
 
     //გადაყავს დრო წამებში
