@@ -485,10 +485,32 @@ export class ForcomputersComponent implements OnInit {
     if(document.hidden){
       console.log('hidden')
     }else{
-    
-      const currentDate = this.getCurrentDate()
-      const differenceTime = this.computersArrr[0].ordertime - currentDate
-      console.log('open', differenceTime,this.computersArrr[0].ordertime)
+      let minutes = 0
+      const currentDate = new Date(this.getCurrentDate()).getTime(); 
+
+      this.computersArrr.forEach((item) => {
+        if(!item.ativestatus){
+          let ChangedFormat = new Date(String(item.ordertime)).getTime()
+          const differenceTime = currentDate - ChangedFormat
+          minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
+
+          if(minutes > 0){
+            console.log('open')
+            if(Number(item.times.selectedhour.split(":")[0]) >= 0){
+              if(Number(item.times.selectedhour.split(":")[1]) > 30){
+                item.times.minutes = 59 - minutes
+              }else{
+                item.times.minutes = 29 - minutes
+              }
+             
+            }else{
+              item.times.minutes = Number(item.times.selectedhour.split(":")[1]) - minutes
+            }
+          
+          }
+        }
+      })
+   
     }
   }
 

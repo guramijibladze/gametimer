@@ -2,54 +2,21 @@
   "reservationArr": [],
   "computerRooms": [
     {
-      "id": "519d",
-      "roomsID": 2,
-      "clientname": "",
-      "name": "ოთახი N2",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": false,
-      "ordertime": "May 29, 2024, 1:21 PM",
-      "openDayTime": "May 29, 2024",
-      "endtime": "May 29, 2024, 1:23 PM",
-      "times": {
-        "selectedhour": "0:30",
-        "currenthours": 0,
-        "minutes": 58,
-        "seconds": 50,
-        "progress": 0
-      },
-      "ativestatus": false,
-      "moneyForRooms": {
-        "cash": 0,
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": false,
-      "orderedjuss": "",
-      "timer": 39,
-      "progress": 1.9491525423728833
-    },
-    {
-      "id": "e5a0",
+      "id": "2c49",
       "roomsID": 1,
       "clientname": "",
       "name": "ოთახი N1",
       "startButton": false,
       "pausecontinuoe": false,
       "roomsReservation": false,
-      "ordertime": "May 29, 2024, 2:42 PM",
-      "openDayTime": "May 29, 2024",
-      "endtime": "May 29, 2024, 2:49 PM",
+      "ordertime": "May 30, 2024, 4:02:15 PM",
+      "openDayTime": "May 30, 2024",
+      "endtime": "May 30, 2024, 4:04:38 PM",
       "times": {
         "selectedhour": "0:30",
         "currenthours": 0,
         "minutes": 27,
-        "seconds": 34
+        "seconds": 37
       },
       "ativestatus": false,
       "moneyForRooms": {
@@ -63,104 +30,8 @@
       "status": "vip",
       "gameTimerType": false,
       "orderedjuss": "",
-      "timer": 15,
-      "progress": 8.055555555555536
-    },
-    {
-      "id": "597a",
-      "roomsID": 2,
-      "clientname": "",
-      "name": "ოთახი N2",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": false,
-      "ordertime": "May 29, 2024, 2:51 PM",
-      "openDayTime": "May 29, 2024",
-      "endtime": "May 29, 2024, 2:53 PM",
-      "times": {
-        "selectedhour": "0:30",
-        "currenthours": 0,
-        "minutes": 28,
-        "seconds": 49
-      },
-      "ativestatus": false,
-      "moneyForRooms": {
-        "cash": 0,
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": false,
-      "orderedjuss": "",
-      "timer": 15,
-      "progress": 3.8888888888888826
-    },
-    {
-      "id": "4860",
-      "roomsID": 1,
-      "clientname": "",
-      "name": "ოთახი N1",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": false,
-      "ordertime": "May 29, 2024, 5:06:34 PM",
-      "openDayTime": "May 29, 2024",
-      "endtime": "May 29, 2024, 5:06:44 PM",
-      "times": {
-        "selectedhour": "0:30",
-        "currenthours": 0,
-        "minutes": 29,
-        "seconds": 49
-      },
-      "ativestatus": false,
-      "moneyForRooms": {
-        "cash": 0,
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": false,
-      "orderedjuss": "",
-      "timer": 16,
-      "progress": 0.5555555555555557
-    },
-    {
-      "id": "15c5",
-      "roomsID": 1,
-      "clientname": "",
-      "name": "ოთახი N1",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": false,
-      "ordertime": "May 29, 2024, 5:09:18 PM",
-      "openDayTime": "May 29, 2024",
-      "endtime": "May 29, 2024, 5:09:27 PM",
-      "times": {
-        "selectedhour": "0:30",
-        "currenthours": 0,
-        "minutes": 29,
-        "seconds": 51
-      },
-      "ativestatus": false,
-      "moneyForRooms": {
-        "cash": 0,
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": false,
-      "orderedjuss": "",
-      "timer": 15,
-      "progress": 0.44444444444444453
+      "timer": 20,
+      "progress": 7.888888888888869
     }
   ]
 }
