@@ -109,6 +109,14 @@ export class ForcomputersComponent implements OnInit {
     { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      progress: 0},
+      { roomsID:7, clientname: '', name: 'ოთახი N7', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      progress: 0},
+      { roomsID:8, clientname: '', name: 'ოთახი N8', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0}
   ]
 
@@ -496,15 +504,18 @@ export class ForcomputersComponent implements OnInit {
 
           if(minutes > 0){
             console.log('open')
-            if(Number(item.times.selectedhour.split(":")[0]) >= 0){
-              if(Number(item.times.selectedhour.split(":")[1]) > 30){
+            if(Number(item.times.selectedhour.split(":")[0]) != 0){
+              if(Number(item.times.selectedhour.split(":")[1]) == 0){
                 item.times.minutes = 59 - minutes
+                item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
               }else{
                 item.times.minutes = 29 - minutes
+                item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
               }
              
             }else{
               item.times.minutes = Number(item.times.selectedhour.split(":")[1]) - minutes
+              item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
             }
           
           }

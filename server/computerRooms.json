@@ -1,37 +1,4 @@
 {
   "reservationArr": [],
-  "computerRooms": [
-    {
-      "id": "2c49",
-      "roomsID": 1,
-      "clientname": "",
-      "name": "ოთახი N1",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": false,
-      "ordertime": "May 30, 2024, 4:02:15 PM",
-      "openDayTime": "May 30, 2024",
-      "endtime": "May 30, 2024, 4:04:38 PM",
-      "times": {
-        "selectedhour": "0:30",
-        "currenthours": 0,
-        "minutes": 27,
-        "seconds": 37
-      },
-      "ativestatus": false,
-      "moneyForRooms": {
-        "cash": 0,
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": false,
-      "orderedjuss": "",
-      "timer": 20,
-      "progress": 7.888888888888869
-    }
-  ]
+  "computerRooms": []
 }
