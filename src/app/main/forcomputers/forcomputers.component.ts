@@ -9,13 +9,13 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   selector: 'app-forcomputers',
   templateUrl: './forcomputers.component.html',
   styleUrl: './forcomputers.component.scss',
-  animations: [
-    trigger('openClose', [
-      state('true', style({ height: '*' })),
-      state('false', style({ height: '0px' })),
-      transition('false <=> true', [ animate(500) ])
-    ])
-  ]
+  // animations: [
+  //   trigger('openClose', [
+  //     state('true', style({ height: '*' })),
+  //     state('false', style({ height: '0px' })),
+  //     transition('false <=> true', [ animate(500) ])
+  //   ])
+  // ]
 })
 export class ForcomputersComponent implements OnInit {
   isOpen = true;
@@ -251,7 +251,7 @@ export class ForcomputersComponent implements OnInit {
             item.timer = setInterval(() => {
               item.times.seconds--;
               item.progress += progress;
-              
+              console.log('progress',item.progress)
               //დროის ამოწურვა
               if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
                 this.endTime(item.roomsID, item.timer);
@@ -282,6 +282,11 @@ export class ForcomputersComponent implements OnInit {
 
   //დასრულების ივენთი
   public cancelTime(roomsID:number, timer:number):void{
+    
+    if(this.computersArrr[roomsID-1].ativestatus == true){
+      return
+    }
+
     this.infoUpdateButton = false
     let endTime = this.getCurrentDate()
     this.computersArrr[roomsID-1].endtime = endTime
@@ -405,6 +410,7 @@ export class ForcomputersComponent implements OnInit {
     
                   item.times.seconds = 59;
                 }
+
               }, 1000)
             }
 
@@ -503,17 +509,31 @@ export class ForcomputersComponent implements OnInit {
           minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
 
           if(minutes > 0){
-            console.log('open')
             if(Number(item.times.selectedhour.split(":")[0]) != 0){
               if(Number(item.times.selectedhour.split(":")[1]) == 0){
+                console.log('0:1')
+          
+
+                item.progress = 0
                 item.times.minutes = 59 - minutes
-                item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
+                // console.log('open', item.progress, item.times)
+                console.log('open', item.progress)
+                console.log('open', (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100))
+                let progressTime = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
+                item.progress = progressTime
+                console.log('open', item.progress, progressTime)
+                console.log('open', item)
+
               }else{
+                console.log('1:30')
+
                 item.times.minutes = 29 - minutes
                 item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
               }
              
             }else{
+              console.log('0:30')
+
               item.times.minutes = Number(item.times.selectedhour.split(":")[1]) - minutes
               item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
             }
@@ -540,6 +560,7 @@ export class ForcomputersComponent implements OnInit {
         })
         return progress
       }else{
+        console.log(1 / (this.hours * 3600 + this.minutes * 60) * 100)
         return (1 / (this.hours * 3600 + this.minutes * 60) * 100) 
       }
       
