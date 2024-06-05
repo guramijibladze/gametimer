@@ -500,6 +500,7 @@ export class ForcomputersComponent implements OnInit {
       console.log('hidden')
     }else{
       let minutes = 0
+      let seconds = 0
       const currentDate = new Date(this.getCurrentDate()).getTime(); 
 
       this.computersArrr.forEach((item) => {
@@ -507,27 +508,25 @@ export class ForcomputersComponent implements OnInit {
           let ChangedFormat = new Date(String(item.ordertime)).getTime()
           const differenceTime = currentDate - ChangedFormat
           minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
+          seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
+          console.log('seconds', seconds)
 
           if(minutes > 0){
             if(Number(item.times.selectedhour.split(":")[0]) != 0){
               if(Number(item.times.selectedhour.split(":")[1]) == 0){
-                console.log('0:1')
           
-
-                item.progress = 0
                 item.times.minutes = 59 - minutes
+                item.times.seconds = 59 - seconds
                 // console.log('open', item.progress, item.times)
-                console.log('open', item.progress)
                 console.log('open', (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100))
-                let progressTime = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
-                item.progress = progressTime
-                console.log('open', item.progress, progressTime)
-                console.log('open', item)
+                // let progressTime = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
+                // item.progress = progressTime
 
               }else{
                 console.log('1:30')
 
                 item.times.minutes = 29 - minutes
+                item.times.seconds = 60 - seconds
                 item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
               }
              
@@ -535,6 +534,7 @@ export class ForcomputersComponent implements OnInit {
               console.log('0:30')
 
               item.times.minutes = Number(item.times.selectedhour.split(":")[1]) - minutes
+              item.times.seconds = 60 - seconds
               item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
             }
           
