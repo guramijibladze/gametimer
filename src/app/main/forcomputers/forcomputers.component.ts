@@ -33,7 +33,6 @@ export class ForcomputersComponent implements OnInit {
   public moneyForSnacksCard:number = 0
   public reservationModalIsHidden:boolean = false
   public selectedComputerRoom:any 
-  public successStaatusAlert:boolean = false
 
   //ჯავშნები
   public reservationPersonName:string = ''
@@ -293,7 +292,7 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr[roomsID-1].endtime = endTime
     this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
       next : (res) => {
-        this.successStaatusAlert = true
+  
       },
       error: (e) => console.error(e),
       complete: () => {
