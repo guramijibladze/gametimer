@@ -1,31 +1,40 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-grow',
   templateUrl: './grow.component.html',
   styleUrl: './grow.component.scss',
   animations: [
-    trigger('openClose', [
-      state('open', style({
-        height: '200px',
+    trigger('animationState', [
+      state('success', style({
+        height: '60px',
         opacity: 1,
+        backgroundColor: 'green',
+        coloe: '#fff'
+      })),
+      state('error', style({
+        height: '60px',
+        opacity: 0.5,
         backgroundColor: 'yellow'
       })),
-      state('closed', style({
-        height: '100px',
-        opacity: 0.5,
-        backgroundColor: 'green'
-      })),
-      transition('open => closed', [
+      transition('success => error', [
         animate('0.5s')
       ]),
-      transition('closed => open', [
+      transition('error => success', [
         animate('0.3s')
       ]),
     ])
   ]
 })
-export class GrowComponent {
-  name = ''
+export class GrowComponent implements OnInit {
+  animationState = 'error'
+
+  ngOnInit() {
+    console.log('animation')
+    setTimeout(() => {
+      this.animationState = 'success';
+      console.log('animation')
+    }, 3000);
+  }
 }
