@@ -501,44 +501,58 @@ export class ForcomputersComponent implements OnInit {
     }else{
       let minutes = 0
       let seconds = 0
+      
       const currentDate = new Date(this.getCurrentDate()).getTime(); 
 
       this.computersArrr.forEach((item) => {
+        let ChangedFormat = new Date(String(item.ordertime)).getTime()
+        const differenceTime = currentDate - ChangedFormat
+
         if(!item.ativestatus){
-          let ChangedFormat = new Date(String(item.ordertime)).getTime()
-          const differenceTime = currentDate - ChangedFormat
-          minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
-          seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
-          console.log('seconds', seconds)
-
-          if(minutes > 0){
-            if(Number(item.times.selectedhour.split(":")[0]) != 0){
-              if(Number(item.times.selectedhour.split(":")[1]) == 0){
-          
-                item.times.minutes = 59 - minutes
-                item.times.seconds = 59 - seconds
-                // console.log('open', item.progress, item.times)
-                console.log('open', (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100))
-                // let progressTime = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
-                // item.progress = progressTime
-
+          if(!item.gameTimerType){
+            let allDifferenceminutesInSeconds = 0
+            
+            minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
+            seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
+            allDifferenceminutesInSeconds = minutes * 60;
+            console.log('allDifferenceminutesInSeconds', allDifferenceminutesInSeconds)
+  
+            if(minutes > 0){
+              if(Number(item.times.selectedhour.split(":")[0]) != 0){
+                if(Number(item.times.selectedhour.split(":")[1]) == 0){
+                  let progres = 0
+                  progres  = (allDifferenceminutesInSeconds * item.progress  ) / 100
+                  item.times.minutes = 59 - minutes
+                  item.times.seconds = 59 - seconds
+                  item.progress += progres
+  
+                }else{
+                  console.log('1:30')
+  
+                  item.times.minutes = 29 - minutes
+                  item.times.seconds = 60 - seconds
+                  item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
+                }
+               
               }else{
-                console.log('1:30')
-
-                item.times.minutes = 29 - minutes
+                console.log('0:30')
+  
+                item.times.minutes = Number(item.times.selectedhour.split(":")[1]) - minutes
                 item.times.seconds = 60 - seconds
                 item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
               }
-             
-            }else{
-              console.log('0:30')
-
-              item.times.minutes = Number(item.times.selectedhour.split(":")[1]) - minutes
-              item.times.seconds = 60 - seconds
-              item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
+            
             }
-          
+          }else{
+            minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
+            seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
+
+            if(minutes > 0){
+              item.times.minutes = minutes
+              item.times.seconds = seconds
+            }
           }
+
         }
       })
    

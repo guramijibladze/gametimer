@@ -32,6 +32,38 @@
       "orderedjuss": "",
       "timer": 0,
       "progress": 0
+    },
+    {
+      "id": "2bac",
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 6, 2024, 12:34:01 PM",
+      "openDayTime": "Jun 6, 2024",
+      "endtime": "Jun 6, 2024, 12:56:24 PM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 22,
+        "seconds": 23
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 14,
+      "progress": 0
     }
   ]
 }
