@@ -32,38 +32,6 @@
       "orderedjuss": "",
       "timer": 0,
       "progress": 0
-    },
-    {
-      "id": "998a",
-      "roomsID": 2,
-      "clientname": "",
-      "name": "ოთახი N2",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": false,
-      "ordertime": "Jun 6, 2024, 3:15:37 PM",
-      "openDayTime": "Jun 6, 2024",
-      "endtime": "Jun 6, 2024, 3:16:00 PM",
-      "times": {
-        "selectedhour": "1:0",
-        "currenthours": 0,
-        "minutes": 59,
-        "seconds": 36
-      },
-      "ativestatus": false,
-      "moneyForRooms": {
-        "cash": 0,
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": false,
-      "orderedjuss": "",
-      "timer": 22,
-      "progress": 0.6388888888888891
     }
   ]
 }
