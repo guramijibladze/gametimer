@@ -6,12 +6,14 @@ import { SigninuserComponent } from './signinuser/signinuser.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GrowComponent } from './shared/grow/grow.component';
 
 
 @NgModule({
   declarations: [	
     AppComponent, 
-    SigninuserComponent
+    SigninuserComponent, 
+    GrowComponent
    ],
   imports: [
     BrowserModule,
