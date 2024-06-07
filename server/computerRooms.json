@@ -2,23 +2,23 @@
   "reservationArr": [],
   "computerRooms": [
     {
-      "id": "3b44",
-      "roomsID": 8,
+      "id": "9cf0",
+      "roomsID": 2,
       "clientname": "",
-      "name": "ოთახი N8",
+      "name": "ოთახი N2",
       "startButton": false,
       "pausecontinuoe": false,
       "roomsReservation": false,
-      "ordertime": "",
-      "openDayTime": "",
-      "endtime": "Jun 4, 2024, 4:34:51 PM",
+      "ordertime": "Jun 7, 2024, 5:06:40 PM",
+      "openDayTime": "Jun 7, 2024",
+      "endtime": "Jun 7, 2024, 5:06:49 PM",
       "times": {
-        "selectedhour": "",
+        "selectedhour": "0:30",
         "currenthours": 0,
-        "minutes": 0,
-        "seconds": 0
+        "minutes": 29,
+        "seconds": 50
       },
-      "ativestatus": true,
+      "ativestatus": false,
       "moneyForRooms": {
         "cash": 0,
         "card": 0
@@ -30,8 +30,72 @@
       "status": "vip",
       "gameTimerType": false,
       "orderedjuss": "",
-      "timer": 0,
-      "progress": 0
+      "timer": 15,
+      "progress": 0.5000000000000001
+    },
+    {
+      "id": "8406",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 7, 2024, 5:07:05 PM",
+      "openDayTime": "Jun 7, 2024",
+      "endtime": "Jun 7, 2024, 5:07:07 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 58
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 32,
+      "progress": 0.05555555555555555
+    },
+    {
+      "id": "5e27",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 7, 2024, 5:08:10 PM",
+      "openDayTime": "Jun 7, 2024",
+      "endtime": "Jun 7, 2024, 5:08:22 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 47
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 15,
+      "progress": 0.6666666666666669
     }
   ]
 }
