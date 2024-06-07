@@ -4,6 +4,7 @@ import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { DatePipe } from '@angular/common';
 import { SharingService } from '../service/sharing.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { GrowlService } from '../../service/auth/growl.service';
 
 @Component({
   selector: 'app-forcomputers',
@@ -54,7 +55,8 @@ export class ForcomputersComponent implements OnInit {
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
-    private sharingService: SharingService
+    private sharingService: SharingService,
+    private notificationService:GrowlService
   ){}
 
   ngOnInit() {
@@ -292,11 +294,17 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr[roomsID-1].endtime = endTime
     this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
       next : (res) => {
-  
+        // let message = 'წარმატებით ჩაიწერა'
+        console.log('next')
+        this.notificationService.showSuccessAnimation()
       },
-      error: (e) => console.error(e),
+      error: (e) => {
+        console.log('error', e)
+        this.notificationService.showErrorAnimation()
+      },
       complete: () => {
-        this.sharingService.sendClickEvent()
+        console.log('complete')
+        // this.sharingService.sendClickEvent()
       }
     })
 
