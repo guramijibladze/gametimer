@@ -13,6 +13,7 @@ export class GrowlService {
   errorAnimation$ = this.errorSource.asObservable();
 
   showSuccessAnimation() {
+    // console.log(message)
     this.successSource.next(true);
     setTimeout(() => this.hideSuccessAnimation(), 3000);
   }
@@ -22,11 +23,12 @@ export class GrowlService {
   }
 
   showErrorAnimation() {
-    this.errorSource.next(true);
+    console.log('showErrorAnimation',this.errorSource)
+    this.errorSource.next(false);
     setTimeout(() => this.hideErrorAnimation(), 3000);
   }
 
   hideErrorAnimation() {
-    this.errorSource.next(false);
+    this.errorSource.next(true);
   }
 }
