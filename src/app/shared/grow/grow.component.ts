@@ -26,6 +26,7 @@ import { Subscription } from 'rxjs';
 })
 export class GrowComponent implements OnInit {
   public successStaatusAlert!:boolean
+  public ngclassStatus!:boolean
   public message:string = ''
 
   successSubscription!: Subscription;
@@ -38,13 +39,23 @@ export class GrowComponent implements OnInit {
 
   ngOnInit() {
     this.successSubscription = this.notification.successAnimation$.subscribe(
-      state => this.successStaatusAlert = state
-    );
-    this.errorSubscription = this.notification.errorAnimation$.subscribe(
-      state => { this.successStaatusAlert = state, console.log(state)} 
+      state => { this.successStaatusAlert = state[0]
+                  this.ngclassStatus = state[0]
+                  this.message = state[1]
+                  this.changeStatus()} 
     );
 
-    console.log('successStaatusAlert',this.successStaatusAlert)
+    this.errorSubscription = this.notification.errorAnimation$.subscribe(
+      state => { this.successStaatusAlert = true,
+                  this.ngclassStatus = state[0],
+                  this.message = 'მოხდა შეცდომა'
+                  this.changeStatus()
+                  console.log('successStaatusAlert',state)} 
+    );
+  }
+
+  changeStatus():void{
+    setTimeout(() => (this.successStaatusAlert = false), 3000);
   }
 
 
@@ -53,11 +64,4 @@ export class GrowComponent implements OnInit {
     this.errorSubscription.unsubscribe();
   }
 
-  showSuccessAnimation() {
-    this.notification.showSuccessAnimation();
-  }
-
-  showErrorAnimation() {
-    this.notification.showErrorAnimation();
-  }
 }

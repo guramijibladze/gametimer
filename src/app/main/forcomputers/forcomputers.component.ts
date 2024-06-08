@@ -294,18 +294,14 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr[roomsID-1].endtime = endTime
     this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
       next : (res) => {
-        // let message = 'წარმატებით ჩაიწერა'
-        console.log('next')
-        this.notificationService.showSuccessAnimation()
+        let successMessage = 'შეკვეთა ჩაიწერა წარმატებით'
+        this.notificationService.showSuccessAnimation(successMessage)
       },
       error: (e) => {
-        console.log('error', e)
-        this.notificationService.showErrorAnimation()
+        let successMessage = 'არ ჩეიწერა წარმატებით'
+        this.notificationService.showErrorAnimation(successMessage)
       },
-      complete: () => {
-        console.log('complete')
-        // this.sharingService.sendClickEvent()
-      }
+      complete: () => {}
     })
 
     clearInterval(timer) 

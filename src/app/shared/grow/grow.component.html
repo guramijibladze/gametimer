@@ -2,9 +2,9 @@
 
   @if(successStaatusAlert){
         <div class="alert" 
-            [ngClass]="successStaatusAlert ? 'success' : 'error'"
+            [ngClass]="ngclassStatus ? 'success' : 'error'"
             [@animationState]="state" 
             role="alert">
-            წარმატებით შინახა
+            {{message}}
         </div>
 }
