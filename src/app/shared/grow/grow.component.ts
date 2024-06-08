@@ -48,7 +48,7 @@ export class GrowComponent implements OnInit {
     this.errorSubscription = this.notification.errorAnimation$.subscribe(
       state => { this.successStaatusAlert = true,
                   this.ngclassStatus = state[0],
-                  this.message = 'მოხდა შეცდომა'
+                  this.message = state[1]
                   this.changeStatus()
                   console.log('successStaatusAlert',state)} 
     );
