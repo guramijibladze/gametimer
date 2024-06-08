@@ -225,7 +225,8 @@ export class ForcomputersComponent implements OnInit {
               item.orderedjuss = this.orderedjuss
               item.ordertime = this.getCurrentDate()
             }else if(this.hours == 0 && this.minutes == 0 && item.gameTimerType == false ){
-              alert('დრო არ აგირჩევია ბაჭყატ!!!')
+              let message = 'დრო არ აგირჩევია ბაჭყატ!!!'
+              this.notificationService.showErrorAnimation(message)
               return
             }
           }
@@ -447,6 +448,12 @@ export class ForcomputersComponent implements OnInit {
   }
 
   public addaReservation():void{
+
+    if(!this.reservationTime){
+      let message = 'დრო არ აგირჩევია ბაჭყატ!!!'
+      this.notificationService.showErrorAnimation(message)
+      return
+    }
 
     const reservationInfo = {
       roomsID: this.reservationID,
