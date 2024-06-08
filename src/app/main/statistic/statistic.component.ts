@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { SharingService } from '../service/sharing.service';
+import { GrowlService } from '../../service/auth/growl.service';
 
 @Component({
   selector: 'app-statistic',
@@ -36,7 +37,8 @@ export class StatisticComponent {
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationService: GrowlService
   ){}
 
   public getData(){
@@ -145,8 +147,14 @@ export class StatisticComponent {
     })
 
     this.computerRoomsService.putcomputerRooms(rowId, sendObject).subscribe({  
-      next : (res) => console.log('responese', res),
-      error: (e) => console.error(e),
+      next : (res) => {
+        let successMessage = 'წარმატებით განახლდა'
+        this.notificationService.showSuccessAnimation(successMessage)
+      },
+      error: (e) => {
+        let successMessage = 'განახლებისას მოხდა შეცდომა'
+        this.notificationService.showSuccessAnimation(successMessage)
+      },
       complete: () => { closebutton?.click(),
         this.getcomputerRooms() }})
   }
@@ -183,6 +191,8 @@ export class StatisticComponent {
     let rowID = item.id
     this.computerRoomsDeleteSubscription = this.computerRoomsService.deleteItemTable(rowID).subscribe( {
       next : (res) => {
+        let successMessage = 'წარმატებით წაიშალა'
+        this.notificationService.showSuccessAnimation(successMessage)
         this.getcomputerRooms()
       },
       error: (e) => console.error(e),
