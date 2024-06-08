@@ -6,29 +6,28 @@ import { Subject } from 'rxjs';
 })
 export class GrowlService {
 
-  private successSource = new Subject<boolean>();
-  private errorSource = new Subject<boolean>();
+  private successSource = new Subject<[boolean, string]>();
+  private errorSource = new Subject<[boolean, string]>();
 
   successAnimation$ = this.successSource.asObservable();
   errorAnimation$ = this.errorSource.asObservable();
 
-  showSuccessAnimation() {
-    // console.log(message)
-    this.successSource.next(true);
-    setTimeout(() => this.hideSuccessAnimation(), 3000);
+  showSuccessAnimation(item:any) {
+    this.successSource.next([true, item]);
   }
 
-  hideSuccessAnimation() {
-    this.successSource.next(false);
+  // hideSuccessAnimation() {
+  //   this.successSource.next(false);
+  // }
+
+  showErrorAnimation(item:string) {
+    this.errorSource.next([false, item]);
+    console.log('showErrorAnimation', item)
+
+    // setTimeout(() => this.hideErrorAnimation(), 3000);
   }
 
-  showErrorAnimation() {
-    console.log('showErrorAnimation',this.errorSource)
-    this.errorSource.next(false);
-    setTimeout(() => this.hideErrorAnimation(), 3000);
-  }
-
-  hideErrorAnimation() {
-    this.errorSource.next(true);
-  }
+  // hideErrorAnimation() {
+  //   this.errorSource.next(true);
+  // }
 }
