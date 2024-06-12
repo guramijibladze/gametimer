@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +10,20 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ){}
 
-  computer():void{
+  public computer():void{
     this.router.navigate(['main/computers']);
   }
 
-  statistic():void{
+  public statistic():void{
     this.router.navigate(['main/statistic']);
+  }
+
+  public dayOff():void{
+    this.authService.logout()
+    localStorage.removeItem('openDayTime');
   }
 }
