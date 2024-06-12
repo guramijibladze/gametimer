@@ -3,7 +3,7 @@
   @if(successStaatusAlert){
         <div class="alert" 
             [ngClass]="ngclassStatus ? 'success' : 'error'"
-            [@animationState]="state" 
+            [@animationState] 
             role="alert">
             {{message}}
         </div>

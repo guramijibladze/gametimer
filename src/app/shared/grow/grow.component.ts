@@ -3,25 +3,38 @@ import { Component, OnInit } from '@angular/core';
 import { GrowlService } from '../../service/auth/growl.service';
 import { Subscription } from 'rxjs';
 
+animations: [
+  trigger(
+    'animationState', [
+    transition(':enter', [
+      style({ opacity: 0 }),
+      animate('500ms', style({ opacity: 1 }))
+    ]),
+    transition(':leave', [
+      style({ opacity: 1 }),
+      animate('900ms', style({ opacity: 0 }))
+    ])
+  ]
+  )
+]
+
 @Component({
   selector: 'app-grow',
   templateUrl: './grow.component.html',
   styleUrl: './grow.component.scss',
   animations: [
-    trigger('animationState', [
-      state('success', style({})),
-      state('error', style({
-        // height: '60px',
-        // opacity: 0.5,
-        // backgroundColor: 'yellow'
-      })),
-      transition('success => error', [
-        animate('900ms ease-in-out')
+    trigger(
+      'animationState', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('900ms', style({ opacity: 1 }))
       ]),
-      transition('error => success', [
-        animate('900ms ease-in-out')
-      ]),
-    ])
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate('900ms', style({ opacity: 0 }))
+      ])
+    ]
+    )
   ]
 })
 export class GrowComponent implements OnInit {
@@ -32,7 +45,6 @@ export class GrowComponent implements OnInit {
   successSubscription!: Subscription;
   errorSubscription!: Subscription;
   
-  state = ''
   constructor(
     private notification:GrowlService
   ){}

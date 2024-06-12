@@ -1,13 +1,4 @@
 {
-  "reservationArr": [
-    {
-      "id": "91b3",
-      "roomsID": 3,
-      "person": "გურამ",
-      "tel": "591700487",
-      "time": "21:00",
-      "text": ""
-    }
-  ],
+  "reservationArr": [],
   "computerRooms": []
 }
