@@ -62,7 +62,7 @@ export class ForcomputersComponent implements OnInit {
   ngOnInit() {
     this.getCurrentDate()
     // localStorage.setItem('reservationArr', JSON.stringify(this.reservationArr))
-    document.addEventListener('visibilitychange', this.visible.bind(this))
+    // document.addEventListener('visibilitychange', this.visible.bind(this))
   }
 
   public theadNames:string[] = ['პიროვნება', 'ტელეფონი', 'დრო', 'ტექსტი', '' ]
@@ -135,8 +135,11 @@ export class ForcomputersComponent implements OnInit {
 
   public refresh(box:ComputersRooms):void{
     this.computerroomsID = box.roomsID
-
-    this.saveTime('refresh')
+    let text = 'ეს ღილაკი გამოიყენე მხოლოდ მაშინ თუ ტაიმერმა გაჭედა!!!'
+    if(confirm(text) == true){
+      this.saveTime('refresh')
+    }
+    
   }
 
   public updateinfo(updateRoomsID:number){
@@ -254,7 +257,7 @@ export class ForcomputersComponent implements OnInit {
             item.timer = setInterval(() => {
               item.times.seconds--;
               item.progress += progress;
-              console.log('progress',item.progress)
+              // console.log('progress',item.progress)
               //დროის ამოწურვა
               if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
                 this.endTime(item.roomsID, item.timer);
@@ -273,7 +276,7 @@ export class ForcomputersComponent implements OnInit {
   
                 item.times.seconds = 59;
               }
-              console.log(item)
+              // console.log(item)
             }, 1000)
             
           }
@@ -331,7 +334,7 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr[roomsID-1].endtime = endTime
     // this.computersArrr[roomsID-1].ativestatus = true
     this.startcontinue = true
-    console.log('endTime!!!!!', {...this.computersArrr[roomsID-1]})
+    // console.log('endTime!!!!!', {...this.computersArrr[roomsID-1]})
 
     // this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
     //   next : (res) => {
@@ -472,27 +475,24 @@ export class ForcomputersComponent implements OnInit {
           }
         })
 
-        // console.log(this.computersArrr[0])
+        // // console.log(this.computersArrr[0])
         this.showReservation(reservationInfo.roomsID)
       },
       error: (e) => console.error(e),
       complete: () => {
-        console.log('complete')
+        // console.log('complete')
       }
     })
 
   }
 
-  public updateReserve():void{
-
-  }
 
   public deleteReservedItem(item:any):void{
 
     this.computerRoomsService.deleteReservation(item.id).subscribe({
       next : (res) => {
 
-        // console.log(this.computersArrr[0])
+        // // console.log(this.computersArrr[0])
         this.showReservation(this.reservationID)
         // this.computersArrr.forEach((item) => {
         //   if(item.)
@@ -500,76 +500,84 @@ export class ForcomputersComponent implements OnInit {
       },
       error: (e) => console.error(e),
       complete: () => {
-        console.log('complete')
+        // console.log('complete')
       }
     })
   }
 
 
   //ამოწმებს დროს როცა სხვა ტაბიდა ბრუნდები იგივე გვერდზე
-  private visible(){
-    if(document.hidden){
-      console.log('hidden')
-    }else{
-      let minutes = 0
-      let seconds = 0
+  // private visible(){
+  //   if(document.hidden){
+  //     // console.log('hidden')
+  //   }else{
+  //     let minutes = 0
+  //     let seconds = 0
       
-      const currentDate = new Date(this.getCurrentDate()).getTime(); 
+  //     const currentDate = new Date(this.getCurrentDate()).getTime(); 
 
-      this.computersArrr.forEach((item) => {
-        let ChangedFormat = new Date(String(item.ordertime)).getTime()
-        const differenceTime = currentDate - ChangedFormat
+  //     this.computersArrr.forEach((item) => {
+  //       let ChangedFormat = new Date(String(item.ordertime)).getTime()
+  //       const differenceTime = currentDate - ChangedFormat
 
-        if(!item.ativestatus){
-          if(!item.gameTimerType){
-            let allDifferenceminutesInSeconds = 0
+  //       if(!item.ativestatus){
+  //         if(!item.gameTimerType){
+  //           // let allDifferenceminutesInSeconds = 0
             
-            minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
-            seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
-            allDifferenceminutesInSeconds = minutes * 60;
-            console.log('allDifferenceminutesInSeconds', allDifferenceminutesInSeconds)
+  //           minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
+  //           seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
+  //           // allDifferenceminutesInSeconds = minutes * 60;
+  //           // console.log('allDifferenceminutesInSeconds', allDifferenceminutesInSeconds)
   
-            if(minutes > 0){
-              if(Number(item.times.selectedhour.split(":")[0]) != 0){
-                if(Number(item.times.selectedhour.split(":")[1]) == 0){
-                  let progres = 0
-                  progres  = (allDifferenceminutesInSeconds * item.progress  ) / 100
-                  item.times.minutes = 59 - minutes
-                  item.times.seconds = 59 - seconds
-                  item.progress += progres
+  //           if(minutes > 0){
+  //             if(Number(item.times.selectedhour.split(":")[0]) != 0){
+  //               if(Number(item.times.selectedhour.split(":")[1]) == 0){
+  //                 console.log('1:00')
+
+  //                 let progres = 0
+  //                 // progres  = (allDifferenceminutesInSeconds * item.progress  ) / 100
+  //                 item.times.minutes = 59 - minutes
+  //                 item.times.seconds = 59 - seconds
+  //                 item.progress += progres
   
-                }else{
-                  console.log('1:30')
+  //               }else{
+  //                 console.log('1:30')
+
+  //                 if(item.times.currenthours == 0){
+  //                   item.times.minutes = 88 - minutes
+  //                 }else{
+  //                   item.times.minutes = 29 - minutes
+  //                 }
   
-                  item.times.minutes = 29 - minutes
-                  item.times.seconds = 60 - seconds
-                  item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
-                }
+  //                 item.times.seconds = 60 - seconds
+
+  //                 // item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
+  //               }
                
-              }else{
-                console.log('0:30')
+  //             }else{
+  //               console.log('0:30')
   
-                item.times.minutes = Number(item.times.selectedhour.split(":")[1]) - minutes
-                item.times.seconds = 60 - seconds
-                item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
-              }
+  //               item.times.minutes = Number(item.times.selectedhour.split(":")[1]) - minutes
+  //               item.times.seconds = 60 - seconds
+  //               // item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
+  //             }
             
-            }
-          }else{
-            minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
-            seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
+  //           }
+  //         }else{
+  //           minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
+  //           seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
 
-            if(minutes > 0){
-              item.times.minutes = minutes
-              item.times.seconds = seconds
-            }
-          }
+  //           if(minutes > 0){
+  //             item.times.minutes = minutes
+  //             item.times.seconds = seconds
+  //           }
+  //         }
 
-        }
-      })
+  //       }
+  //     })
    
-    }
-  }
+  //   }
+  // }
 
 
     //გადაყავს დრო წამებში
@@ -580,13 +588,13 @@ export class ForcomputersComponent implements OnInit {
           if(item.roomsID == this.computerroomsID) {
             
             item.times.progress = 0
-            console.log('getAllTimersInSeconds', item)
+            // console.log('getAllTimersInSeconds', item)
             progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
           }
         })
         return progress
       }else{
-        console.log(1 / (this.hours * 3600 + this.minutes * 60) * 100)
+        // console.log(1 / (this.hours * 3600 + this.minutes * 60) * 100)
         return (1 / (this.hours * 3600 + this.minutes * 60) * 100) 
       }
       
@@ -646,7 +654,7 @@ export class ForcomputersComponent implements OnInit {
         },
         error: (e) => console.error(e),
         complete: () => {
-          console.log('complete')
+          // console.log('complete')
         }
       })
     }
