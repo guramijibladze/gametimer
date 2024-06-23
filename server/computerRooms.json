@@ -32,6 +32,391 @@
       "orderedjuss": "",
       "timer": 37,
       "progress": 0.16666666666666666
+    },
+    {
+      "id": "5705",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 10:49:22 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 10:49:25 AM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 3
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 68,
+      "progress": 0
+    },
+    {
+      "id": "664f",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 10:49:30 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 10:49:50 AM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 30,
+        "seconds": 48,
+        "progress": 0
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 87,
+      "progress": 0.6111111111111113
+    },
+    {
+      "id": "bffa",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 10:52:24 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 10:53:36 AM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 1,
+        "seconds": 12
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 11,
+      "progress": 0
+    },
+    {
+      "id": "afd0",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 11:00:23 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 11:02:35 AM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 1,
+        "seconds": 50
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 27,
+      "progress": 0
+    },
+    {
+      "id": "4fbe",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 11:08:59 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 11:09:02 AM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 2
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 11,
+      "progress": 0
+    },
+    {
+      "id": "3d92",
+      "roomsID": 3,
+      "clientname": "",
+      "name": "ოთახი N3",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 11:17:57 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 11:17:59 AM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 58
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 38,
+      "progress": 0.05555555555555555
+    },
+    {
+      "id": "7ace",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 11:18:52 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 11:19:00 AM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 51
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 14,
+      "progress": 0.44444444444444453
+    },
+    {
+      "id": "6a90",
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 11:19:12 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 11:19:48 AM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 23
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 55,
+      "progress": 2.0000000000000004
+    },
+    {
+      "id": "2331",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 11:19:03 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 11:19:50 AM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 13
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 40,
+      "progress": 2.555555555555554
+    },
+    {
+      "id": "5201",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 11:19:59 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 11:20:02 AM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 57
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 74,
+      "progress": 0.1111111111111111
+    },
+    {
+      "id": "4bf4",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 11:20:06 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 11:22:12 AM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 57,
+        "seconds": 53
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 85,
+      "progress": 3.4999999999999916
+    },
+    {
+      "id": "b721",
+      "roomsID": 3,
+      "clientname": "",
+      "name": "ოთახი N3",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jun 23, 2024, 11:18:59 AM",
+      "openDayTime": "Jun 23, 2024",
+      "endtime": "Jun 23, 2024, 11:23:55 AM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 25,
+        "seconds": 3
+      },
+      "ativestatus": false,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 29,
+      "progress": 16.444444444444407
     }
   ]
 }

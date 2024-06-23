@@ -314,7 +314,6 @@ export class ForcomputersComponent implements OnInit {
   }
 
   //გადაყავს მიმდინარე დროზე
-  gametimertypeArr:any[] = []
   public changametimertype():any{
 
     this.computersArrr.forEach((item) => {
@@ -397,6 +396,9 @@ export class ForcomputersComponent implements OnInit {
                 return
               }
   
+              this.minutes = 0
+              this.hours = 0
+
               item.timer = setInterval(() => {
                 item.times.seconds--;
                 item.progress += progress;
@@ -428,6 +430,11 @@ export class ForcomputersComponent implements OnInit {
   }
 
   public mdoalclose(){
+    // this.computersArrr.forEach((item) => {
+    //   if(item.ativestatus){
+    //     item.gameTimerType = false
+    //   }
+    // })
     this.infoUpdateButton = false
     this.checkbox = false
     this.startcontinue = true
