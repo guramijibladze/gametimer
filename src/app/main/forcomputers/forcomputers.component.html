@@ -99,24 +99,26 @@
                 </div>
 
 
-                <!-- //ღილაკები -->
+                <!-- //დროის დაწყება დასრულების ღილაკები -->
                 <div class="buttons" >
 
                     @if(computer.ordertime){
-                        <div class="start m-1" style="max-width: 63px; max-height: 63px;">
-                            <button style="background-color: transparent; color: #3498db; border: none !important;"
-                                        >
-    
-                                <img src="../../../assets/icons/play-button (1)64.png"
-                                    style="cursor: pointer; max-width: 63px; max-height: 63px;"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop" 
-                                    class="startButton"
-                                    (click)="startTime(computer.roomsID, computer)"
-                                    alt="...">
-                            </button>
-    
-                        </div>
+                        @if(!computer.gameTimerType){
+                            <div class="start m-1" style="max-width: 63px; max-height: 63px;">
+                                <button style="background-color: transparent; color: #3498db; border: none !important;"
+                                            >
+        
+                                    <img src="../../../assets/icons/play-button (1)64.png"
+                                        style="cursor: pointer; max-width: 63px; max-height: 63px;"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop" 
+                                        class="startButton"
+                                        (click)="startTime(computer.roomsID, computer)"
+                                        alt="...">
+                                </button>
+        
+                            </div>
+                        }
                     }@else{
                         <div class="start m-1" style="max-width: 63px; max-height: 63px;">
                             <button style="background-color: transparent; color: #3498db; border: none !important;"
@@ -160,7 +162,7 @@
     </div>
 </div>
 
-  <!-- Modal -->
+  <!-- დროის დაწყების მოდალი -->
 <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="padding: 15px;">
@@ -174,9 +176,12 @@
             <div class="modal-body">
 
                 <div class="game-timer-type">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="checkbox"  id="flexCheckDefault" 
+                    <input class="form-check-input" type="checkbox" 
+                            id="flexCheckDefault" 
+                            [(ngModel)]="currentTimerCheckbox"
+                            [disabled]="checkbox"
                             (change)="changametimertype()">
-                    <label class="form-check-label ms-1" for="flexCheckDefault">
+                    <label class="form-check-label ms-1" for="flexCheckDefault" >
                         მიმდინარე დრო
                     </label>
                 </div>
@@ -368,7 +373,11 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="mdoalclose()">დახურვა</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addContinuetime()">დამატება</button>
+  
+          <button type="button" 
+                    class="btn btn-primary" 
+                    data-bs-dismiss="modal" 
+                    (click)="addContinuetime()">დამატება</button>
         </div>
       </div>
     </div>
