@@ -67,7 +67,7 @@ export class GrowComponent implements OnInit {
   }
 
   changeStatus():void{
-    setTimeout(() => (this.successStaatusAlert = false), 3000);
+    setTimeout(() => (this.successStaatusAlert = false), 5000);
   }
 
 

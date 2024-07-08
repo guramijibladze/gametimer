@@ -2,8 +2,6 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { ComputersRooms, roomsReservation } from '../model';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { DatePipe } from '@angular/common';
-import { SharingService } from '../service/sharing.service';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { GrowlService } from '../../service/auth/growl.service';
 
 @Component({
@@ -56,7 +54,7 @@ export class ForcomputersComponent implements OnInit {
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
-    private sharingService: SharingService,
+    // private sharingService: SharingService,
     private notificationService:GrowlService
   ){}
 
@@ -153,7 +151,8 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr.forEach((item:ComputersRooms) => {
       if(this.updateRoomsID == item.roomsID){
         this.checkbox = true
-        this.currentTimerCheckbox = true
+        !item.gameTimerType ? this.currentTimerCheckbox = false : this.currentTimerCheckbox = true
+        
         this.clientName = item.clientname
         this.moneyForRoomsCash = item.moneyForRooms.cash
         this.moneyForRoomsCard = item.moneyForRooms.card
@@ -365,6 +364,12 @@ export class ForcomputersComponent implements OnInit {
 
     //დროის დამატება ოთახზე
     public addContinuetime():void{
+
+      if(!this.hours && !this.minutes){
+        let message = 'არც დრო შეგიყვანია არც წუთები და დამატებას აჭერ დახურვის მაგივრად'
+        this.notificationService.showErrorAnimation(message)
+        return
+      }
     
       this.startcontinue = false
       clearInterval(this.computersArrr[this.computerroomsID-1].timer)
@@ -401,7 +406,7 @@ export class ForcomputersComponent implements OnInit {
   
               this.minutes = 0
               this.hours = 0
-
+              this.startcontinue = true
               item.timer = setInterval(() => {
                 item.times.seconds--;
                 item.progress += progress;
