@@ -34,6 +34,7 @@ export class ForcomputersComponent implements OnInit {
   public moneyForSnacksCard:number = 0
   public reservationModalIsHidden:boolean = false
   public selectedComputerRoom:any 
+  public currentTimerCheckbox:boolean = false
 
   //ჯავშნები
   public reservationPersonName:string = ''
@@ -127,6 +128,7 @@ export class ForcomputersComponent implements OnInit {
   public startTime(roomsID:number, computerRoom:any):void{
     this.computerroomsID = roomsID
     this.selectedComputerRoom = computerRoom
+    console.log('selectedComputerRoom',this.selectedComputerRoom)
 
     if( this.computersArrr[roomsID-1].ordertime){
       this.startcontinue = false
@@ -150,7 +152,8 @@ export class ForcomputersComponent implements OnInit {
     //მოდალში ანახებს ამ ოთახზე არჩეულ ინფოს
     this.computersArrr.forEach((item:ComputersRooms) => {
       if(this.updateRoomsID == item.roomsID){
-        
+        this.checkbox = true
+        this.currentTimerCheckbox = true
         this.clientName = item.clientname
         this.moneyForRoomsCash = item.moneyForRooms.cash
         this.moneyForRoomsCard = item.moneyForRooms.card
@@ -318,7 +321,7 @@ export class ForcomputersComponent implements OnInit {
 
     this.computersArrr.forEach((item) => {
       if(item.roomsID == this.computerroomsID){
-        item.gameTimerType = this.checkbox
+        item.gameTimerType = !item.gameTimerType
         item.gameTimerType ? this.infoUpdateButton = true : this.infoUpdateButton = false
       }
     })
@@ -430,11 +433,7 @@ export class ForcomputersComponent implements OnInit {
   }
 
   public mdoalclose(){
-    // this.computersArrr.forEach((item) => {
-    //   if(item.ativestatus){
-    //     item.gameTimerType = false
-    //   }
-    // })
+
     this.infoUpdateButton = false
     this.checkbox = false
     this.startcontinue = true
@@ -447,6 +446,7 @@ export class ForcomputersComponent implements OnInit {
     this.hours = 0
     this.clientName = ''
     this.orderedjuss = ''
+    this.currentTimerCheckbox = false
   }
 
 
@@ -633,6 +633,7 @@ export class ForcomputersComponent implements OnInit {
       this.orderedjuss = ''
       this.startcontinue = true
       this.checkbox = false
+      this.currentTimerCheckbox = false
     }
 
     private showReservation(roomsID:number):void{
