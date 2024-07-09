@@ -232,6 +232,7 @@ export class ForcomputersComponent implements OnInit {
             }else if(this.hours == 0 && this.minutes == 0 && item.gameTimerType == false ){
               let message = 'დრო არ აგირჩევია ბაჭყატ!!!'
               this.notificationService.showErrorAnimation(message)
+              this.mdoalclose()
               return
             }
           }
@@ -368,6 +369,7 @@ export class ForcomputersComponent implements OnInit {
       if(!this.hours && !this.minutes){
         let message = 'არც დრო შეგიყვანია არც წუთები და დამატებას აჭერ დახურვის მაგივრად'
         this.notificationService.showErrorAnimation(message)
+        this.mdoalclose()
         return
       }
     
@@ -439,7 +441,7 @@ export class ForcomputersComponent implements OnInit {
 
   public mdoalclose(){
 
-    if(this.selectedComputerRoom){
+    if(this.selectedComputerRoom && this.selectedComputerRoom.ativestatus){
       this.computersArrr[this.computerroomsID - 1].gameTimerType = false
     }
 
