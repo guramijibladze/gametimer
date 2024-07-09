@@ -439,6 +439,10 @@ export class ForcomputersComponent implements OnInit {
 
   public mdoalclose(){
 
+    if(this.selectedComputerRoom){
+      this.computersArrr[this.computerroomsID - 1].gameTimerType = false
+    }
+
     this.infoUpdateButton = false
     this.checkbox = false
     this.startcontinue = true
