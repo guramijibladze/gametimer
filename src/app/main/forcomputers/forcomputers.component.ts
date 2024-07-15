@@ -146,6 +146,7 @@ export class ForcomputersComponent implements OnInit {
     this.startcontinue = false
     this.infoUpdateButton = true
     this.updateRoomsID = updateRoomsID
+    this.selectedComputerRoom = this.computersArrr[updateRoomsID-1]
 
     //მოდალში ანახებს ამ ოთახზე არჩეულ ინფოს
     this.computersArrr.forEach((item:ComputersRooms) => {

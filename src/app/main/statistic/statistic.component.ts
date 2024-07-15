@@ -29,6 +29,7 @@ export class StatisticComponent {
   public theadNames:string[] = ['#', 'ოთხი', 'ოთახის სტატუსი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი',
   'თანხა ჯამში','შეკვეთები', '' ]
   public tbodyNames: any[] = []
+  public closingTimeForTheDay!:string | null
 
   private computerRoomsSubscription?:Subscription
   private computerRoomsDeleteSubscription?:Subscription
@@ -159,12 +160,12 @@ export class StatisticComponent {
         this.getcomputerRooms() }})
   }
 
-
   public getDayInfo():void{
     this.amount = 0
     this.amountWithCard = 0
     this.amountWithCash = 0
     // this.moneyFromComputerRooms = 0
+    this.closingTimeForTheDay = localStorage.getItem('openDayTime')
 
     this.amount = this.tbodyNames.reduce((accumulator, currentValue:tbodyNames) => 
         (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card) + Number(currentValue.moneyForSnacks.cash) + Number(currentValue.moneyForSnacks.card)), this.amount)
