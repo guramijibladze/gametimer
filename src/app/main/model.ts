@@ -15,7 +15,7 @@ export interface ComputersRooms{
     timer:any,
     progress:any,
     orderedjuss:string,
-    fitpassQuantity:number
+    fitpassQuantity:number,
     moneyForRooms:ForRooms,
     moneyForSnacks:Snacks,
 }
@@ -57,6 +57,7 @@ export interface Times{
     endtime:any,
     times:Times,
     ativestatus:boolean,
+    fitpassQuantity:number,
     moneyForRooms:ForRooms,
     moneyForSnacks:Snacks,
     status:string,
