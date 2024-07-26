@@ -35,72 +35,6 @@
       "progress": 1.2222222222222225
     },
     {
-      "id": "faf9",
-      "roomsID": 1,
-      "clientname": "",
-      "name": "ოთახი N1",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": false,
-      "ordertime": "Jul 26, 2024, 3:32:54 PM",
-      "openDayTime": "Jul 26, 2024",
-      "endtime": "Jul 26, 2024, 3:33:27 PM",
-      "times": {
-        "selectedhour": "1:0",
-        "currenthours": 0,
-        "minutes": 59,
-        "seconds": 27
-      },
-      "ativestatus": false,
-      "fitpassQuantity": "2",
-      "moneyForRooms": {
-        "cash": 0,
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": false,
-      "orderedjuss": "",
-      "timer": 22,
-      "progress": 0.8888888888888892
-    },
-    {
-      "id": "1298",
-      "roomsID": 5,
-      "clientname": "",
-      "name": "ოთახი N5",
-      "startButton": false,
-      "pausecontinuoe": false,
-      "roomsReservation": false,
-      "ordertime": "Jul 26, 2024, 3:37:09 PM",
-      "openDayTime": "Jul 26, 2024",
-      "endtime": "Jul 26, 2024, 3:37:16 PM",
-      "times": {
-        "selectedhour": "",
-        "currenthours": 0,
-        "minutes": 0,
-        "seconds": 7
-      },
-      "ativestatus": false,
-      "fitpassQuantity": "1",
-      "moneyForRooms": {
-        "cash": 0,
-        "card": 0
-      },
-      "moneyForSnacks": {
-        "cash": 0,
-        "card": 0
-      },
-      "status": "vip",
-      "gameTimerType": true,
-      "orderedjuss": "",
-      "timer": 42,
-      "progress": 0
-    },
-    {
       "id": "52e7",
       "roomsID": 3,
       "clientname": "",
@@ -134,24 +68,24 @@
       "progress": 0.916666666666667
     },
     {
-      "id": "2502",
+      "id": "5cdd",
       "roomsID": 1,
       "clientname": "",
       "name": "ოთახი N1",
       "startButton": false,
       "pausecontinuoe": false,
       "roomsReservation": false,
-      "ordertime": "Jul 26, 2024, 3:37:01 PM",
+      "ordertime": "Jul 26, 2024, 4:00:16 PM",
       "openDayTime": "Jul 26, 2024",
-      "endtime": "Jul 26, 2024, 3:37:26 PM",
+      "endtime": "Jul 26, 2024, 4:00:21 PM",
       "times": {
-        "selectedhour": "2:0",
-        "currenthours": 1,
-        "minutes": 59,
-        "seconds": 34
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 55
       },
       "ativestatus": false,
-      "fitpassQuantity": "2",
+      "fitpassQuantity": "1",
       "moneyForRooms": {
         "cash": 0,
         "card": 0
@@ -163,8 +97,74 @@
       "status": "vip",
       "gameTimerType": false,
       "orderedjuss": "",
-      "timer": 33,
-      "progress": 0.3472222222222223
+      "timer": 24,
+      "progress": 0.2222222222222222
+    },
+    {
+      "id": "b09f",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jul 26, 2024, 4:07:29 PM",
+      "openDayTime": "Jul 26, 2024",
+      "endtime": "Jul 26, 2024, 4:07:39 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 50
+      },
+      "ativestatus": false,
+      "fitpassQuantity": "1",
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 25,
+      "progress": 0.5000000000000001
+    },
+    {
+      "id": "eca2",
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jul 26, 2024, 4:07:22 PM",
+      "openDayTime": "Jul 26, 2024",
+      "endtime": "Jul 26, 2024, 4:07:40 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 42
+      },
+      "ativestatus": false,
+      "fitpassQuantity": "3",
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 14,
+      "progress": 0.4722222222222224
     }
   ]
 }

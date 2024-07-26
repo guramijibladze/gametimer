@@ -26,6 +26,7 @@ export class StatisticComponent {
   public moneyForSnacksCard:number = 0
   public orderedjuss = ''
   public currentDate = ''
+  public fitpassQuontity = 0
   public theadNames:string[] = ['#', 'ოთხი', 'ოთახის სტატუსი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი',
   'თანხა ჯამში', 'ფიტპასი', 'შეკვეთები', '' ]
   public tbodyNames: any[] = []
@@ -181,6 +182,9 @@ export class StatisticComponent {
 
     this.moneyFromSnacks = this.tbodyNames.reduce((accumulator:number, curentItem:tbodyNames) => accumulator + Number(curentItem.moneyForSnacks.card) + 
         Number(curentItem.moneyForSnacks.cash) , 0)
+
+    this.fitpassQuontity = this.tbodyNames.reduce((accumulator:number, curentItem:tbodyNames) => accumulator + Number(curentItem.fitpassQuantity), 0)
+    console.log(this.fitpassQuontity)
   }
 
   public dayOff():void{
