@@ -41,6 +41,8 @@ export class ForcomputersComponent implements OnInit {
   public reservationText:string = ''
   public selectedReservationRoom = ''
 
+  //ფიტპასი
+  public fitpass = 0
   // //დაჯავშნილის ცვლილება
   // public clickReservationInfo:boolean = false
 
@@ -80,6 +82,7 @@ export class ForcomputersComponent implements OnInit {
       endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 },
       ativestatus:true,
+      fitpassQuantity: 0,
       moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0},
       status:'vip',
@@ -91,32 +94,33 @@ export class ForcomputersComponent implements OnInit {
     { roomsID:2, clientname: '', name: 'ოთახი N2', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
       ativestatus:true,
+      fitpassQuantity: 0,
       moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0},
       status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:3, clientname: '', name: 'ოთახი N3', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:4, clientname: '', name: 'ოთახი N4', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
     { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
     progress: 0},
     { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
       { roomsID:7, clientname: '', name: 'ოთახი N7', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0},
       { roomsID:8, clientname: '', name: 'ოთახი N8', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
-      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, moneyForRooms:{cash: 0, card: 0},
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
       progress: 0}
   ]
@@ -154,6 +158,7 @@ export class ForcomputersComponent implements OnInit {
         this.checkbox = true
         !item.gameTimerType ? this.currentTimerCheckbox = false : this.currentTimerCheckbox = true
         
+        this.fitpass = item.fitpassQuantity
         this.clientName = item.clientname
         this.moneyForRoomsCash = item.moneyForRooms.cash
         this.moneyForRoomsCard = item.moneyForRooms.card
@@ -167,6 +172,7 @@ export class ForcomputersComponent implements OnInit {
   public update():void{
     this.computersArrr.forEach((item:ComputersRooms) => {
       if(this.updateRoomsID == item.roomsID){
+        item.fitpassQuantity = this.fitpass
         item.clientname = this.clientName
         item.moneyForRooms.cash = this.moneyForRoomsCash
         item.moneyForRooms.card = this.moneyForRoomsCard
@@ -183,6 +189,7 @@ export class ForcomputersComponent implements OnInit {
     let progress = 0
     this.infoUpdateButton = false
 
+    console.log(this.fitpass)
     if(str =='save' || str == 'refresh'){
       // საათის და წუთების ჩამატება
       this.computersArrr.forEach((item, index) => {
@@ -197,6 +204,7 @@ export class ForcomputersComponent implements OnInit {
               item.times.seconds = 59;
               item.clientname = this.clientName
               item.ativestatus = false
+              item.fitpassQuantity = this.fitpass
               item.moneyForRooms.cash = this.moneyForRoomsCash
               item.moneyForRooms.card = this.moneyForRoomsCard
               item.moneyForSnacks.cash = this.moneyForSnacksCash
@@ -213,6 +221,7 @@ export class ForcomputersComponent implements OnInit {
               item.clientname = this.clientName
               item.ativestatus = false
               item.orderedjuss = this.orderedjuss
+              item.fitpassQuantity = this.fitpass
               item.moneyForRooms.cash = this.moneyForRoomsCash
               item.moneyForRooms.card = this.moneyForRoomsCard
               item.moneyForSnacks.cash = this.moneyForSnacksCash
@@ -223,6 +232,7 @@ export class ForcomputersComponent implements OnInit {
             }else if(item.gameTimerType == true){
               item.clientname = this.clientName
               item.ativestatus = false
+              item.fitpassQuantity = this.fitpass
               item.moneyForRooms.cash = this.moneyForRoomsCash
               item.moneyForRooms.card = this.moneyForRoomsCard
               item.moneyForSnacks.cash = this.moneyForSnacksCash
@@ -449,6 +459,7 @@ export class ForcomputersComponent implements OnInit {
     this.infoUpdateButton = false
     this.checkbox = false
     this.startcontinue = true
+    this.fitpass = 0
 
     this.moneyForRoomsCash = 0
     this.moneyForRoomsCard = 0
@@ -635,6 +646,7 @@ export class ForcomputersComponent implements OnInit {
         this.computersArrr[roomsID-1].gameTimerType = false
       }
 
+      this.fitpass = 0
       this.moneyForRoomsCash = 0
       this.moneyForRoomsCard = 0
       this.moneyForSnacksCash = 0

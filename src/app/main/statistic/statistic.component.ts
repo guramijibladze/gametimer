@@ -27,7 +27,7 @@ export class StatisticComponent {
   public orderedjuss = ''
   public currentDate = ''
   public theadNames:string[] = ['#', 'ოთხი', 'ოთახის სტატუსი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი',
-  'თანხა ჯამში','შეკვეთები', '' ]
+  'თანხა ჯამში', 'ფიტპასი', 'შეკვეთები', '' ]
   public tbodyNames: any[] = []
   public closingTimeForTheDay!:string | null
 

@@ -1,6 +1,170 @@
 {
   "reservationArr": [],
   "computerRooms": [
-
+    {
+      "id": "bccc",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jul 26, 2024, 3:33:03 PM",
+      "openDayTime": "Jul 26, 2024",
+      "endtime": "Jul 26, 2024, 3:33:25 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 37
+      },
+      "ativestatus": false,
+      "fitpassQuantity": "1",
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 33,
+      "progress": 1.2222222222222225
+    },
+    {
+      "id": "faf9",
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jul 26, 2024, 3:32:54 PM",
+      "openDayTime": "Jul 26, 2024",
+      "endtime": "Jul 26, 2024, 3:33:27 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 27
+      },
+      "ativestatus": false,
+      "fitpassQuantity": "2",
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 22,
+      "progress": 0.8888888888888892
+    },
+    {
+      "id": "1298",
+      "roomsID": 5,
+      "clientname": "",
+      "name": "ოთახი N5",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jul 26, 2024, 3:37:09 PM",
+      "openDayTime": "Jul 26, 2024",
+      "endtime": "Jul 26, 2024, 3:37:16 PM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 7
+      },
+      "ativestatus": false,
+      "fitpassQuantity": "1",
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 42,
+      "progress": 0
+    },
+    {
+      "id": "52e7",
+      "roomsID": 3,
+      "clientname": "",
+      "name": "ოთახი N3",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jul 26, 2024, 3:36:51 PM",
+      "openDayTime": "Jul 26, 2024",
+      "endtime": "Jul 26, 2024, 3:37:25 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 26
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 22,
+      "progress": 0.916666666666667
+    },
+    {
+      "id": "2502",
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Jul 26, 2024, 3:37:01 PM",
+      "openDayTime": "Jul 26, 2024",
+      "endtime": "Jul 26, 2024, 3:37:26 PM",
+      "times": {
+        "selectedhour": "2:0",
+        "currenthours": 1,
+        "minutes": 59,
+        "seconds": 34
+      },
+      "ativestatus": false,
+      "fitpassQuantity": "2",
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 33,
+      "progress": 0.3472222222222223
+    }
   ]
 }

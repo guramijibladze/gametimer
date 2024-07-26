@@ -17,7 +17,7 @@
 
                         <table class="table table-hover">
                                 <thead class="sticky-top" style="top: -50px;">
-                                  <tr>
+                                  <tr style="text-align: center;">
                                         @for(displayedColumns of theadNames; track displayedColumns){
                                                 <th scope="col">{{displayedColumns}}</th>     
                                         }
@@ -30,16 +30,17 @@
                                                         aria-controls="offcanvasBottom"
                                                         (click)="selectedItem(row)">
                                                         <th scope="row">{{ row.id }}</th>
-                                                        <td>{{ row.name }}</td>
+                                                        <td style="width: 95px;">{{ row.name }}</td>
                                                         <td style="text-align: center;">{{ row.status }}</td>
-                                                        <td style="text-align: center;">{{ row.ordertime }}</td>
-                                                        <td style="text-align: center;">{{ row.endtime }}</td>
+                                                        <td style="text-align: center;">{{ row.ordertime | date: 'dd/MM/yyyy hh:mm' }}</td>
+                                                        <td style="text-align: center;">{{ row.endtime | date: 'dd/MM/yyyy hh:mm'}}</td>
                                                         <td style="text-align: center;">{{ row.clientname }}</td>
                                                         <!-- <td>{{ row.moneyForRooms && row.amountofmoneywithcard ? "ბარათით-ნაღდი" : 
                                                                 row.amountofmoneywithcard ? "ბარათით" : row.amountofmoneywithcash ? "ნაღდი" : '' }} </td> -->
                                                         <td style="text-align: center;">{{ row.amount }} ₾</td>
+                                                        <td style="text-align: center;">{{row.fitpassQuantity}}</td>
                                                         <td style="text-align: center;">{{ row.orderedjuss }}</td>
-                                                        <td>
+                                                        <td style="width: 200px;">
                                                                 <button class="btn btn-primary" type="button" 
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#exampleModal" 

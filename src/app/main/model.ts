@@ -15,6 +15,7 @@ export interface ComputersRooms{
     timer:any,
     progress:any,
     orderedjuss:string,
+    fitpassQuantity:number
     moneyForRooms:ForRooms,
     moneyForSnacks:Snacks,
 }
