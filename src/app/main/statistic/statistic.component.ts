@@ -110,6 +110,7 @@ export class StatisticComponent {
         card: 0
       },
       ativestatus:true,
+      fitpassQuantity: 0,
       status:'',
       gameTimerType:false,
       timer: 0,
@@ -134,6 +135,7 @@ export class StatisticComponent {
         sendObject.openDayTime = this.openDayTime,
         sendObject.endtime = item.endtime,
         sendObject.ativestatus = item.ativestatus,
+        sendObject.fitpassQuantity = item.fitpassQuantity,
         sendObject.status = item.status,
         sendObject.gameTimerType = item.gameTimerType,
         sendObject.timer = item.timer,
