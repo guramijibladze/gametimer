@@ -8,13 +8,6 @@ import { GrowlService } from '../../service/auth/growl.service';
   selector: 'app-forcomputers',
   templateUrl: './forcomputers.component.html',
   styleUrl: './forcomputers.component.scss',
-  // animations: [
-  //   trigger('openClose', [
-  //     state('true', style({ height: '*' })),
-  //     state('false', style({ height: '0px' })),
-  //     transition('false <=> true', [ animate(500) ])
-  //   ])
-  // ]
 })
 export class ForcomputersComponent implements OnInit {
   isOpen = true;
@@ -534,80 +527,6 @@ export class ForcomputersComponent implements OnInit {
       }
     })
   }
-
-
-  //ამოწმებს დროს როცა სხვა ტაბიდა ბრუნდები იგივე გვერდზე
-  // private visible(){
-  //   if(document.hidden){
-  //     // console.log('hidden')
-  //   }else{
-  //     let minutes = 0
-  //     let seconds = 0
-      
-  //     const currentDate = new Date(this.getCurrentDate()).getTime(); 
-
-  //     this.computersArrr.forEach((item) => {
-  //       let ChangedFormat = new Date(String(item.ordertime)).getTime()
-  //       const differenceTime = currentDate - ChangedFormat
-
-  //       if(!item.ativestatus){
-  //         if(!item.gameTimerType){
-  //           // let allDifferenceminutesInSeconds = 0
-            
-  //           minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
-  //           seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
-  //           // allDifferenceminutesInSeconds = minutes * 60;
-  //           // console.log('allDifferenceminutesInSeconds', allDifferenceminutesInSeconds)
-  
-  //           if(minutes > 0){
-  //             if(Number(item.times.selectedhour.split(":")[0]) != 0){
-  //               if(Number(item.times.selectedhour.split(":")[1]) == 0){
-  //                 console.log('1:00')
-
-  //                 let progres = 0
-  //                 // progres  = (allDifferenceminutesInSeconds * item.progress  ) / 100
-  //                 item.times.minutes = 59 - minutes
-  //                 item.times.seconds = 59 - seconds
-  //                 item.progress += progres
-  
-  //               }else{
-  //                 console.log('1:30')
-
-  //                 if(item.times.currenthours == 0){
-  //                   item.times.minutes = 88 - minutes
-  //                 }else{
-  //                   item.times.minutes = 29 - minutes
-  //                 }
-  
-  //                 item.times.seconds = 60 - seconds
-
-  //                 // item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
-  //               }
-               
-  //             }else{
-  //               console.log('0:30')
-  
-  //               item.times.minutes = Number(item.times.selectedhour.split(":")[1]) - minutes
-  //               item.times.seconds = 60 - seconds
-  //               // item.progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
-  //             }
-            
-  //           }
-  //         }else{
-  //           minutes = Math.floor((differenceTime % (1000 * 60 * 60)) / (1000 * 60));
-  //           seconds = Math.floor((differenceTime % (1000 * 60)) / 1000)
-
-  //           if(minutes > 0){
-  //             item.times.minutes = minutes
-  //             item.times.seconds = seconds
-  //           }
-  //         }
-
-  //       }
-  //     })
-   
-  //   }
-  // }
 
 
     //გადაყავს დრო წამებში
