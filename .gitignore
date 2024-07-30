@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # Server File
-computerRooms.json
+/server
