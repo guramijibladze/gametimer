@@ -31,6 +31,8 @@ export class StatisticComponent {
   'თანხა ჯამში', 'ფიტპასი', 'შეკვეთები', '' ]
   public tbodyNames: any[] = []
   public closingTimeForTheDay!:string | null
+  public fitpass:number = 0
+  public fitpassInMoney:number = 0
 
   private computerRoomsSubscription?:Subscription
   private computerRoomsDeleteSubscription?:Subscription
@@ -84,6 +86,7 @@ export class StatisticComponent {
         this.moneyForRoomsCard = item.moneyForRooms.card
         this.moneyForSnacksCash = item.moneyForSnacks.cash
         this.moneyForSnacksCard = item.moneyForSnacks.card
+        this.fitpass = item.fitpassQuantity
         this.orderedjuss = item.orderedjuss
       }
     })
@@ -135,7 +138,7 @@ export class StatisticComponent {
         sendObject.openDayTime = this.openDayTime,
         sendObject.endtime = item.endtime,
         sendObject.ativestatus = item.ativestatus,
-        sendObject.fitpassQuantity = item.fitpassQuantity,
+        sendObject.fitpassQuantity = this.fitpass ? this.fitpass : item.fitpassQuantity,
         sendObject.status = item.status,
         sendObject.gameTimerType = item.gameTimerType,
         sendObject.timer = item.timer,
@@ -164,11 +167,15 @@ export class StatisticComponent {
   }
 
   public getDayInfo():void{
+  
     this.amount = 0
     this.amountWithCard = 0
     this.amountWithCash = 0
     // this.moneyFromComputerRooms = 0
     this.closingTimeForTheDay = localStorage.getItem('openDayTime')
+
+    this.fitpassQuontity = this.tbodyNames.reduce((accumulator:number, curentItem:tbodyNames) => accumulator + Number(curentItem.fitpassQuantity), 0)
+    this.fitpassInMoney = this.fitpassQuontity * 5
 
     this.amount = this.tbodyNames.reduce((accumulator, currentValue:tbodyNames) => 
         (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card) + Number(currentValue.moneyForSnacks.cash) + Number(currentValue.moneyForSnacks.card)), this.amount)
@@ -185,7 +192,6 @@ export class StatisticComponent {
     this.moneyFromSnacks = this.tbodyNames.reduce((accumulator:number, curentItem:tbodyNames) => accumulator + Number(curentItem.moneyForSnacks.card) + 
         Number(curentItem.moneyForSnacks.cash) , 0)
 
-    this.fitpassQuontity = this.tbodyNames.reduce((accumulator:number, curentItem:tbodyNames) => accumulator + Number(curentItem.fitpassQuantity), 0)
     console.log(this.fitpassQuontity)
   }
 

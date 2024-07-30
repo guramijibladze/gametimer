@@ -106,6 +106,22 @@
                                         </label>
                                         <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRoomsCard">
                                     </div>
+
+                                    <div class="paywithcash d-flex align-items-center justify-content-between mt-1">
+                                        <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                            ფიტპასი
+                                        </label>
+                                        <select class="form-select" aria-label="Default select example" 
+                                                [(ngModel)] = "fitpass"
+                                                style="width: 50px; padding: 0.5rem 1.25rem 0.375rem 0.75rem; background-position: right 0.4rem center;">
+                                            <option selected>0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
             
                                 </div>
             
@@ -164,12 +180,13 @@
             </div>
             <div class="modal-body">
                 <ul class="list-group">
-                        <li class="list-group-item"><span> თანხა ანგარიშზე:</span><span>{{amountWithCard}}₾</span></li>
+                        <li class="list-group-item"><span> თანხა ანგარიშზე(+ფიტპასი):</span><span>{{amountWithCard + fitpassInMoney}}₾</span></li>
                         <li class="list-group-item"><span> თანხა ქეშად:</span><span>{{amountWithCash}}₾</span></li>
-                        <li class="list-group-item"><span> თანხა ოთახებიდან:</span><span>{{moneyFromComputerRooms}}₾</span></li>
+                        <li class="list-group-item"><span> თანხა ოთახებიდან(+ფიტპასი):</span><span>{{moneyFromComputerRooms + fitpassInMoney}}₾</span></li>
                         <li class="list-group-item"><span> თანხა წვენებიდან:</span><span>{{moneyFromSnacks}}₾</span></li>
-                        <li class="list-group-item"><span style="font-weight: bold;">ფიტპასი ჯამში:</span><span style="font-weight: bold;">{{fitpassQuontity}}</span></li>
-                        <li class="list-group-item"><span style="font-weight: bold;"> თანხა ჯამში:</span> <span style="font-weight: bold;">{{amount}}₾</span></li>
+                        <li class="list-group-item"><span style="font-weight: bold;">ფიტპასი ჯამში:</span><span style="font-weight: bold;">
+                                {{fitpassInMoney}}₾ | {{fitpassQuontity}}</span></li>
+                        <li class="list-group-item"><span style="font-weight: bold;"> თანხა ჯამში:</span> <span style="font-weight: bold;">{{amount + fitpassInMoney}}₾</span></li>
                         
                 </ul>
             </div>
