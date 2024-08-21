@@ -77,8 +77,9 @@
                             <div class="wrap-circles">
                                 <!-- [ngStyle]="{'color': condition ? 'red' : 'blue'}" -->
                                 <div class="circle per-25" 
-                                    [ngStyle]="{'background-image': computer.times.minutes == 0 ? 
-                                    'conic-gradient(#7e8083 '+ computer.progress + '%, #37a5e6e7 0)' :
+                                    [ngStyle]="{'background-image': computer.times.minutes == 0 && computer.times.seconds == 0 ? 
+                                    'conic-gradient(#7e8083 '+ computer.progress + '%, #37a5e6e7 0)' : 
+                                    computer.times.currenthours > 0 && computer.times.minutes != 0 ? 'conic-gradient(#7e8083 '+ computer.progress + '%, #3bcc3be7 0)' :
                                     computer.times.minutes != 0 && computer.times.minutes >= 15 ? 'conic-gradient(#7e8083 '+ computer.progress + '%, #3bcc3be7 0)' :
                                     'conic-gradient(#7e8083 '+ computer.progress + '%, #c52828e7 0)'}">
                                     <div class="inner">
