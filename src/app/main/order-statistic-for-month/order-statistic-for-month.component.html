@@ -1,0 +1,37 @@
+<div class="container" style="margin-top: 50px;">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col" >თვე</th>
+                <th scope="col" style="text-align: center;">შემოს. ოთახებიდან</th>
+                <th scope="col" style="text-align: center;">შემოს. სნექებიდან</th>
+                <th scope="col" style="text-align: center;">შემოს. ფიტპასიდან</th>
+                <th scope="col" style="text-align: center;">თვის ჯამი</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(month of incommintFromMonth; track month){
+                <tr>
+                  <th scope="row">{{month.id}}</th>
+                  <td >ივნისი</td>
+                  <td style="text-align: center;"> {{month.incommingFromRooms}}₾</td>
+                  <td style="text-align: center;"> {{month.incommingFromSnecks}} ₾</td>
+                  <td style="text-align: center;"> {{ month.fitpass }}₾</td>
+                  <td style="text-align: center;"> {{month.sum}} ₾</td>
+                </tr>
+              }
+    
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row"></th>
+                <td >მთლიანი ჯამი:</td>
+                <td style="text-align: center;"> </td>
+                <td style="text-align: center;"></td>
+                <td style="text-align: center;"> <span></span> </td>
+                <td style="text-align: center; font-weight: bolder;" > {{icommingSum}} ₾</td>
+              </tr>
+            </tfoot>
+        </table>
+</div>

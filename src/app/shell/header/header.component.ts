@@ -22,6 +22,10 @@ export class HeaderComponent {
     this.router.navigate(['main/statistic']);
   }
 
+  public orderStatisticForMonth():void{
+    this.router.navigate(['main/order-statistic'])
+  }
+
   public dayOff():void{
     this.authService.logout()
     localStorage.removeItem('openDayTime');

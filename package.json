@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"npm run json-server\" \"ng serve\"",
+    "start": "concurrently \"npm run json-server\" \"npm run json-server1\" \"ng serve\"",
     "build": "ng build",
     "test": "ng test",
-    "json-server": " json-server --watch server/computerRooms.json --port 3000"
+    "json-server": " json-server --watch server/computerRooms.json --port 3000",
+    "json-server1": "json-server --watch server/orderStatistic.json --port 3500"
   },
   "private": true,
   "dependencies": {
