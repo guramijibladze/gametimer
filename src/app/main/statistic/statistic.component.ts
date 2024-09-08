@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { ComputersRooms, tbodyNames } from '../model';
 import { DatePipe } from '@angular/common';
@@ -7,13 +7,14 @@ import { AuthService } from '../../service/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { SharingService } from '../service/sharing.service';
 import { GrowlService } from '../../service/auth/growl.service';
+import { computeStyles } from '@popperjs/core';
 
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
   styleUrl: './statistic.component.scss'
 })
-export class StatisticComponent {
+export class StatisticComponent implements OnInit{
   
   public moneyFromComputerRooms:number = 0
   public moneyFromSnacks:number = 0
@@ -38,6 +39,7 @@ export class StatisticComponent {
   private computerRoomsDeleteSubscription?:Subscription
   private selectedRow:any
   private openDayTime:any
+  private allData:any[] = []
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
@@ -61,6 +63,7 @@ export class StatisticComponent {
 
     this.tbodyNames = []
     this.computerRoomsSubscription = this.computerRoomsService.getcomputerRooms().subscribe( response => {
+
       response.map((item:tbodyNames) => {
         if( pipe.transform(item.openDayTime, 'MMM d, y') == pipe.transform(getObject.ordertime, 'MMM d, y') ){
             this.tbodyNames.push({
@@ -226,9 +229,57 @@ export class StatisticComponent {
     return parseDate
   }
 
+  private dataSort():void{
+    let newArr = [];
+    let incommingFromRooms = 0;
+    let icommingFromSnacks = 0;
+    let fitpassQuantity = 0;
+    let sum = 0;
+   
+    newArr = this.allData.filter((item) => {
+      return item.openDayTime.includes('Sep');
+    })
+
+    newArr.forEach(item => {
+      if(isNaN(item.moneyForSnacks.cash)){
+        console.log('NAN!!!!', item)
+      }
+    })
+
+    incommingFromRooms = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+      (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card)), 0)
+
+    icommingFromSnacks = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+      (accumulator + Number(currentValue.moneyForSnacks.cash || 0) + Number(currentValue.moneyForSnacks.card || 0)), 0)
+
+    fitpassQuantity = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+      (accumulator + Number(currentValue?.fitpassQuantity)), 0)
+
+    
+    if(isNaN(fitpassQuantity)){
+      sum = incommingFromRooms + icommingFromSnacks 
+    }else{
+      sum = incommingFromRooms + icommingFromSnacks +  fitpassQuantity * 5
+    }
+
+    incommingFromRooms = Number(incommingFromRooms.toFixed(1)); 
+    icommingFromSnacks = Number(icommingFromSnacks.toFixed(1)); 
+    fitpassQuantity = Number(fitpassQuantity.toFixed(1)); 
+
+    console.log(incommingFromRooms, '/', icommingFromSnacks, '/', fitpassQuantity, '/', sum)
+  }
+
   ngOnInit() {
     this.getcomputerRooms()
     this.openDayTime = localStorage.getItem('openDayTime')
+    this.computerRoomsService.allData$.subscribe({
+      next: (data) => {
+        this.allData = data
+        
+        this.dataSort()
+      }
+    })
+
   }
 
   ngOnDestroy() {
