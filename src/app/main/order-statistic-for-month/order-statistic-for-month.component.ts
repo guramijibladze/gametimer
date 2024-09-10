@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderStatisticService } from '../service/order-statistic.service';
 import { GrowlService } from '../../service/auth/growl.service';
+import { monthIncomintData } from '../model';
 
 @Component({
   selector: 'app-order-statistic-for-month',
@@ -24,18 +25,9 @@ export class OrderStatisticForMonthComponent implements OnInit {
   getOrderByMonth():void{
     this.orderStatisticService.getOrderStatisticByMonth().subscribe({
       next: (res) => {
-        // let arr:any = []
-        // res.data.map((item:any) => {
-        //   console.log(item)
-        //   if(item.month == "Apr"){
-        //     item.month = "აპრილი";
-        //     arr = item
-        //     console.log('asdasas', item)
-        //   }
-        // })
 
-        // console.log( arr)
-        this.incommintFromMonth = res.data;
+        const translatedData = this.changeMonthName(res.data)
+        this.incommintFromMonth = translatedData;
         this.icommingSum = res.ordersSum.toFixed(1);
        
       },
@@ -48,5 +40,30 @@ export class OrderStatisticForMonthComponent implements OnInit {
         this.notificationService.showSuccessAnimation(successMessage)
       }
     })
+  }
+
+  private changeMonthName(data:monthIncomintData[]):monthIncomintData[]{
+
+    const monthTranslator:any = {
+      'Jan': 'იანვარი',
+      'Feb': 'თებერვალი',
+      'Mar': 'მარტი',
+      'Apr': 'აპრილი',
+      'May': 'მაისი',
+      'Jun': 'ივნისი',
+      'Jul': 'ივლისი',
+      'Aug': 'აგვისტო',
+      'Sep': 'სექტემბერი',
+      'Oct': 'ოქტომბერი',
+      'Nov': 'ნოემბერი',
+      'Dec': 'დეკემბერი'
+    };
+
+    let translated = data.map((item:monthIncomintData) => ({
+      ...item,
+      month: monthTranslator[item.month] || item.month
+    }))
+
+    return translated
   }
 }
