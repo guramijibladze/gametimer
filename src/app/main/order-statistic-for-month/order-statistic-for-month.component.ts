@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderStatisticService } from '../service/order-statistic.service';
 import { GrowlService } from '../../service/auth/growl.service';
 import { monthIncomintData } from '../model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-order-statistic-for-month',
@@ -13,6 +14,8 @@ export class OrderStatisticForMonthComponent implements OnInit {
   public incommintFromMonth:any[] = [];
   public icommingSum:string = '';
 
+  private result?:Subscription
+
   constructor(
     private orderStatisticService:OrderStatisticService,
     private notificationService:GrowlService
@@ -23,13 +26,13 @@ export class OrderStatisticForMonthComponent implements OnInit {
   }
   
   getOrderByMonth():void{
-    this.orderStatisticService.getOrderStatisticByMonth().subscribe({
+    this.result = this.orderStatisticService.getOrderStatisticByMonth().subscribe({
       next: (res) => {
 
         const translatedData = this.changeMonthName(res.data)
         this.incommintFromMonth = translatedData;
         this.icommingSum = res.ordersSum.toFixed(1);
-       
+        console.log(translatedData)
       },
       error: (e) => {
         let message = 'მონაცემების ჩატვირთვა ვერ მოხდა!!';
@@ -66,4 +69,9 @@ export class OrderStatisticForMonthComponent implements OnInit {
 
     return translated
   }
+
+  ngOnDestroy() {
+    this.result ? this.result.unsubscribe() : ''
+    // this.computerRoomsDeleteSubscription ? this.computerRoomsDeleteSubscription.unsubscribe() : ''
+   }
 }

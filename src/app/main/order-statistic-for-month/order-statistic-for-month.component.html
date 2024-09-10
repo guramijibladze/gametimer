@@ -3,7 +3,7 @@
             <thead>
               <tr>
                 <th scope="col"></th>
-                <th scope="col" >თვე</th>
+                <th scope="col" >თვე/წელი</th>
                 <th scope="col" style="text-align: center;">შემოს. ოთახებიდან</th>
                 <th scope="col" style="text-align: center;">შემოს. სნექებიდან</th>
                 <th scope="col" style="text-align: center;">შემოს. ფიტპასიდან</th>
@@ -14,11 +14,11 @@
               @for(month of incommintFromMonth; track month){
                 <tr>
                   <th scope="row">{{month.id}}</th>
-                  <td >{{month.month}}</td>
-                  <td style="text-align: center;"> {{month.incommingFromRooms}}₾</td>
-                  <td style="text-align: center;"> {{month.incommingFromSnecks}} ₾</td>
-                  <td style="text-align: center;"> {{ month.fitpass }}₾</td>
-                  <td style="text-align: center;"> {{month.sum}} ₾</td>
+                  <td >{{month.month + ' | ' + month.year}}</td>
+                  <td style="text-align: center;"> {{ month.incommingFromRooms }}₾</td>
+                  <td style="text-align: center;"> {{ month.incommingFromSnecks }} ₾</td>
+                  <td style="text-align: center;"> {{ month.fitpass ? month.fitpass + ' X ' + ' 5 ' + ' = ' + month.fitpass * 5 + ' ₾' : 'ჩანაწერი არ არსებობს'}}</td>
+                  <td style="text-align: center;"> {{ month.sum }}</td>
                 </tr>
               }
     

@@ -230,15 +230,15 @@ export class StatisticComponent implements OnInit{
   }
 
   private dataSort():void{
-    // let newArr = [];
-    // let incommingFromRooms = 0;
-    // let icommingFromSnacks = 0;
-    // let fitpassQuantity = 0;
-    // let sum = 0;
+    let newArr = [];
+    let incommingFromRooms = 0;
+    let icommingFromSnacks = 0;
+    let fitpassQuantity = 0;
+    let sum = 0;
    
-    // newArr = this.allData.filter((item) => {
-    //   return item.openDayTime.includes('Apr');
-    // })
+    newArr = this.allData.filter((item) => {
+      return item.openDayTime.includes('Apr');
+    })
 
     // console.log('complete',newArr)
     // if(newArr.length > 0){
@@ -265,27 +265,27 @@ export class StatisticComponent implements OnInit{
     //   }
     // })
 
-    // incommingFromRooms = newArr.reduce((accumulator, currentValue:tbodyNames) => 
-    //   (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card)), 0)
+    incommingFromRooms = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+      (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card)), 0)
 
-    // icommingFromSnacks = newArr.reduce((accumulator, currentValue:tbodyNames) => 
-    //   (accumulator + Number(currentValue.moneyForSnacks.cash || 0) + Number(currentValue.moneyForSnacks.card || 0)), 0)
+    icommingFromSnacks = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+      (accumulator + Number(currentValue.moneyForSnacks.cash || 0) + Number(currentValue.moneyForSnacks.card || 0)), 0)
 
-    // fitpassQuantity = newArr.reduce((accumulator, currentValue:tbodyNames) => 
-    //   (accumulator + Number(currentValue?.fitpassQuantity)), 0)
+    fitpassQuantity = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+      (accumulator + Number(currentValue?.fitpassQuantity)), 0)
 
     
-    // if(isNaN(fitpassQuantity)){
-    //   sum = incommingFromRooms + icommingFromSnacks 
-    // }else{
-    //   sum = incommingFromRooms + icommingFromSnacks +  fitpassQuantity * 5
-    // }
+    if(isNaN(fitpassQuantity)){
+      sum = incommingFromRooms + icommingFromSnacks 
+    }else{
+      sum = incommingFromRooms + icommingFromSnacks +  fitpassQuantity * 5
+    }
 
-    // incommingFromRooms = Number(incommingFromRooms.toFixed(1)); 
-    // icommingFromSnacks = Number(icommingFromSnacks.toFixed(1)); 
-    // fitpassQuantity = Number(fitpassQuantity.toFixed(1)); 
+    incommingFromRooms = Number(incommingFromRooms.toFixed(1)); 
+    icommingFromSnacks = Number(icommingFromSnacks.toFixed(1)); 
+    fitpassQuantity = Number(fitpassQuantity.toFixed(1)); 
 
-    // console.log(incommingFromRooms, '/', icommingFromSnacks, '/', fitpassQuantity, '/', sum)
+    console.log(incommingFromRooms, '/', icommingFromSnacks, '/', fitpassQuantity, '/', sum)
   }
 
   ngOnInit() {
@@ -295,7 +295,7 @@ export class StatisticComponent implements OnInit{
       next: (data) => {
         this.allData = data
         
-        // this.dataSort()
+        this.dataSort()
       }
     })
 

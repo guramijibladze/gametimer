@@ -154,3 +154,13 @@
   50%{left:50%;}
   100%{left:80%;}
 }
+
+// .no-spinners {
+//   -moz-appearance: textfield;
+// }
+
+.no-spinners::-webkit-outer-spin-button,
+.no-spinners::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
