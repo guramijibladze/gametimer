@@ -66,3 +66,12 @@ export interface Times{
     progress:any,
     orderedjuss:string
   }
+
+  export interface monthIncomintData{
+    id:number,
+    month:string,
+    incommingFromRooms:string,
+    incommingFromSnecks:string,
+    fitpass:number | null,
+    sum:string
+  }

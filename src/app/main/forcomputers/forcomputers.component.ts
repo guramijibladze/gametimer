@@ -130,14 +130,14 @@ export class ForcomputersComponent implements OnInit {
     }
   }
 
-  public refresh(box:ComputersRooms):void{
-    this.computerroomsID = box.roomsID
-    let text = 'ეს ღილაკი გამოიყენე მხოლოდ მაშინ თუ ტაიმერმა გაჭედა!!!'
-    if(confirm(text) == true){
-      this.saveTime('refresh')
-    }
+  // public refresh(box:ComputersRooms):void{
+  //   this.computerroomsID = box.roomsID
+  //   let text = 'ეს ღილაკი გამოიყენე მხოლოდ მაშინ თუ ტაიმერმა გაჭედა!!!'
+  //   if(confirm(text) == true){
+  //     this.saveTime('refresh')
+  //   }
     
-  }
+  // }
 
   public updateinfo(updateRoomsID:number){
     this.startcontinue = false
@@ -233,7 +233,7 @@ export class ForcomputersComponent implements OnInit {
               item.openDayTime = localStorage.getItem('openDayTime')
               item.orderedjuss = this.orderedjuss
               item.ordertime = this.getCurrentDate()
-            }else if(this.hours == 0 && this.minutes == 0 && item.gameTimerType == false ){
+            }else if(this.hours == 0 && this.minutes == 0 && item.gameTimerType == false && item.ativestatus){
               let message = 'დრო არ აგირჩევია ბაჭყატ!!!'
               this.notificationService.showErrorAnimation(message)
               this.mdoalclose()
