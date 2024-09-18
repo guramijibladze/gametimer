@@ -237,7 +237,7 @@ export class StatisticComponent implements OnInit{
     let sum = 0;
    
     newArr = this.allData.filter((item) => {
-      return item.openDayTime.includes('Apr');
+      return item.openDayTime.includes('Sep');
     })
 
     // console.log('complete',newArr)
@@ -264,6 +264,9 @@ export class StatisticComponent implements OnInit{
     //     console.log('NAN!!!!', item)
     //   }
     // })
+
+    let extractedYear = new Date(newArr[0]?.openDayTime).getFullYear();
+    console.log(extractedYear)
 
     incommingFromRooms = newArr.reduce((accumulator, currentValue:tbodyNames) => 
       (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card)), 0)
