@@ -1,6 +1,6 @@
 
  <div class="main">
-                <div class="table p-5" style="height: 750px; overflow: auto;">
+                <div class="table p-5" style=" overflow: auto;">
 
                         <div class="pocker" style="margin-bottom: 5px;">
                                 <form >
@@ -9,7 +9,8 @@
                                                 style="border-radius: 5px;"
                                                 [(ngModel)]="currentDate">
                                         <input type="submit" value="ძებნა" 
-                                                style="background-color: #0d6efd; margin-left: 5px; border-radius: 5px"
+                                                class="btn"
+                                                style="background-color: #3498db; color:rgb(255, 255, 255); margin-left: 5px; border-radius: 5px"
                                                 (click)="getData()">
                                 </form>
                         </div>
@@ -41,7 +42,8 @@
                                                         <td style="text-align: center;">{{row.fitpassQuantity}}</td>
                                                         <td style="text-align: center;">{{ row.orderedjuss }}</td>
                                                         <td style="width: 200px;">
-                                                                <button class="btn btn-primary" type="button" 
+                                                                <button class="btn" type="button"
+                                                                        style="background-color: #3498db; color:rgb(255, 255, 255);" 
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#exampleModal" 
                                                                         (click)="pay(row.id)">გადახდა</button> 
@@ -162,7 +164,9 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" (click)="putselectedrow()">ცვლილების შენახვა</button>
+              <button type="button" 
+                        style="background-color: #3498db; color:rgb(255, 255, 255);" 
+                        class="btn" (click)="putselectedrow()">ცვლილების შენახვა</button>
             </div>
           </div>
         </div>
@@ -192,7 +196,9 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">გაუქმება</button>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="dayOff()">დახურვა</button>
+              <button type="button" class="btn"
+                    style="background-color: #3498db; color:rgb(255, 255, 255);"  
+                    data-bs-dismiss="modal" (click)="dayOff()">დახურვა</button>
             </div>
           </div>
         </div>
