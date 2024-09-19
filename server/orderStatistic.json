@@ -1,0 +1,49 @@
+{
+    "orderInfoByMonth":[
+        {
+            "id":"1",
+            "month": "Apr",
+            "year": "2024",
+            "incommingFromRooms": "2666",
+            "incommingFromSnecks": "1137.3",
+            "fitpass": null,
+            "sum": "3803.3"
+        },
+        {
+            "id":"2",
+            "month": "May",
+            "year": "2024",
+            "incommingFromRooms": "5963.5",
+            "incommingFromSnecks": "2290.5",
+            "fitpass": null,
+            "sum": "8254.05"
+        },
+        {
+            "id":"3",
+            "month": "Jun",
+            "year": "2024",
+            "incommingFromRooms": "6500.8",
+            "incommingFromSnecks": "2233.5",
+            "fitpass": null,
+            "sum": "8734.25"
+        },
+        {
+            "id":"4",
+            "month": "Jul",
+            "year": "2024",
+            "incommingFromRooms": "7719.5",
+            "incommingFromSnecks": "2824.8",
+            "fitpass": null,
+            "sum": "10544.35"
+        },
+        {
+            "id":"5",
+            "month": "Aug",
+            "year": "2024",
+            "incommingFromRooms": "5826.5",
+            "incommingFromSnecks": "2909",
+            "fitpass": 951,
+            "sum": "13490.5"
+        }
+    ]
+}
