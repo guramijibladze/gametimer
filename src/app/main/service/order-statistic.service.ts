@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
+import { incommingDataByMonth } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class OrderStatisticService {
         return {data: response,  ordersSum};
       })
     )
+  }
+
+  public postAnalizedData(object:incommingDataByMonth):Observable<any>{
+    return this.http.post<any>(this.baseURL + 'orderInfoByMonth', object)
   }
 }

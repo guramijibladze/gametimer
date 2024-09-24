@@ -75,3 +75,13 @@ export interface Times{
     fitpass:number | null,
     sum:string
   }
+
+
+  export interface incommingDataByMonth{
+    month:string,
+    year: number,
+    incommingFromRooms: number,
+    incommingFromSnecks: number,
+    fitpass?: number, 
+    sum:number
+  }

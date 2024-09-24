@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
-import { ComputersRooms, tbodyNames } from '../model';
+import { incommingDataByMonth, tbodyNames } from '../model';
 import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { SharingService } from '../service/sharing.service';
 import { GrowlService } from '../../service/auth/growl.service';
-import { computeStyles } from '@popperjs/core';
+import { OrderStatisticService } from '../service/order-statistic.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-statistic',
@@ -37,6 +36,8 @@ export class StatisticComponent implements OnInit{
 
   private computerRoomsSubscription?:Subscription
   private computerRoomsDeleteSubscription?:Subscription
+  private getAllDataBymonth?:Subscription
+  private postAnalizedmonthlyData?:Subscription
   private selectedRow:any
   private openDayTime:any
   private allData:any[] = []
@@ -44,7 +45,9 @@ export class StatisticComponent implements OnInit{
   constructor(
     private computerRoomsService: ComputerRoomsService,
     private authService: AuthService,
-    private notificationService: GrowlService
+    private notificationService: GrowlService,
+    private orderStatisticService:OrderStatisticService,
+    private router: Router,
   ){}
 
   public getData(){
@@ -198,10 +201,6 @@ export class StatisticComponent implements OnInit{
     console.log(this.fitpassQuontity)
   }
 
-  public dayOff():void{
-    this.authService.logout()
-    localStorage.removeItem('openDayTime');
-  }
 
   public deleteItem(item:any):void{
     let rowID = item.id
@@ -219,6 +218,115 @@ export class StatisticComponent implements OnInit{
   
   }
 
+  public dayOff():void{
+
+    let ChekTime = this.chekTimeByMonth()
+    console.log('getDataByMonth', ChekTime)
+
+    if(ChekTime.trueOrFalse){
+      let newArr = [];
+      let incommingFromRooms = 0;
+      let icommingFromSnacks = 0;
+      let fitpassQuantity = 0;
+      let sum = 0;
+
+      let successMessage = 'ცოტა უნდა დმელოდო, მიმდონარებობს თვის მონაცემების გაანალიზება და შენახვა!!!'
+      this.notificationService.showSuccessAnimation(successMessage)
+
+      this.getAllDataByMonth()
+      newArr = this.allData.filter((item) => {
+        return item.openDayTime.includes(ChekTime.month);
+      })
+  
+      // console.log('complete',newArr)
+      // if(newArr.length > 0){
+      //   newArr.forEach(item => {
+      //     // this.deleteItem(item.id)
+      //     this.computerRoomsDeleteSubscription = this.computerRoomsService.deleteItemTable(item.id).subscribe( {
+      //       next : (res) => {
+      //         // let successMessage = 'წარმატებით წაიშალა'
+      //         // this.notificationService.showSuccessAnimation(successMessage)
+      //         // this.getcomputerRooms()
+      //       },
+      //       error: (e) => console.error(e),
+      //       complete: () => {
+      //         console.log('complete',item)
+      //       }
+      //     })
+      //   })
+      // }
+  
+  //ამოწმებს მონაცემს გამართულია თუ არა
+      newArr.forEach(item => {
+        if(isNaN(item.moneyForSnacks.card)){
+          console.log('NAN!!!!', item)
+        }
+      })
+
+      let extractedYear = new Date(newArr[0]?.openDayTime).getFullYear();
+      console.log(extractedYear)
+  
+      incommingFromRooms = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+        (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card)), 0)
+  
+      icommingFromSnacks = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+        (accumulator + Number(currentValue.moneyForSnacks.cash || 0) + Number(currentValue.moneyForSnacks.card || 0)), 0)
+      console.log('icommingFromSnacks',icommingFromSnacks)
+
+      fitpassQuantity = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+        (accumulator + Number(currentValue?.fitpassQuantity)), 0)
+  
+      
+      if(isNaN(fitpassQuantity)){
+        sum = incommingFromRooms + icommingFromSnacks 
+      }else{
+        sum = incommingFromRooms + icommingFromSnacks +  (fitpassQuantity * 5)
+      }
+  
+      incommingFromRooms = Number(incommingFromRooms.toFixed(1)); 
+      icommingFromSnacks = Number(icommingFromSnacks.toFixed(1)); 
+      fitpassQuantity = Number(fitpassQuantity.toFixed(1)); 
+
+      this.postMonthData(ChekTime.month, extractedYear, incommingFromRooms,icommingFromSnacks,fitpassQuantity, sum)
+
+      console.log(incommingFromRooms, '/', icommingFromSnacks, '/', fitpassQuantity, '/', sum)
+    }else{
+      this.authService.logout()
+      localStorage.removeItem('openDayTime');
+    }
+
+  }
+
+  private postMonthData(ChekTime:string, extractedYear:number, incomRom:number, incomSnacks:number, incomFitpas:number, sum:number){
+
+    let incommingObject:incommingDataByMonth = {
+      month:ChekTime,
+      year: extractedYear,
+      incommingFromRooms: incomRom,
+      incommingFromSnecks: incomSnacks,
+      fitpass: incomFitpas, 
+      sum:sum
+    }
+    // console.log(incommingObject)
+
+    this.postAnalizedmonthlyData = this.orderStatisticService.postAnalizedData(incommingObject).subscribe({
+      next: (res) => {
+        let message = 'მონაცემები წარმატებით ჩაიწერა!!';
+        this.notificationService.showSuccessAnimation(message)
+      },
+      error: () => {
+        let message = 'მონაცემების ჩატვირთვა ვერ მოხდა!!';
+        this.notificationService.showErrorAnimation(message)
+      },
+      complete: () => {
+        this.router.navigate(['main/order-statistic'])
+        // this.authService.logout()
+        // localStorage.removeItem('openDayTime');
+      }
+    })
+
+  }
+
   private getCurrentDate():string{
     let parseDate:any
     let pipe = new DatePipe('en-US');
@@ -229,83 +337,62 @@ export class StatisticComponent implements OnInit{
     return parseDate
   }
 
-  private dataSort():void{
-    let newArr = [];
-    let incommingFromRooms = 0;
-    let icommingFromSnacks = 0;
-    let fitpassQuantity = 0;
-    let sum = 0;
-   
-    newArr = this.allData.filter((item) => {
-      return item.openDayTime.includes('Sep');
-    })
+  private chekTimeByMonth():{trueOrFalse:boolean,month: string}{
 
-    // console.log('complete',newArr)
-    // if(newArr.length > 0){
-    //   newArr.forEach(item => {
-    //     // this.deleteItem(item.id)
-    //     this.computerRoomsDeleteSubscription = this.computerRoomsService.deleteItemTable(item.id).subscribe( {
-    //       next : (res) => {
-    //         // let successMessage = 'წარმატებით წაიშალა'
-    //         // this.notificationService.showSuccessAnimation(successMessage)
-    //         // this.getcomputerRooms()
-    //       },
-    //       error: (e) => console.error(e),
-    //       complete: () => {
-    //         console.log('complete',item)
-    //       }
-    //     })
-    //   })
-    // }
+    const monthTranslator:any = {
+      'Jan': '31',
+      'Feb': '28',
+      'Mar': '31',
+      'Apr': '30',
+      'May': '31',
+      'Jun': '30',
+      'Jul': '31',
+      'Aug': '31',
+      'Sep': '30',
+      'Oct': '31',
+      'Nov': '30',
+      'Dec': '31'
+    };
 
+    let month = this.openDayTime.split(' ')[0]
+    let time = this.openDayTime.split(',')[0]
+    let timeFrommonth = time.split(' ')[1]
 
-    // newArr.forEach(item => {
-    //   if(isNaN(item.moneyForSnacks.cash)){
-    //     console.log('NAN!!!!', item)
-    //   }
-    // })
-
-    let extractedYear = new Date(newArr[0]?.openDayTime).getFullYear();
-    console.log(extractedYear)
-
-    incommingFromRooms = newArr.reduce((accumulator, currentValue:tbodyNames) => 
-      (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card)), 0)
-
-    icommingFromSnacks = newArr.reduce((accumulator, currentValue:tbodyNames) => 
-      (accumulator + Number(currentValue.moneyForSnacks.cash || 0) + Number(currentValue.moneyForSnacks.card || 0)), 0)
-
-    fitpassQuantity = newArr.reduce((accumulator, currentValue:tbodyNames) => 
-      (accumulator + Number(currentValue?.fitpassQuantity)), 0)
-
+    let trueOrFalse = false
     
-    if(isNaN(fitpassQuantity)){
-      sum = incommingFromRooms + icommingFromSnacks 
-    }else{
-      sum = incommingFromRooms + icommingFromSnacks +  fitpassQuantity * 5
+    for (const property in monthTranslator) {
+ 
+        if(property == month){
+          console.log(monthTranslator[property], timeFrommonth)
+          if(monthTranslator[property] == timeFrommonth){
+            trueOrFalse = true
+          }
+        }
     }
 
-    incommingFromRooms = Number(incommingFromRooms.toFixed(1)); 
-    icommingFromSnacks = Number(icommingFromSnacks.toFixed(1)); 
-    fitpassQuantity = Number(fitpassQuantity.toFixed(1)); 
+    return {
+      trueOrFalse: trueOrFalse,
+      month: month
+    }
+  }
 
-    console.log(incommingFromRooms, '/', icommingFromSnacks, '/', fitpassQuantity, '/', sum)
+  private getAllDataByMonth(){
+    this.computerRoomsService.allData$.subscribe({
+      next: (data) => {
+        this.allData = data
+      }
+    })
   }
 
   ngOnInit() {
     this.getcomputerRooms()
     this.openDayTime = localStorage.getItem('openDayTime')
-    this.computerRoomsService.allData$.subscribe({
-      next: (data) => {
-        this.allData = data
-        
-        this.dataSort()
-      }
-    })
-
   }
 
   ngOnDestroy() {
     this.computerRoomsSubscription ? this.computerRoomsSubscription.unsubscribe() : ''
     this.computerRoomsDeleteSubscription ? this.computerRoomsDeleteSubscription.unsubscribe() : ''
+    this.getAllDataBymonth ? this.getAllDataBymonth.unsubscribe() : ''
+    this.postAnalizedmonthlyData ? this.postAnalizedmonthlyData.unsubscribe() : ''
    }
 }
