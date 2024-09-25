@@ -260,9 +260,26 @@ export class StatisticComponent implements OnInit{
       newArr.forEach(item => {
         if(isNaN(item.moneyForSnacks.card)){
           console.log('NAN!!!!', item)
+          item.moneyForSnacks.card = parseFloat(item.moneyForSnacks.card.replace(',', '.'))
+        }
+
+        if(isNaN(item.moneyForSnacks.cash)){
+          console.log('NAN!!!!', item)
+          item.moneyForSnacks.cash = parseFloat(item.moneyForSnacks.cash.replace(',', '.'))
+        }
+
+        if(isNaN(item.moneyForRooms.cash)){
+          console.log('NAN!!!!', item)
+          item.moneyForRooms.cash = parseFloat(item.moneyForRooms.cash.replace(',', '.'))
+        }
+
+        if(isNaN(item.moneyForRooms.card)){
+          console.log('NAN!!!!', item)
+          item.moneyForRooms.card = parseFloat(item.moneyForRooms.card.replace(',', '.'))
         }
       })
 
+      //ამოჭრის წელს თარიღიდან
       let extractedYear = new Date(newArr[0]?.openDayTime).getFullYear();
       console.log(extractedYear)
   
@@ -319,7 +336,7 @@ export class StatisticComponent implements OnInit{
         this.notificationService.showErrorAnimation(message)
       },
       complete: () => {
-        this.router.navigate(['main/order-statistic'])
+        // this.router.navigate(['main/order-statistic'])
         // this.authService.logout()
         // localStorage.removeItem('openDayTime');
       }
