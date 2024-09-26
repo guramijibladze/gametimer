@@ -325,22 +325,25 @@ export class StatisticComponent implements OnInit{
       sum:sum
     }
     // console.log(incommingObject)
-
-    this.postAnalizedmonthlyData = this.orderStatisticService.postAnalizedData(incommingObject).subscribe({
-      next: (res) => {
-        let message = 'მონაცემები წარმატებით ჩაიწერა!!';
-        this.notificationService.showSuccessAnimation(message)
-      },
-      error: () => {
-        let message = 'მონაცემების ჩატვირთვა ვერ მოხდა!!';
-        this.notificationService.showErrorAnimation(message)
-      },
-      complete: () => {
-        // this.router.navigate(['main/order-statistic'])
-        // this.authService.logout()
-        // localStorage.removeItem('openDayTime');
-      }
-    })
+    setTimeout(() => {
+      this.postAnalizedmonthlyData = this.orderStatisticService.postAnalizedData(incommingObject).subscribe({
+        next: (res) => {
+          let message = 'მონაცემები წარმატებით ჩაიწერა!!';
+          this.notificationService.showSuccessAnimation(message)
+        },
+        error: () => {
+          let message = 'მონაცემების ჩატვირთვა ვერ მოხდა!!';
+          this.notificationService.showErrorAnimation(message)
+        },
+        complete: () => {
+          // this.router.navigate(['main/order-statistic'])
+          setTimeout(()=>{
+            this.authService.logout()
+            localStorage.removeItem('openDayTime');
+          }, 3000)
+        }
+      })
+    }, 3500)
 
   }
 
