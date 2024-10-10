@@ -295,13 +295,16 @@ export class ForcomputersComponent implements OnInit {
 
   //დასრულების ივენთი
   public cancelTime(roomsID:number, timer:number):void{
-    
+    // console.log('cancelTime',computer)
+    clearInterval(timer) 
+
     if(this.computersArrr[roomsID-1].ativestatus == true){
       return
     }
 
     this.infoUpdateButton = false
     let endTime = this.getCurrentDate()
+
     this.computersArrr[roomsID-1].endtime = endTime
     this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
       next : (res) => {
@@ -315,7 +318,7 @@ export class ForcomputersComponent implements OnInit {
       complete: () => {}
     })
 
-    clearInterval(timer) 
+ 
     this.resetModalParameters(roomsID)
     
   }

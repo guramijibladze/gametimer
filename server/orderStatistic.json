@@ -44,6 +44,15 @@
       "incommingFromSnecks": "2909",
       "fitpass": 951,
       "sum": "13490.5"
+    },
+    {
+      "id": "0398",
+      "month": "Sep",
+      "year": 2024,
+      "incommingFromRooms": 5770.1,
+      "incommingFromSnecks": 2760.1,
+      "fitpass": 642,
+      "sum": 11740.17
     }
   ]
 }
