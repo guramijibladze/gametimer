@@ -343,7 +343,7 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr[roomsID-1].endtime = endTime
     // this.computersArrr[roomsID-1].ativestatus = true
     this.startcontinue = true
-    // console.log('endTime!!!!!', {...this.computersArrr[roomsID-1]})
+    
 
     // this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
     //   next : (res) => {
@@ -354,6 +354,7 @@ export class ForcomputersComponent implements OnInit {
     // })
 
     clearInterval(timer)
+    console.log('endTime!!!!!', {...this.computersArrr[roomsID-1]})
     // this.resetModalParameters(roomsID)
 
   }
@@ -422,7 +423,7 @@ export class ForcomputersComponent implements OnInit {
                 
                 //დროის ამოწურვა
                 if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
-                  this.endTime(item.timer, item.timer);
+                  this.endTime(item.roomsID, item.timer);
                   return;
                 }
     
