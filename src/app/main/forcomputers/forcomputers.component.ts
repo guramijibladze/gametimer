@@ -283,7 +283,7 @@ export class ForcomputersComponent implements OnInit {
   
                 item.times.seconds = 59;
               }
-              // console.log(item)
+              console.log(item)
             }, 1000)
             
           }
@@ -295,14 +295,13 @@ export class ForcomputersComponent implements OnInit {
 
   //დასრულების ივენთი
   public cancelTime(roomsID:number, timer:number):void{
-    // console.log('cancelTime',computer)
+    console.log('cancelTime',this.computersArrr[roomsID-1])
     clearInterval(timer) 
 
     if(this.computersArrr[roomsID-1].ativestatus == true){
       return
     }
 
-    this.infoUpdateButton = false
     let endTime = this.getCurrentDate()
 
     this.computersArrr[roomsID-1].endtime = endTime
@@ -417,6 +416,7 @@ export class ForcomputersComponent implements OnInit {
               this.minutes = 0
               this.hours = 0
               this.startcontinue = true
+              item.timer = 0
               item.timer = setInterval(() => {
                 item.times.seconds--;
                 item.progress += progress;
@@ -569,6 +569,7 @@ export class ForcomputersComponent implements OnInit {
         this.computersArrr[roomsID-1].gameTimerType = false
       }
 
+      this.infoUpdateButton = false
       this.fitpass = 0
       this.moneyForRoomsCash = 0
       this.moneyForRoomsCard = 0
