@@ -412,7 +412,8 @@ export class ForcomputersComponent implements OnInit {
                 alert('დრო არ აგირჩევია ბაჭყატ!!!')
                 return
               }
-  
+
+              clearInterval(item.timer)
               this.minutes = 0
               this.hours = 0
               this.startcontinue = true
