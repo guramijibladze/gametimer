@@ -244,7 +244,9 @@ export class ForcomputersComponent implements OnInit {
           this.resetModalParameters()
           //ტაიმერი და მიმდინარე დრო
           if(item.gameTimerType == true){
-
+           if (item.timer) {
+              clearInterval(item.timer);
+            }
             item.timer = setInterval(() => {
               item.times.seconds++
 
@@ -261,6 +263,9 @@ export class ForcomputersComponent implements OnInit {
 
             }, 1000)
           }else{
+            if (item.timer) {
+              clearInterval(item.timer);
+            }
             item.timer = setInterval(() => {
               item.times.seconds--;
               item.progress += progress;
