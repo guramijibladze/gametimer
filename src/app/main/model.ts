@@ -13,6 +13,7 @@ export interface ComputersRooms{
     status:string,
     gameTimerType:boolean,
     timer:any,
+    timersIdArr:number[],
     progress:any,
     orderedjuss:string,
     fitpassQuantity:number,

@@ -7,8 +7,14 @@
                 <div class="title">
                     <div class="computername d-flex justify-content-between" 
                         style="margin-top: 5px; width: 100%; padding-left: 15px; padding-right: 30px;">
-                        <div class="texts" style="color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">
+                        <div class="texts" style="display: flex; align-items: center; color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">
                             <p style="margin: 0;">{{computer.name}}</p>
+                            @if(computer.timersIdArr.length > 1){
+                                <img src="../../../assets/icons/refresh.png" 
+                                    (click)="clearIntervalIdFromRoos(computer)"
+                                     style="width: 25px; height: 25px; margin-left: 5px;">
+                            }
+                            
                             <!-- <p style="margin: 0;">სტატუსი: {{computer.status}}</p> -->
                         </div>
                         

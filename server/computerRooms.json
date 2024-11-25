@@ -150394,6 +150394,298 @@
       "orderedjuss": "",
       "timer": 12,
       "progress": 2.1666666666666665
+    },
+    {
+      "id": "1c6b",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Nov 24, 2024, 10:50:14 PM",
+      "openDayTime": "Nov 24, 2024",
+      "endtime": "Nov 24, 2024, 10:50:19 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 54
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 32,
+      "timersIdArr": [
+        32
+      ],
+      "progress": 0.1388888888888889
+    },
+    {
+      "id": "63f5",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Nov 24, 2024, 10:50:23 PM",
+      "openDayTime": "Nov 24, 2024",
+      "endtime": "Nov 24, 2024, 10:51:01 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 22
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 44,
+      "timersIdArr": [
+        32,
+        44
+      ],
+      "progress": 2.055555555555556
+    },
+    {
+      "id": "c435",
+      "roomsID": 3,
+      "clientname": "",
+      "name": "ოთახი N3",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Nov 24, 2024, 10:52:25 PM",
+      "openDayTime": "Nov 24, 2024",
+      "endtime": "Nov 24, 2024, 10:52:35 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 49
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 23,
+      "timersIdArr": [
+        23
+      ],
+      "progress": 0.5555555555555557
+    },
+    {
+      "id": "7846",
+      "roomsID": 3,
+      "clientname": "",
+      "name": "ოთახი N3",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Nov 24, 2024, 10:52:39 PM",
+      "openDayTime": "Nov 24, 2024",
+      "endtime": "Nov 24, 2024, 10:53:02 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 36
+      },
+      "ativestatus": false,
+      "fitpassQuantity": "1",
+      "moneyForRooms": {
+        "cash": 5,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 44,
+      "timersIdArr": [
+        44
+      ],
+      "progress": 0.6388888888888891
+    },
+    {
+      "id": "200e",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Nov 24, 2024, 11:02:28 PM",
+      "openDayTime": "Nov 24, 2024",
+      "endtime": "Nov 24, 2024, 11:02:58 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 29,
+        "seconds": 29
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 14,
+      "timersIdArr": [
+        14
+      ],
+      "progress": 1.6666666666666672
+    },
+    {
+      "id": "05c1",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Nov 24, 2024, 11:04:43 PM",
+      "openDayTime": "Nov 24, 2024",
+      "endtime": "Nov 24, 2024, 11:05:11 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 1,
+        "minutes": 29,
+        "seconds": 46,
+        "progress": 0
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 51,
+      "timersIdArr": [
+        51
+      ],
+      "progress": 0.2434456928838951
+    },
+    {
+      "id": "cf50",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Nov 24, 2024, 11:05:15 PM",
+      "openDayTime": "Nov 24, 2024",
+      "endtime": "Nov 24, 2024, 11:05:22 PM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 7,
+        "progress": 0
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 61,
+      "timersIdArr": [
+        61
+      ],
+      "progress": 0
+    },
+    {
+      "id": "8a40",
+      "roomsID": 2,
+      "clientname": "",
+      "name": "ოთახი N2",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Nov 24, 2024, 11:05:26 PM",
+      "openDayTime": "Nov 24, 2024",
+      "endtime": "Nov 24, 2024, 11:05:28 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 57,
+        "progress": 0
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 78,
+      "timersIdArr": [
+        78
+      ],
+      "progress": 0.05555555555555555
     }
   ]
 }

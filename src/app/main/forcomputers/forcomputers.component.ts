@@ -82,6 +82,7 @@ export class ForcomputersComponent implements OnInit {
       gameTimerType:false,
       orderedjuss: '',
       timer: 0,
+      timersIdArr: [],
       progress: 0
     },
     { roomsID:2, clientname: '', name: 'ოთახი N2', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'', endtime: '',
@@ -90,31 +91,31 @@ export class ForcomputersComponent implements OnInit {
       fitpassQuantity: 0,
       moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0},
-      status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
       progress: 0},
     { roomsID:3, clientname: '', name: 'ოთახი N3', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
-      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
       progress: 0},
     { roomsID:4, clientname: '', name: 'ოთახი N4', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
-      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
       progress: 0},
     { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
-      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
     progress: 0},
     { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
-      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
       progress: 0},
       { roomsID:7, clientname: '', name: 'ოთახი N7', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
-      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
       progress: 0},
       { roomsID:8, clientname: '', name: 'ოთახი N8', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
-      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0,
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
       progress: 0}
   ]
 
@@ -263,6 +264,8 @@ export class ForcomputersComponent implements OnInit {
               }
 
             }, 1000)
+            item.timersIdArr.push(item.timer)
+            this.checkRoomsArrIdsAndNotifi()
           }else{
 
             item.timer = setInterval(() => {
@@ -287,11 +290,14 @@ export class ForcomputersComponent implements OnInit {
   
                 item.times.seconds = 59;
               }
-              console.log(item)
+              
             }, 1000)
-            
+            item.timersIdArr.push(item.timer)
+            this.checkRoomsArrIdsAndNotifi()
           }
         }
+      
+        console.log(item)
       })
     }
   }
@@ -346,15 +352,7 @@ export class ForcomputersComponent implements OnInit {
     this.computersArrr[roomsID-1].endtime = endTime
     // this.computersArrr[roomsID-1].ativestatus = true
     this.startcontinue = true
-    
-
-    // this.computerRoomsService.postTimer({...this.computersArrr[roomsID-1]}).subscribe({
-    //   next : (res) => {
-        
-    //   },
-    //   error: (e) => console.error(e),
-    //   complete: () => {}
-    // })
+  
 
     clearInterval(timer)
     console.log('endTime!!!!!', {...this.computersArrr[roomsID-1]})
@@ -422,6 +420,7 @@ export class ForcomputersComponent implements OnInit {
               this.hours = 0
               this.startcontinue = true
               item.timer = 0
+              console.log(item)
               item.timer = setInterval(() => {
                 item.times.seconds--;
                 item.progress += progress;
@@ -446,10 +445,23 @@ export class ForcomputersComponent implements OnInit {
                 }
 
               }, 1000)
+              item.timersIdArr = item.timersIdArr.filter((id, index) => index == 1)
+              item.timersIdArr.push(item.timer)
+              this.checkRoomsArrIdsAndNotifi()
             }
 
+            console.log(item)
           })
     }
+  }
+
+  public clearIntervalIdFromRoos(computer:ComputersRooms){
+    let intervalFirsId = computer.timersIdArr[0]
+    clearInterval(intervalFirsId)
+    computer.timersIdArr = computer.timersIdArr.filter((id, index) => index == 1)
+    let successMessage = 'ოთახი წარმატებით გაიწმინდა'
+    this.notificationService.showSuccessAnimation(successMessage)
+    // console.log(computer)
   }
 
   public mdoalclose(){
@@ -572,6 +584,7 @@ export class ForcomputersComponent implements OnInit {
         this.computersArrr[roomsID-1].ativestatus = true
         this.computersArrr[roomsID-1].clientname = ''
         this.computersArrr[roomsID-1].gameTimerType = false
+        this.computersArrr[roomsID-1].timersIdArr = []
       }
 
       this.infoUpdateButton = false
@@ -618,6 +631,18 @@ export class ForcomputersComponent implements OnInit {
           // console.log('complete')
         }
       })
+    }
+
+    private checkRoomsArrIdsAndNotifi():void{
+
+      this.computersArrr.forEach(room => {
+        if(room.timersIdArr.length > 1){
+          let roomsName = room.name
+          let message = `${roomsName}-ზე ხარვეზია, სავარაუდოდ დროს არასწორად ითვლის!!!`
+          this.notificationService.showErrorAnimation(message)
+        }
+      })
+
     }
 }
 
