@@ -1,6 +1,6 @@
 
  <div class="main">
-                <div class="table p-5" style="height: 650px; overflow: auto;">
+                <div class="table p-5" style=" overflow: auto;">
 
                         <div class="pocker" style="margin-bottom: 5px;">
                                 <form >
@@ -9,15 +9,16 @@
                                                 style="border-radius: 5px;"
                                                 [(ngModel)]="currentDate">
                                         <input type="submit" value="ძებნა" 
-                                                style="background-color: #0d6efd; margin-left: 5px; border-radius: 5px"
+                                                class="btn"
+                                                style="background-color: #3498db; color:rgb(255, 255, 255); margin-left: 5px; border-radius: 5px"
                                                 (click)="getData()">
                                 </form>
                         </div>
                        
 
                         <table class="table table-hover">
-                                <thead>
-                                  <tr>
+                                <thead class="sticky-top" style="top: -50px;">
+                                  <tr style="text-align: center;">
                                         @for(displayedColumns of theadNames; track displayedColumns){
                                                 <th scope="col">{{displayedColumns}}</th>     
                                         }
@@ -30,17 +31,19 @@
                                                         aria-controls="offcanvasBottom"
                                                         (click)="selectedItem(row)">
                                                         <th scope="row">{{ row.id }}</th>
-                                                        <td>{{ row.name }}</td>
+                                                        <td style="width: 95px;">{{ row.name }}</td>
                                                         <td style="text-align: center;">{{ row.status }}</td>
-                                                        <td style="text-align: center;">{{ row.ordertime }}</td>
-                                                        <td style="text-align: center;">{{ row.endtime }}</td>
+                                                        <td style="text-align: center;">{{ row.ordertime | date: 'dd/MM/yyyy H:mm' }}</td>
+                                                        <td style="text-align: center;">{{ row.endtime | date: 'dd/MM/yyyy H:mm'}}</td>
                                                         <td style="text-align: center;">{{ row.clientname }}</td>
                                                         <!-- <td>{{ row.moneyForRooms && row.amountofmoneywithcard ? "ბარათით-ნაღდი" : 
                                                                 row.amountofmoneywithcard ? "ბარათით" : row.amountofmoneywithcash ? "ნაღდი" : '' }} </td> -->
                                                         <td style="text-align: center;">{{ row.amount }} ₾</td>
+                                                        <td style="text-align: center;">{{row.fitpassQuantity}}</td>
                                                         <td style="text-align: center;">{{ row.orderedjuss }}</td>
-                                                        <td>
-                                                                <button class="btn btn-primary" type="button" 
+                                                        <td style="width: 200px;">
+                                                                <button class="btn" type="button"
+                                                                        style="background-color: #3498db; color:rgb(255, 255, 255);" 
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#exampleModal" 
                                                                         (click)="pay(row.id)">გადახდა</button> 
@@ -105,6 +108,22 @@
                                         </label>
                                         <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRoomsCard">
                                     </div>
+
+                                    <div class="paywithcash d-flex align-items-center justify-content-between mt-1">
+                                        <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                            ფიტპასი
+                                        </label>
+                                        <select class="form-select" aria-label="Default select example" 
+                                                [(ngModel)] = "fitpass"
+                                                style="width: 50px; padding: 0.5rem 1.25rem 0.375rem 0.75rem; background-position: right 0.4rem center;">
+                                            <option selected>0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
             
                                 </div>
             
@@ -145,7 +164,9 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" (click)="putselectedrow()">ცვლილების შენახვა</button>
+              <button type="button" 
+                        style="background-color: #3498db; color:rgb(255, 255, 255);" 
+                        class="btn" (click)="putselectedrow()">ცვლილების შენახვა</button>
             </div>
           </div>
         </div>
@@ -158,21 +179,26 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">20-03-2024</h5>
+              <h5 class="modal-title" id="staticBackdropLabel">{{closingTimeForTheDay}}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <ul class="list-group">
-                        <li class="list-group-item"><span> თანხა ანგარიშზე:</span><span>{{amountWithCard}}₾</span></li>
+                        <li class="list-group-item"><span> თანხა ანგარიშზე(+ფიტპასი):</span><span>{{amountWithCard + fitpassInMoney}}₾</span></li>
                         <li class="list-group-item"><span> თანხა ქეშად:</span><span>{{amountWithCash}}₾</span></li>
-                        <li class="list-group-item"><span> თანხა ოთახებიდან:</span><span>{{moneyFromComputerRooms}}₾</span></li>
+                        <li class="list-group-item"><span> თანხა ოთახებიდან(+ფიტპასი):</span><span>{{moneyFromComputerRooms + fitpassInMoney}}₾</span></li>
                         <li class="list-group-item"><span> თანხა წვენებიდან:</span><span>{{moneyFromSnacks}}₾</span></li>
-                        <li class="list-group-item"><span style="font-weight: bold;"> თანხა ჯამში:</span> <span style="font-weight: bold;">{{amount}}₾</span></li>
+                        <li class="list-group-item"><span style="font-weight: bold;">ფიტპასი ჯამში:</span><span style="font-weight: bold;">
+                                {{fitpassInMoney}}₾ | {{fitpassQuontity}}</span></li>
+                        <li class="list-group-item"><span style="font-weight: bold;"> თანხა ჯამში:</span> <span style="font-weight: bold;">{{amount + fitpassInMoney}}₾</span></li>
+                        
                 </ul>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">გაუქმება</button>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="dayOff()">დახურვა</button>
+              <button type="button" class="btn"
+                    style="background-color: #3498db; color:rgb(255, 255, 255);"  
+                    data-bs-dismiss="modal" (click)="dayOff()">დახურვა</button>
             </div>
           </div>
         </div>

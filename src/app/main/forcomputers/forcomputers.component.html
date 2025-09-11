@@ -1,3 +1,4 @@
+
 <div class="main">
     <div class="computers" >
         @for (computer of computersArrr; track computer) {
@@ -6,8 +7,14 @@
                 <div class="title">
                     <div class="computername d-flex justify-content-between" 
                         style="margin-top: 5px; width: 100%; padding-left: 15px; padding-right: 30px;">
-                        <div class="texts" style="color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">
+                        <div class="texts" style="display: flex; align-items: center; color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">
                             <p style="margin: 0;">{{computer.name}}</p>
+                            @if(computer.timersIdArr.length > 1){
+                                <img src="../../../assets/icons/refresh.png" 
+                                    (click)="clearIntervalIdFromRoos(computer)"
+                                     style="width: 25px; height: 25px; margin-left: 5px;">
+                            }
+                            
                             <!-- <p style="margin: 0;">სტატუსი: {{computer.status}}</p> -->
                         </div>
                         
@@ -55,7 +62,7 @@
                 <div class="timer-info">
                     <div class="selectedhours" style="position: absolute; left: 0px; top: 0px; margin-left: 15px;">
                         <h3 style="color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">{{computer.times.selectedhour}}</h3>
-                        <h3 style="color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">{{computer.ordertime | date: 'shortTime'}}</h3>
+                        <h3 style="color: rgb(235, 235, 235); font-size: 1.55em; font-weight: 500;">{{computer.ordertime | date: 'H:mm' }}</h3>
                     </div>
 
                     <div class="selectedhours" style="position: absolute; right: 0px; top: 0px; margin-right: 15px;">
@@ -63,6 +70,7 @@
                             <img style="cursor: pointer; max-width: 63px; max-height: 63px;" 
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal" 
+                            title="ოთახის აბდეითი"
                             (click)="updateinfo(computer.roomsID)"
                                 src="../../../assets/icons/add.png" class="pause-continue-Button" alt="...">
                           }
@@ -73,7 +81,13 @@
                         <!-- ტაიმერის ანიმაციები -->
                         @if(!computer.gameTimerType){
                             <div class="wrap-circles">
-                                <div class="circle per-25" [ngStyle]="{'background-image': 'conic-gradient(#7e8083 '+ computer.progress + '%, #37a5e6e7 0)'}">
+                                <!-- [ngStyle]="{'color': condition ? 'red' : 'blue'}" -->
+                                <div class="circle per-25" 
+                                    [ngStyle]="{'background-image': computer.times.minutes == 0 && computer.times.seconds == 0 ? 
+                                    'conic-gradient(#7e8083 '+ computer.progress + '%, #37a5e6e7 0)' : 
+                                    computer.times.currenthours > 0 && computer.times.minutes != 0 ? 'conic-gradient(#7e8083 '+ computer.progress + '%, #3bcc3be7 0)' :
+                                    computer.times.minutes != 0 && computer.times.minutes >= 15 ? 'conic-gradient(#7e8083 '+ computer.progress + '%, #3bcc3be7 0)' :
+                                    'conic-gradient(#7e8083 '+ computer.progress + '%, #c52828e7 0)'}">
                                     <div class="inner">
                                         <div class="time d-flex justify-content-center">
                                             <span class="timers-number"><h2>{{computer.times.currenthours}}:{{computer.times.minutes}}:{{computer.times.seconds }}</h2> </span>
@@ -98,24 +112,26 @@
                 </div>
 
 
-                <!-- //ღილაკები -->
+                <!-- //დროის დაწყება დასრულების ღილაკები -->
                 <div class="buttons" >
 
                     @if(computer.ordertime){
-                        <div class="start m-1" style="max-width: 63px; max-height: 63px;">
-                            <button style="background-color: transparent; color: #3498db; border: none !important;"
-                                        >
-    
-                                <img src="../../../assets/icons/play-button (1)64.png"
-                                    style="cursor: pointer; max-width: 63px; max-height: 63px;"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop" 
-                                    class="startButton"
-                                    (click)="startTime(computer.roomsID, computer)"
-                                    alt="...">
-                            </button>
-    
-                        </div>
+                        @if(!computer.gameTimerType){
+                            <div class="start m-1" style="max-width: 63px; max-height: 63px;">
+                                <button style="background-color: transparent; color: #3498db; border: none !important;"
+                                            >
+        
+                                    <img src="../../../assets/icons/play-button (1)64.png"
+                                        style="cursor: pointer; max-width: 63px; max-height: 63px;"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop" 
+                                        class="startButton"
+                                        (click)="startTime(computer.roomsID, computer)"
+                                        alt="...">
+                                </button>
+        
+                            </div>
+                        }
                     }@else{
                         <div class="start m-1" style="max-width: 63px; max-height: 63px;">
                             <button style="background-color: transparent; color: #3498db; border: none !important;"
@@ -133,14 +149,14 @@
                         </div>
                     }
 
-                    <div class="pause-continue m-1" style="max-width: 63px; max-height: 63px;">
+                    <!-- <div class="pause-continue m-1" style="max-width: 63px; max-height: 63px;">
 
                         <img src="../../../assets/icons/refresh (1).png"
                             style="cursor: pointer; max-width: 63px; max-height: 63px;"
                             class="pause-continue-Button"
                             (click)="refresh(computer)"
                             alt="...">
-                    </div>
+                    </div> -->
 
                     <div class="cancel " style="width: 65px; height: 65px;">
 
@@ -159,7 +175,7 @@
     </div>
 </div>
 
-  <!-- Modal -->
+  <!-- დროის დაწყების მოდალი -->
 <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="padding: 15px;">
@@ -173,9 +189,12 @@
             <div class="modal-body">
 
                 <div class="game-timer-type">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="checkbox"  id="flexCheckDefault" 
+                    <input class="form-check-input" type="checkbox" 
+                            id="flexCheckDefault" 
+                            [(ngModel)]="currentTimerCheckbox"
+                            [disabled]="checkbox"
                             (change)="changametimertype()">
-                    <label class="form-check-label ms-1" for="flexCheckDefault">
+                    <label class="form-check-label ms-1" for="flexCheckDefault" >
                         მიმდინარე დრო
                     </label>
                 </div>
@@ -235,17 +254,37 @@
                                 <label class="form-check-label ms-1" for="flexRadioDefault1">
                                     ნაღდით გადახდა
                                 </label>
-                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRoomsCash">
+                                <input type="number" 
+                                        class="form-control no-spinners ms-1" 
+                                        id="exampleFormControlInput1" 
+                                        style="width: 50px;" 
+                                        [(ngModel)]="moneyForRoomsCash">
                             </div>
     
                             <div class="paywithcash d-flex align-items-center justify-content-between mt-1">
                                 <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
                                     id="flexRadioDefault1"
                                     (change)="onChanged($event.target)"> -->
-                                <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                <label class="form-check-label no-spinners ms-1" for="flexRadioDefault1">
                                     ბარათით გადახდა
                                 </label>
-                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRoomsCard">
+                                <input type="number" class="form-control no-spinners ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForRoomsCard">
+                            </div>
+
+                            <div class="paywithcash d-flex align-items-center justify-content-between mt-1">
+                                <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                    ფიტპასი
+                                </label>
+                                <select class="form-select" aria-label="Default select example" 
+                                        [(ngModel)] = "fitpass"
+                                        style="width: 50px; padding: 0.5rem 1.25rem 0.375rem 0.75rem; background-position: right 0.4rem center;">
+                                    <option selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
                             </div>
     
                         </div>
@@ -260,17 +299,17 @@
                                 <label class="form-check-label ms-1" for="flexRadioDefault2">
                                     ნაღდით გადახდა
                                 </label>
-                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForSnacksCash">
+                                <input type="number" class="form-control no-spinners ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForSnacksCash">
                             </div>
     
                             <div class="paywithcash d-flex align-items-center justify-content-between mt-1">
                                 <!-- <input class="form-check-input ms-1" type="radio" name="flexRadioDefault" value="paywithcash" 
                                     id="flexRadioDefault1"
                                     (change)="onChanged($event.target)"> -->
-                                <label class="form-check-label ms-1" for="flexRadioDefault1">
+                                <label class="form-check-label no-spinners ms-1" for="flexRadioDefault1">
                                     ბარათით გადახდა
                                 </label>
-                                <input type="text" class="form-control ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForSnacksCard">
+                                <input type="number" class="form-control no-spinners ms-1" id="exampleFormControlInput1" style="width: 50px;" [(ngModel)]="moneyForSnacksCard">
                             </div>
     
                         </div>
@@ -292,24 +331,28 @@
             <div class="modal-footer">
                 
                     <button type="button" 
-                            class="btn btn-secondary " 
+                            class="btn" 
                             aria-label="Close"
+                            style="background-color: #6c757d; color:rgb(255, 255, 255);"
                             data-bs-dismiss="modal"
                             (click)="mdoalclose()">დახურვა</button>
 
                     @if(startcontinue){ 
                         <button type="button" 
-                                class="btn btn-primary" 
+                                class="btn " 
+                                style="background-color: #3498db; color:rgb(255, 255, 255);"
                                 data-bs-dismiss="modal"
                                 (click)="saveTime('save')">დაწყება</button>
                     }@else if (infoUpdateButton) {
                         <button type="button" 
-                                class="btn btn-primary" 
+                                class="btn"
+                                style="background-color: #3498db; color:rgb(255, 255, 255);" 
                                 data-bs-dismiss="modal"
                                 (click)="update()">შენახვა</button>
                     }@else { 
                         <button type="button" 
-                                class="btn btn-primary" 
+                                class="btn" 
+                                style="background-color: #3498db; color:rgb(255, 255, 255);"
                                 data-bs-dismiss="modal"
                                 (click)="addContinuetime()">დამატება</button>
                     }
@@ -366,8 +409,13 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">დახურვა</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addContinuetime()">დამატება</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="mdoalclose()">დახურვა</button>
+  
+          <button type="button" 
+                    class="btn"
+                    style="background-color: #3498db; color:rgb(255, 255, 255);"                  
+                    data-bs-dismiss="modal" 
+                    (click)="addContinuetime()">დამატება</button>
         </div>
       </div>
     </div>
@@ -384,7 +432,7 @@
     <div class="modal-dialog" >
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ოთახი: {{selectedReservationRoom}}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{selectedReservationRoom}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -462,9 +510,12 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">დახურვა</button>
+          <button type="button" class="btn"
+                    style="background-color: #6c757d; color:rgb(255, 255, 255);"
+                    data-bs-dismiss="modal">დახურვა</button>
           <button type="button" 
-                    class="btn btn-primary" 
+                    class="btn" 
+                    style="background-color: #3498db; color:rgb(255, 255, 255);"
                     (click)="addaReservation()">შენახვა</button>
         </div>
       </div>

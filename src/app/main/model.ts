@@ -13,8 +13,10 @@ export interface ComputersRooms{
     status:string,
     gameTimerType:boolean,
     timer:any,
+    timersIdArr:number[],
     progress:any,
     orderedjuss:string,
+    fitpassQuantity:number,
     moneyForRooms:ForRooms,
     moneyForSnacks:Snacks,
 }
@@ -56,6 +58,7 @@ export interface Times{
     endtime:any,
     times:Times,
     ativestatus:boolean,
+    fitpassQuantity:number,
     moneyForRooms:ForRooms,
     moneyForSnacks:Snacks,
     status:string,
@@ -63,4 +66,23 @@ export interface Times{
     timer:any,
     progress:any,
     orderedjuss:string
+  }
+
+  export interface monthIncomintData{
+    id:number,
+    month:string,
+    incommingFromRooms:string,
+    incommingFromSnecks:string,
+    fitpass:number | null,
+    sum:string
+  }
+
+
+  export interface incommingDataByMonth{
+    month:string,
+    year: number,
+    incommingFromRooms: number,
+    incommingFromSnecks: number,
+    fitpass?: number, 
+    sum:number
   }

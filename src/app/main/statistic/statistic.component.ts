@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
-import { ComputersRooms, tbodyNames } from '../model';
+import { incommingDataByMonth, tbodyNames } from '../model';
 import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { SharingService } from '../service/sharing.service';
+import { GrowlService } from '../../service/auth/growl.service';
+import { OrderStatisticService } from '../service/order-statistic.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
   styleUrl: './statistic.component.scss'
 })
-export class StatisticComponent {
+export class StatisticComponent implements OnInit{
   
   public moneyFromComputerRooms:number = 0
   public moneyFromSnacks:number = 0
@@ -25,18 +26,28 @@ export class StatisticComponent {
   public moneyForSnacksCard:number = 0
   public orderedjuss = ''
   public currentDate = ''
+  public fitpassQuontity = 0
   public theadNames:string[] = ['#', 'ოთხი', 'ოთახის სტატუსი', 'შეკვეთის თარიღი', 'დასრულების თარიღი', 'კლიენტის სახელი',
-  'თანხა ჯამში','შეკვეთები', '' ]
+  'თანხა ჯამში', 'ფიტპასი', 'შეკვეთები', '' ]
   public tbodyNames: any[] = []
+  public closingTimeForTheDay!:string | null
+  public fitpass:number = 0
+  public fitpassInMoney:number = 0
 
   private computerRoomsSubscription?:Subscription
   private computerRoomsDeleteSubscription?:Subscription
+  private getAllDataBymonth?:Subscription
+  private postAnalizedmonthlyData?:Subscription
   private selectedRow:any
   private openDayTime:any
+  private allData:any[] = []
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationService: GrowlService,
+    private orderStatisticService:OrderStatisticService,
+    private router: Router,
   ){}
 
   public getData(){
@@ -55,6 +66,7 @@ export class StatisticComponent {
 
     this.tbodyNames = []
     this.computerRoomsSubscription = this.computerRoomsService.getcomputerRooms().subscribe( response => {
+
       response.map((item:tbodyNames) => {
         if( pipe.transform(item.openDayTime, 'MMM d, y') == pipe.transform(getObject.ordertime, 'MMM d, y') ){
             this.tbodyNames.push({
@@ -80,6 +92,7 @@ export class StatisticComponent {
         this.moneyForRoomsCard = item.moneyForRooms.card
         this.moneyForSnacksCash = item.moneyForSnacks.cash
         this.moneyForSnacksCard = item.moneyForSnacks.card
+        this.fitpass = item.fitpassQuantity
         this.orderedjuss = item.orderedjuss
       }
     })
@@ -106,6 +119,7 @@ export class StatisticComponent {
         card: 0
       },
       ativestatus:true,
+      fitpassQuantity: 0,
       status:'',
       gameTimerType:false,
       timer: 0,
@@ -130,6 +144,7 @@ export class StatisticComponent {
         sendObject.openDayTime = this.openDayTime,
         sendObject.endtime = item.endtime,
         sendObject.ativestatus = item.ativestatus,
+        sendObject.fitpassQuantity = this.fitpass ? this.fitpass : item.fitpassQuantity,
         sendObject.status = item.status,
         sendObject.gameTimerType = item.gameTimerType,
         sendObject.timer = item.timer,
@@ -145,18 +160,28 @@ export class StatisticComponent {
     })
 
     this.computerRoomsService.putcomputerRooms(rowId, sendObject).subscribe({  
-      next : (res) => console.log('responese', res),
-      error: (e) => console.error(e),
+      next : (res) => {
+        let successMessage = 'წარმატებით განახლდა'
+        this.notificationService.showSuccessAnimation(successMessage)
+      },
+      error: (e) => {
+        let successMessage = 'განახლებისას მოხდა შეცდომა'
+        this.notificationService.showSuccessAnimation(successMessage)
+      },
       complete: () => { closebutton?.click(),
         this.getcomputerRooms() }})
   }
 
-
   public getDayInfo():void{
+  
     this.amount = 0
     this.amountWithCard = 0
     this.amountWithCash = 0
     // this.moneyFromComputerRooms = 0
+    this.closingTimeForTheDay = localStorage.getItem('openDayTime')
+
+    this.fitpassQuontity = this.tbodyNames.reduce((accumulator:number, curentItem:tbodyNames) => accumulator + Number(curentItem.fitpassQuantity), 0)
+    this.fitpassInMoney = this.fitpassQuontity * 5
 
     this.amount = this.tbodyNames.reduce((accumulator, currentValue:tbodyNames) => 
         (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card) + Number(currentValue.moneyForSnacks.cash) + Number(currentValue.moneyForSnacks.card)), this.amount)
@@ -172,17 +197,17 @@ export class StatisticComponent {
 
     this.moneyFromSnacks = this.tbodyNames.reduce((accumulator:number, curentItem:tbodyNames) => accumulator + Number(curentItem.moneyForSnacks.card) + 
         Number(curentItem.moneyForSnacks.cash) , 0)
+
+    console.log(this.fitpassQuontity)
   }
 
-  public dayOff():void{
-    this.authService.logout()
-    localStorage.removeItem('openDayTime');
-  }
 
   public deleteItem(item:any):void{
     let rowID = item.id
     this.computerRoomsDeleteSubscription = this.computerRoomsService.deleteItemTable(rowID).subscribe( {
       next : (res) => {
+        let successMessage = 'წარმატებით წაიშალა'
+        this.notificationService.showSuccessAnimation(successMessage)
         this.getcomputerRooms()
       },
       error: (e) => console.error(e),
@@ -191,6 +216,135 @@ export class StatisticComponent {
       }
     })
   
+  }
+
+  public dayOff():void{
+
+    let ChekTime = this.chekTimeByMonth()
+    console.log('getDataByMonth', ChekTime)
+
+    if(ChekTime.trueOrFalse){
+      let newArr = [];
+      let incommingFromRooms = 0;
+      let icommingFromSnacks = 0;
+      let fitpassQuantity = 0;
+      let sum = 0;
+
+      let successMessage = 'ცოტა უნდა დმელოდო, მიმდონარებობს თვის მონაცემების გაანალიზება და შენახვა!!!'
+      this.notificationService.showSuccessAnimation(successMessage)
+
+      this.getAllDataByMonth()
+      newArr = this.allData.filter((item) => {
+        return item.openDayTime.includes(ChekTime.month);
+      })
+  
+      // console.log('complete',newArr)
+      // if(newArr.length > 0){
+      //   newArr.forEach(item => {
+      //     // this.deleteItem(item.id)
+      //     this.computerRoomsDeleteSubscription = this.computerRoomsService.deleteItemTable(item.id).subscribe( {
+      //       next : (res) => {
+      //         // let successMessage = 'წარმატებით წაიშალა'
+      //         // this.notificationService.showSuccessAnimation(successMessage)
+      //         // this.getcomputerRooms()
+      //       },
+      //       error: (e) => console.error(e),
+      //       complete: () => {
+      //         console.log('complete',item)
+      //       }
+      //     })
+      //   })
+      // }
+  
+  //ამოწმებს მონაცემს გამართულია თუ არა
+      newArr.forEach(item => {
+        if(isNaN(item.moneyForSnacks.card)){
+          console.log('NAN!!!!', item)
+          item.moneyForSnacks.card = parseFloat(item.moneyForSnacks.card.replace(',', '.'))
+        }
+
+        if(isNaN(item.moneyForSnacks.cash)){
+          console.log('NAN!!!!', item)
+          item.moneyForSnacks.cash = parseFloat(item.moneyForSnacks.cash.replace(',', '.'))
+        }
+
+        if(isNaN(item.moneyForRooms.cash)){
+          console.log('NAN!!!!', item)
+          item.moneyForRooms.cash = parseFloat(item.moneyForRooms.cash.replace(',', '.'))
+        }
+
+        if(isNaN(item.moneyForRooms.card)){
+          console.log('NAN!!!!', item)
+          item.moneyForRooms.card = parseFloat(item.moneyForRooms.card.replace(',', '.'))
+        }
+      })
+
+      //ამოჭრის წელს თარიღიდან
+      let extractedYear = new Date(newArr[0]?.openDayTime).getFullYear();
+      console.log(extractedYear)
+  
+      incommingFromRooms = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+        (accumulator + Number(currentValue.moneyForRooms.cash) + Number(currentValue.moneyForRooms.card)), 0)
+  
+      icommingFromSnacks = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+        (accumulator + Number(currentValue.moneyForSnacks.cash || 0) + Number(currentValue.moneyForSnacks.card || 0)), 0)
+      console.log('icommingFromSnacks',icommingFromSnacks)
+
+      fitpassQuantity = newArr.reduce((accumulator, currentValue:tbodyNames) => 
+        (accumulator + Number(currentValue?.fitpassQuantity)), 0)
+  
+      
+      if(isNaN(fitpassQuantity)){
+        sum = incommingFromRooms + icommingFromSnacks 
+      }else{
+        sum = incommingFromRooms + icommingFromSnacks +  (fitpassQuantity * 5)
+      }
+  
+      incommingFromRooms = Number(incommingFromRooms.toFixed(1)); 
+      icommingFromSnacks = Number(icommingFromSnacks.toFixed(1)); 
+      fitpassQuantity = Number(fitpassQuantity.toFixed(1)); 
+
+      this.postMonthData(ChekTime.month, extractedYear, incommingFromRooms,icommingFromSnacks,fitpassQuantity, sum)
+
+      console.log(incommingFromRooms, '/', icommingFromSnacks, '/', fitpassQuantity, '/', sum)
+    }else{
+      this.authService.logout()
+      localStorage.removeItem('openDayTime');
+    }
+
+  }
+
+  private postMonthData(ChekTime:string, extractedYear:number, incomRom:number, incomSnacks:number, incomFitpas:number, sum:number){
+
+    let incommingObject:incommingDataByMonth = {
+      month:ChekTime,
+      year: extractedYear,
+      incommingFromRooms: incomRom,
+      incommingFromSnecks: incomSnacks,
+      fitpass: incomFitpas, 
+      sum:sum
+    }
+    // console.log(incommingObject)
+    setTimeout(() => {
+      this.postAnalizedmonthlyData = this.orderStatisticService.postAnalizedData(incommingObject).subscribe({
+        next: (res) => {
+          let message = 'მონაცემები წარმატებით ჩაიწერა!!';
+          this.notificationService.showSuccessAnimation(message)
+        },
+        error: () => {
+          let message = 'მონაცემების ჩატვირთვა ვერ მოხდა!!';
+          this.notificationService.showErrorAnimation(message)
+        },
+        complete: () => {
+          // this.router.navigate(['main/order-statistic'])
+          setTimeout(()=>{
+            this.authService.logout()
+            localStorage.removeItem('openDayTime');
+          }, 3000)
+        }
+      })
+    }, 3500)
+
   }
 
   private getCurrentDate():string{
@@ -203,6 +357,53 @@ export class StatisticComponent {
     return parseDate
   }
 
+  private chekTimeByMonth():{trueOrFalse:boolean,month: string}{
+
+    const monthTranslator:any = {
+      'Jan': '31',
+      'Feb': '28',
+      'Mar': '31',
+      'Apr': '30',
+      'May': '31',
+      'Jun': '30',
+      'Jul': '31',
+      'Aug': '31',
+      'Sep': '30',
+      'Oct': '31',
+      'Nov': '30',
+      'Dec': '31'
+    };
+
+    let month = this.openDayTime.split(' ')[0]
+    let time = this.openDayTime.split(',')[0]
+    let timeFrommonth = time.split(' ')[1]
+
+    let trueOrFalse = false
+    
+    for (const property in monthTranslator) {
+ 
+        if(property == month){
+          console.log(monthTranslator[property], timeFrommonth)
+          if(monthTranslator[property] == timeFrommonth){
+            trueOrFalse = true
+          }
+        }
+    }
+
+    return {
+      trueOrFalse: trueOrFalse,
+      month: month
+    }
+  }
+
+  private getAllDataByMonth(){
+    this.computerRoomsService.allData$.subscribe({
+      next: (data) => {
+        this.allData = data
+      }
+    })
+  }
+
   ngOnInit() {
     this.getcomputerRooms()
     this.openDayTime = localStorage.getItem('openDayTime')
@@ -211,5 +412,7 @@ export class StatisticComponent {
   ngOnDestroy() {
     this.computerRoomsSubscription ? this.computerRoomsSubscription.unsubscribe() : ''
     this.computerRoomsDeleteSubscription ? this.computerRoomsDeleteSubscription.unsubscribe() : ''
+    this.getAllDataBymonth ? this.getAllDataBymonth.unsubscribe() : ''
+    this.postAnalizedmonthlyData ? this.postAnalizedmonthlyData.unsubscribe() : ''
    }
 }

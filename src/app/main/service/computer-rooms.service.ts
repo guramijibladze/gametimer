@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComputerRoomsService {
+
+  private allDataSubject = new BehaviorSubject<any[]>([])
+  allData$ = this.allDataSubject.asObservable()
 
   baseURL: string = "http://localhost:3000/";
 
@@ -28,7 +31,9 @@ export class ComputerRoomsService {
   }
 
   public getcomputerRooms():Observable<any>{
-    return this.http.get<any>(this.baseURL + 'computerRooms')
+    return this.http.get<any>(this.baseURL + 'computerRooms').pipe(
+      tap(data => this.allDataSubject.next(data))
+    )
   }
 
   public getreservations():Observable<any>{

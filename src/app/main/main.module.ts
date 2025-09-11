@@ -8,12 +8,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComputerRoomsService } from './service/computer-rooms.service';
+import { OrderStatisticForMonthComponent } from './order-statistic-for-month/order-statistic-for-month.component';
+
 
 const routes: Routes = [
   { path: '', component: MainComponent, 
     children:[
       { path: 'computers', component: ForcomputersComponent },
-      { path: 'statistic', component: StatisticComponent }
+      { path: 'statistic', component: StatisticComponent },
+      { path: 'order-statistic', component: OrderStatisticForMonthComponent }
     ]
   },
 ];
@@ -22,7 +25,8 @@ const routes: Routes = [
   declarations: [
     StatisticComponent,
     MainComponent,
-    ForcomputersComponent
+    ForcomputersComponent,
+    OrderStatisticForMonthComponent
   ],
   imports: [
     RouterModule,

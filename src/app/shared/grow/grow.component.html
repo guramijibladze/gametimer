@@ -1,0 +1,10 @@
+
+
+  @if(successStaatusAlert){
+        <div class="alert" 
+            [ngClass]="ngclassStatus ? 'success' : 'error'"
+            [@animationState] 
+            role="alert">
+            {{message}}
+        </div>
+}
