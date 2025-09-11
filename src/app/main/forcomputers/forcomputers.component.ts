@@ -116,6 +116,14 @@ export class ForcomputersComponent implements OnInit {
       { roomsID:8, clientname: '', name: 'ოთახი N8', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
+      progress: 0},
+      { roomsID:9, clientname: '', name: 'ოთახი N9', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
+      progress: 0},
+      { roomsID:10, clientname: '', name: 'ოთახი N10', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
+      times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
+      moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
       progress: 0}
   ]
 

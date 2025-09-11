@@ -150686,6 +150686,37 @@
         78
       ],
       "progress": 0.05555555555555555
+    },
+    {
+      "roomsID": 9,
+      "pausecontinuoe": false,
+      "ordertime": "Sep 11, 2025, 8:01:37 AM",
+      "openDayTime": "Sep 11, 2025",
+      "endtime": "Sep 11, 2025, 8:02:00 AM",
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": "5",
+        "card": 0
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "status": "vip",
+      "gameTimerType": false,
+      "timer": 11,
+      "progress": 0.6388888888888891,
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 36
+      },
+      "clientname": "",
+      "name": "ოთახი N9",
+      "orderedjuss": "",
+      "id": "b68b"
     }
   ]
 }
