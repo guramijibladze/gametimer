@@ -139,15 +139,6 @@ export class ForcomputersComponent implements OnInit {
     }
   }
 
-  // public refresh(box:ComputersRooms):void{
-  //   this.computerroomsID = box.roomsID
-  //   let text = 'ეს ღილაკი გამოიყენე მხოლოდ მაშინ თუ ტაიმერმა გაჭედა!!!'
-  //   if(confirm(text) == true){
-  //     this.saveTime('refresh')
-  //   }
-    
-  // }
-
   public updateinfo(updateRoomsID:number){
     this.startcontinue = false
     this.infoUpdateButton = true
