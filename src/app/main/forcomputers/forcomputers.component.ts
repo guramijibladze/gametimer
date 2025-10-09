@@ -83,7 +83,8 @@ export class ForcomputersComponent implements OnInit {
       orderedjuss: '',
       timer: 0,
       timersIdArr: [],
-      progress: 0
+      progress: 0,
+      televiziontRoom:true
     },
     { roomsID:2, clientname: '', name: 'ოთახი N2', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, 
@@ -104,11 +105,13 @@ export class ForcomputersComponent implements OnInit {
     { roomsID:5, clientname: '', name: 'ოთახი N5', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '',openDayTime:'', endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
-    progress: 0},
+      progress: 0,
+      televiziontRoom:true},
     { roomsID:6, clientname: '', name: 'ოთახი N6', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
-      progress: 0},
+      progress: 0,
+      televiziontRoom:true},
       { roomsID:7, clientname: '', name: 'ოთახი N7', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
@@ -124,7 +127,8 @@ export class ForcomputersComponent implements OnInit {
       { roomsID:10, clientname: '', name: 'ოთახი N10', startButton: false, pausecontinuoe:false, roomsReservation:false, ordertime: '', openDayTime:'',endtime: '',
       times: { selectedhour: '', currenthours: 0, minutes: 0, seconds: 0 }, ativestatus:true, fitpassQuantity: 0, moneyForRooms:{cash: 0, card: 0},
       moneyForSnacks:{cash: 0, card: 0}, status:'vip', gameTimerType:false, orderedjuss: '', timer: 0, timersIdArr: [],
-      progress: 0}
+      progress: 0,
+      televiziontRoom:true}
   ]
 
 
@@ -454,14 +458,14 @@ export class ForcomputersComponent implements OnInit {
     }
   }
 
-  public clearIntervalIdFromRoos(computer:ComputersRooms){
-    let intervalFirsId = computer.timersIdArr[0]
-    clearInterval(intervalFirsId)
-    computer.timersIdArr = computer.timersIdArr.filter((id, index) => index == 1)
-    let successMessage = 'ოთახი წარმატებით გაიწმინდა'
-    this.notificationService.showSuccessAnimation(successMessage)
-    // console.log(computer)
-  }
+  // public clearIntervalIdFromRoos(computer:ComputersRooms){
+  //   let intervalFirsId = computer.timersIdArr[0]
+  //   clearInterval(intervalFirsId)
+  //   computer.timersIdArr = computer.timersIdArr.filter((id, index) => index == 1)
+  //   let successMessage = 'ოთახი წარმატებით გაიწმინდა'
+  //   this.notificationService.showSuccessAnimation(successMessage)
+  //   // console.log(computer)
+  // }
 
   public mdoalclose(){
 
