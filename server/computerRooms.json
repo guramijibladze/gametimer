@@ -151113,6 +151113,153 @@
         40
       ],
       "progress": 3.7499999999999907
+    },
+    {
+      "id": "ccda",
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Oct 9, 2025, 10:26:37 PM",
+      "openDayTime": "Sep 13, 2025",
+      "endtime": "Oct 9, 2025, 10:27:37 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 59,
+        "seconds": 0
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 13,
+      "timersIdArr": [
+        13
+      ],
+      "progress": 1.6388888888888868,
+      "televiziontRoom": true
+    },
+    {
+      "id": "fdbe",
+      "roomsID": 1,
+      "clientname": "",
+      "name": "ოთახი N1",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Oct 9, 2025, 10:29:18 PM",
+      "openDayTime": "Sep 13, 2025",
+      "endtime": "Oct 9, 2025, 10:29:40 PM",
+      "times": {
+        "selectedhour": "",
+        "currenthours": 0,
+        "minutes": 0,
+        "seconds": 21
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": true,
+      "orderedjuss": "",
+      "timer": 31,
+      "timersIdArr": [
+        31
+      ],
+      "progress": 0,
+      "televiziontRoom": true
+    },
+    {
+      "id": "5d34",
+      "roomsID": 4,
+      "clientname": "",
+      "name": "ოთახი N4",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Oct 9, 2025, 10:34:14 PM",
+      "openDayTime": "Sep 13, 2025",
+      "endtime": "Oct 9, 2025, 10:35:56 PM",
+      "times": {
+        "selectedhour": "1:0",
+        "currenthours": 0,
+        "minutes": 58,
+        "seconds": 18
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 51,
+      "timersIdArr": [
+        51
+      ],
+      "progress": 2.8055555555555496
+    },
+    {
+      "id": "0b64",
+      "roomsID": 5,
+      "clientname": "",
+      "name": "ოთახი N5",
+      "startButton": false,
+      "pausecontinuoe": false,
+      "roomsReservation": false,
+      "ordertime": "Oct 9, 2025, 10:34:02 PM",
+      "openDayTime": "Sep 13, 2025",
+      "endtime": "Oct 9, 2025, 10:35:57 PM",
+      "times": {
+        "selectedhour": "0:30",
+        "currenthours": 0,
+        "minutes": 28,
+        "seconds": 4
+      },
+      "ativestatus": false,
+      "fitpassQuantity": 0,
+      "moneyForRooms": {
+        "cash": 0,
+        "card": 0
+      },
+      "moneyForSnacks": {
+        "cash": 0,
+        "card": 0
+      },
+      "status": "vip",
+      "gameTimerType": false,
+      "orderedjuss": "",
+      "timer": 42,
+      "timersIdArr": [
+        42
+      ],
+      "progress": 6.388888888888874,
+      "televiziontRoom": true
     }
   ]
 }

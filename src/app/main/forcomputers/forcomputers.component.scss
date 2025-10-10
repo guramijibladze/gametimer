@@ -30,26 +30,6 @@ modal {
       // }
     }
 
-    .glow-border {
-      border-radius: 10%;
-      border: 4px solid #3498db;
-      box-shadow: 0 0 20px 5px #3498db;
-      animation: glow 1s infinite alternate;
-      transition: border-color 0.3s;
-    }
-
-    @keyframes glow {
-      0% {
-        border-color: #3498db;
-        box-shadow: 0 0 10px 2px #3498db;
-      }
-
-      100% {
-        border-color: #fff700;
-        box-shadow: 0 0 30px 10px #fff700;
-      }
-    }
-
     .timer-info {
       position: absolute;
       // bottom: 150px;
