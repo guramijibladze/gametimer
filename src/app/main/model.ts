@@ -19,7 +19,8 @@ export interface ComputersRooms{
     fitpassQuantity:number,
     moneyForRooms:ForRooms,
     moneyForSnacks:Snacks,
-    televiziontRoom?:boolean
+    televiziontRoom?:boolean,
+    roomsType?:string
 }
 
 export interface roomsReservation{
