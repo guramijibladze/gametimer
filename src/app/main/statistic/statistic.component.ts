@@ -179,6 +179,7 @@ export class StatisticComponent implements OnInit{
     this.amountWithCash = 0
     // this.moneyFromComputerRooms = 0
     this.closingTimeForTheDay = localStorage.getItem('openDayTime')
+    localStorage.removeItem('gametimer.activeRooms.v1')
 
     this.fitpassQuontity = this.tbodyNames.reduce((accumulator:number, curentItem:tbodyNames) => accumulator + Number(curentItem.fitpassQuantity), 0)
     this.fitpassInMoney = this.fitpassQuontity * 5

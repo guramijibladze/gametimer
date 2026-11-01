@@ -1,15 +1,27 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ComputersRooms, roomsReservation } from '../model';
 import { ComputerRoomsService } from '../service/computer-rooms.service';
 import { DatePipe } from '@angular/common';
 import { GrowlService } from '../../service/auth/growl.service';
+
+type TimerRoomKind = 'computer' | 'wheel';
+
+interface PersistedRoomState {
+  roomKind: TimerRoomKind;
+  room: Omit<ComputersRooms, 'timer' | 'timersIdArr'>;
+}
+
+interface PersistedTimerSnapshot {
+  savedAt: number;
+  rooms: PersistedRoomState[];
+}
 
 @Component({
   selector: 'app-forcomputers',
   templateUrl: './forcomputers.component.html',
   styleUrl: './forcomputers.component.scss',
 })
-export class ForcomputersComponent implements OnInit {
+export class ForcomputersComponent implements OnInit, OnDestroy {
   isOpen = true;
   public hours:number = 0
   public minutes:any = 0
@@ -46,6 +58,7 @@ export class ForcomputersComponent implements OnInit {
   private computerroomsID:number = 0
   private reservationID:number = 0
   private updateRoomsID:number = 0
+  private readonly timerStorageKey = 'gametimer.activeRooms.v1'
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
@@ -53,7 +66,14 @@ export class ForcomputersComponent implements OnInit {
   ){}
 
   ngOnInit() {
+    this.restoreActiveTimers()
     this.getCurrentDate();
+  }
+
+  ngOnDestroy():void {
+    [...this.computersArrr, ...this.rommsWithWell].forEach(room => {
+      if (room.timer) clearInterval(room.timer)
+    })
   }
 
   public theadNames:string[] = ['პიროვნება', 'ტელეფონი', 'დრო', 'ტექსტი', '' ]
@@ -197,6 +217,7 @@ export class ForcomputersComponent implements OnInit {
     })
 
     this.mdoalclose()
+    this.persistActiveTimers()
   }
 
   public saveTime(str?:string):void{
@@ -265,6 +286,10 @@ export class ForcomputersComponent implements OnInit {
             clearInterval(item.timer);
           }
           this.resetModalParameters()
+          if (str === 'refresh' && !item.gameTimerType) {
+            const remainingSeconds = item.times.currenthours * 3600 + item.times.minutes * 60 + item.times.seconds
+            progress = remainingSeconds > 0 ? (100 - item.progress) / remainingSeconds : 0
+          }
           //ტაიმერი და მიმდინარე დრო
           if(item.gameTimerType == true){
 
@@ -282,6 +307,7 @@ export class ForcomputersComponent implements OnInit {
                 item.times.seconds = 0
               }
 
+              this.persistActiveTimers()
             }, 1000)
             item.timersIdArr.push(item.timer)
             this.checkRoomsArrIdsAndNotifi()
@@ -293,7 +319,7 @@ export class ForcomputersComponent implements OnInit {
               // console.log('progress',item.progress)
               //დროის ამოწურვა
               if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
-                this.endTime(item.roomsID, item.timer);
+                this.endTime(item, item.timer);
                 return;
               }
   
@@ -309,7 +335,8 @@ export class ForcomputersComponent implements OnInit {
   
                 item.times.seconds = 59;
               }
-              
+
+              this.persistActiveTimers()
             }, 1000)
             item.timersIdArr.push(item.timer)
             this.checkRoomsArrIdsAndNotifi()
@@ -317,6 +344,7 @@ export class ForcomputersComponent implements OnInit {
         }
     
       })
+      this.persistActiveTimers()
     }
   }
 
@@ -362,13 +390,14 @@ export class ForcomputersComponent implements OnInit {
 
 
   //დროის ამოწურვა
-  private endTime(roomsID:any, timer:number):void{
+  private endTime(room:ComputersRooms, timer:number):void{
     this.infoUpdateButton = false
     let endTime = this.getCurrentDate()
-    this.roomsType[roomsID-1].endtime = endTime
+    room.endtime = endTime
     this.startcontinue = true
   
     clearInterval(timer)
+    this.persistActiveTimers()
 
   }
 
@@ -439,7 +468,7 @@ export class ForcomputersComponent implements OnInit {
                 
                 //დროის ამოწურვა
                 if (item.times.seconds == 0 && item.times.minutes == 0 && item.times.currenthours == 0) {
-                  this.endTime(item.roomsID, item.timer);
+                  this.endTime(item, item.timer);
                   return;
                 }
     
@@ -456,10 +485,12 @@ export class ForcomputersComponent implements OnInit {
                   item.times.seconds = 59;
                 }
 
+                this.persistActiveTimers()
               }, 1000)
               item.timersIdArr = item.timersIdArr.filter((id, index) => index == 1)
               item.timersIdArr.push(item.timer)
               this.checkRoomsArrIdsAndNotifi()
+              this.persistActiveTimers()
             }
 
           })
@@ -592,6 +623,10 @@ export class ForcomputersComponent implements OnInit {
       this.startcontinue = true
       this.checkbox = false
       this.currentTimerCheckbox = false
+
+      if (computerRoom) {
+        this.persistActiveTimers()
+      }
       
     }
 
@@ -636,6 +671,69 @@ export class ForcomputersComponent implements OnInit {
         }
       })
 
+    }
+
+    private persistActiveTimers():void {
+      const rooms:PersistedRoomState[] = []
+      const allRooms = [
+        ...this.computersArrr.map(room => ({ room, roomKind: 'computer' as const })),
+        ...this.rommsWithWell.map(room => ({ room, roomKind: 'wheel' as const })),
+      ]
+
+      allRooms.forEach(({ room, roomKind }) => {
+        if (room.ativestatus || !room.ordertime) return
+
+        const savedRoom:Partial<ComputersRooms> = { ...room }
+        delete savedRoom.timer
+        delete savedRoom.timersIdArr
+        rooms.push({ roomKind, room: savedRoom as Omit<ComputersRooms, 'timer' | 'timersIdArr'> })
+      })
+
+      const snapshot:PersistedTimerSnapshot = { savedAt: Date.now(), rooms }
+      localStorage.setItem(this.timerStorageKey, JSON.stringify(snapshot))
+    }
+
+    private restoreActiveTimers():void {
+      const stored = localStorage.getItem(this.timerStorageKey)
+      if (!stored) return
+
+      try {
+        const snapshot = JSON.parse(stored) as PersistedTimerSnapshot
+        const elapsedSeconds = Math.max(0, Math.floor((Date.now() - snapshot.savedAt) / 1000))
+
+        snapshot.rooms.forEach(({ roomKind, room: savedRoom }) => {
+          const rooms = roomKind === 'wheel' ? this.rommsWithWell : this.computersArrr
+          const room = rooms.find(item => item.roomsID === savedRoom.roomsID)
+          if (!room) return
+
+          Object.assign(room, savedRoom)
+          room.timer = 0
+          room.timersIdArr = []
+
+          const currentSeconds = room.times.currenthours * 3600 + room.times.minutes * 60 + room.times.seconds
+          if (!room.gameTimerType && currentSeconds > 0 && elapsedSeconds > 0) {
+            room.progress = Math.min(100, room.progress + ((100 - room.progress) / currentSeconds) * elapsedSeconds)
+          }
+          const adjustedSeconds = room.gameTimerType
+            ? currentSeconds + elapsedSeconds
+            : Math.max(0, currentSeconds - elapsedSeconds)
+          room.times.currenthours = Math.floor(adjustedSeconds / 3600)
+          room.times.minutes = Math.floor((adjustedSeconds % 3600) / 60)
+          room.times.seconds = adjustedSeconds % 60
+
+          if (!room.gameTimerType && adjustedSeconds === 0) {
+            room.endtime = room.endtime || this.getCurrentDate()
+            return
+          }
+
+          this.roomsType = rooms
+          this.computerroomsID = room.roomsID
+          this.saveTime('refresh')
+        })
+        this.persistActiveTimers()
+      } catch {
+        localStorage.removeItem(this.timerStorageKey)
+      }
     }
 }
 
