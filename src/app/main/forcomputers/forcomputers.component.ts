@@ -59,6 +59,10 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
   private reservationID:number = 0
   private updateRoomsID:number = 0
   private readonly timerStorageKey = 'gametimer.activeRooms.v1'
+  private modalScrollPosition = 0
+  private modalScrollAnchor:HTMLElement | null = null
+  private modalScrollAnchorTop = 0
+  private bodyScrollStyles: { position: string; top: string; width: string } | null = null
 
   constructor(
     private computerRoomsService: ComputerRoomsService,
@@ -71,6 +75,7 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy():void {
+    this.unlockPageScroll();
     [...this.computersArrr, ...this.rommsWithWell].forEach(room => {
       if (room.timer) clearInterval(room.timer)
     })
@@ -170,7 +175,8 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
 
   //მონიშნული ობიექტის აიდი
   roomsType:ComputersRooms[] = []
-  public startTime(roomsID:number, computerRoom:any):void{
+  public startTime(roomsID:number, computerRoom:any, event?:Event):void{
+    this.rememberModalScrollPosition(event)
     this.computerroomsID = roomsID
     this.selectedComputerRoom = computerRoom
     this.roomsType = computerRoom.roomsType == 'steeringWeel' ? this.rommsWithWell : this.computersArrr
@@ -180,41 +186,85 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
     }
   }
 
-  public updateinfo(updateRoomsID:number){
+  public updateinfo(computerRoom:ComputersRooms, event?:Event):void{
+    this.rememberModalScrollPosition(event)
     this.startcontinue = false
     this.infoUpdateButton = true
-    this.updateRoomsID = updateRoomsID
-    this.selectedComputerRoom = this.computersArrr[updateRoomsID-1]
+    this.updateRoomsID = computerRoom.roomsID
+    this.computerroomsID = computerRoom.roomsID
+    this.selectedComputerRoom = computerRoom
+    this.roomsType = computerRoom.roomsType === 'steeringWeel' ? this.rommsWithWell : this.computersArrr
+    this.checkbox = true
+    this.currentTimerCheckbox = computerRoom.gameTimerType
+    this.fitpass = computerRoom.fitpassQuantity
+    this.clientName = computerRoom.clientname
+    this.moneyForRoomsCash = computerRoom.moneyForRooms.cash
+    this.moneyForRoomsCard = computerRoom.moneyForRooms.card
+    this.moneyForSnacksCash = computerRoom.moneyForSnacks.cash
+    this.moneyForSnacksCard = computerRoom.moneyForSnacks.card
+    this.orderedjuss = computerRoom.orderedjuss
+  }
 
-    //მოდალში ანახებს ამ ოთახზე არჩეულ ინფოს
-    this.computersArrr.forEach((item:ComputersRooms) => {
-      if(this.updateRoomsID == item.roomsID){
-        this.checkbox = true
-        !item.gameTimerType ? this.currentTimerCheckbox = false : this.currentTimerCheckbox = true
-        
-        this.fitpass = item.fitpassQuantity
-        this.clientName = item.clientname
-        this.moneyForRoomsCash = item.moneyForRooms.cash
-        this.moneyForRoomsCard = item.moneyForRooms.card
-        this.moneyForSnacksCash = item.moneyForSnacks.cash
-        this.moneyForSnacksCard = item.moneyForSnacks.card
-        this.orderedjuss = item.orderedjuss
+  public lockPageScroll():void {
+    if (this.bodyScrollStyles) return
+
+    const body = document.body
+    this.bodyScrollStyles = {
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+    }
+    body.style.position = 'fixed'
+    body.style.top = `-${this.modalScrollPosition}px`
+    body.style.width = '100%'
+  }
+
+  public unlockPageScroll():void {
+    if (!this.bodyScrollStyles) return
+
+    const body = document.body
+    body.style.position = this.bodyScrollStyles.position
+    body.style.top = this.bodyScrollStyles.top
+    body.style.width = this.bodyScrollStyles.width
+    this.bodyScrollStyles = null
+    this.restorePageScroll()
+  }
+
+  private restorePageScroll(attempt = 0):void {
+    requestAnimationFrame(() => {
+      const anchor = this.modalScrollAnchor
+      if (anchor?.isConnected) {
+        const scrollDelta = anchor.getBoundingClientRect().top - this.modalScrollAnchorTop
+        if (Math.abs(scrollDelta) > 1) window.scrollTo(0, window.scrollY + scrollDelta)
+      } else {
+        window.scrollTo(0, this.modalScrollPosition)
+      }
+
+      if (attempt < 5) {
+        this.restorePageScroll(attempt + 1)
+      } else {
+        this.modalScrollAnchor = null
       }
     })
   }
 
+  private rememberModalScrollPosition(event?:Event):void {
+    this.modalScrollPosition = window.scrollY
+    this.modalScrollAnchor = event?.currentTarget instanceof HTMLElement ? event.currentTarget : null
+    this.modalScrollAnchorTop = this.modalScrollAnchor?.getBoundingClientRect().top ?? 0
+  }
+
   public update():void{
-    this.computersArrr.forEach((item:ComputersRooms) => {
-      if(this.updateRoomsID == item.roomsID){
-        item.fitpassQuantity = this.fitpass
-        item.clientname = this.clientName
-        item.moneyForRooms.cash = this.moneyForRoomsCash
-        item.moneyForRooms.card = this.moneyForRoomsCard
-        item.moneyForSnacks.cash = this.moneyForSnacksCash
-        item.moneyForSnacks.card = this.moneyForSnacksCard
-        item.orderedjuss = this.orderedjuss
-      }
-    })
+    const room = this.roomsType.find(item => item.roomsID === this.updateRoomsID)
+    if (room) {
+      room.fitpassQuantity = this.fitpass
+      room.clientname = this.clientName
+      room.moneyForRooms.cash = this.moneyForRoomsCash
+      room.moneyForRooms.card = this.moneyForRoomsCard
+      room.moneyForSnacks.cash = this.moneyForSnacksCash
+      room.moneyForSnacks.card = this.moneyForSnacksCard
+      room.orderedjuss = this.orderedjuss
+    }
 
     this.mdoalclose()
     this.persistActiveTimers()

@@ -70,7 +70,7 @@
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal" 
                             title="ოთახის აბდეითი"
-                            (click)="updateinfo(computer.roomsID)"
+                            (click)="updateinfo(computer, $event)"
                                 src="../../../assets/icons/add.png" class="pause-continue-Button" alt="...">
                           }
                     </div>
@@ -125,7 +125,7 @@
                                         data-bs-toggle="modal"
                                         data-bs-target="#staticBackdrop" 
                                         class="startButton"
-                                        (click)="startTime(computer.roomsID, computer)"
+                                        (click)="startTime(computer.roomsID, computer, $event)"
                                         alt="...">
                                 </button>
         
@@ -141,7 +141,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" 
                                     class="startButton"
-                                    (click)="startTime(computer.roomsID, computer)"
+                                    (click)="startTime(computer.roomsID, computer, $event)"
                                     alt="...">
                             </button>
     
@@ -239,7 +239,7 @@
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal" 
                             title="ოთახის აბდეითი"
-                            (click)="updateinfo(computer.roomsID)"
+                            (click)="updateinfo(computer, $event)"
                                 src="../../../assets/icons/add.png" class="pause-continue-Button" alt="...">
                           }
                     </div>
@@ -294,7 +294,7 @@
                                         data-bs-toggle="modal"
                                         data-bs-target="#staticBackdrop" 
                                         class="startButton"
-                                        (click)="startTime(computer.roomsID, computer)"
+                                        (click)="startTime(computer.roomsID, computer, $event)"
                                         alt="...">
                                 </button>
         
@@ -310,7 +310,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" 
                                     class="startButton"
-                                    (click)="startTime(computer.roomsID, computer)"
+                                    (click)="startTime(computer.roomsID, computer, $event)"
                                     alt="...">
                             </button>
     
@@ -336,7 +336,7 @@
 </div>
 
   <!-- დროის დაწყების მოდალი -->
-<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" (shown.bs.modal)="lockPageScroll()" (hidden.bs.modal)="unlockPageScroll()">
     <div class="modal-dialog">
         <div class="modal-content" style="padding: 15px;">
 
@@ -520,7 +520,7 @@
 
 <!-- დამატების მოდალი -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" 
-        data-bs-keyboard="false" tabindex="-1" 
+    data-bs-keyboard="false" tabindex="-1" (shown.bs.modal)="lockPageScroll()" (hidden.bs.modal)="unlockPageScroll()"
         aria-labelledby="staticBackdropLabel" 
         aria-hidden="true">
     <div class="modal-dialog">
