@@ -25,6 +25,7 @@ export interface ComputersRooms{
 
 export interface roomsReservation{
   roomsID:number,
+  roomKind?: 'computer' | 'wheel',
   person:string,
   tel:string,
   time:string,

@@ -57,6 +57,7 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
  
   private computerroomsID:number = 0
   private reservationID:number = 0
+  private reservationRoomKind:TimerRoomKind = 'computer'
   private updateRoomsID:number = 0
   private readonly timerStorageKey = 'gametimer.activeRooms.v1'
   private modalScrollPosition = 0
@@ -571,10 +572,11 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
 
 
   // ჯავშანი
-  public selectedReservationRoomsID(id:number, comuterRooms:any){
+  public selectedReservationRoomsID(id:number, computerRoom:ComputersRooms):void{
     this.reservationID = id
-    this.selectedReservationRoom = comuterRooms.name
-    this.showReservation(id)
+    this.reservationRoomKind = computerRoom.roomsType === 'steeringWeel' ? 'wheel' : 'computer'
+    this.selectedReservationRoom = computerRoom.name
+    this.showReservation(id, this.reservationRoomKind)
   }
 
   public addaReservation():void{
@@ -587,6 +589,7 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
 
     const reservationInfo = {
       roomsID: this.reservationID,
+      roomKind: this.reservationRoomKind,
       person: this.reservationPersonName,
       tel: this.reservationPersonPhoneNumber,
       time: this.reservationTime,
@@ -596,13 +599,11 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
     this.computerRoomsService.addReservation(reservationInfo).subscribe({
       next : (res) => {
 
-        this.roomsType.forEach((item) => {
-          if(this.reservationID == item.roomsID){
-            item.roomsReservation = true
-          }
-        })
+        const rooms = this.getReservationRooms(this.reservationRoomKind)
+        const room = rooms.find(item => item.roomsID === this.reservationID)
+        if (room) room.roomsReservation = true
 
-        this.showReservation(reservationInfo.roomsID)
+        this.showReservation(reservationInfo.roomsID, this.reservationRoomKind)
       },
       error: (e) => console.error(e),
     })
@@ -614,7 +615,7 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
 
     this.computerRoomsService.deleteReservation(item.id).subscribe({
       next : (res) => {
-        this.showReservation(this.reservationID)
+        this.showReservation(this.reservationID, this.reservationRoomKind)
 
       },
       error: (e) => console.error(e),
@@ -680,7 +681,11 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
       
     }
 
-    private showReservation(roomsID:number):void{
+    private getReservationRooms(roomKind:TimerRoomKind):ComputersRooms[] {
+      return roomKind === 'wheel' ? this.rommsWithWell : this.computersArrr
+    }
+
+    private showReservation(roomsID:number, roomKind:TimerRoomKind):void{
 
       this.reservationPersonName = ''
       this.reservationPersonPhoneNumber = ''
@@ -692,17 +697,13 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
         next : (res) => {
 
           res.forEach((item:roomsReservation) => {
-            if(roomsID == item.roomsID){
+            if(roomsID === item.roomsID && (item.roomKind ?? 'computer') === roomKind){
               this.tbodyNames.push(item)
             }
           })
 
-          //ცვლის ჯავშნის სტატუსს
-          if(this.tbodyNames.length == 0){
-            this.computersArrr[roomsID-1].roomsReservation = false
-          }else{
-            this.computersArrr[roomsID-1].roomsReservation = true
-          }
+          const room = this.getReservationRooms(roomKind).find(item => item.roomsID === roomsID)
+          if (room) room.roomsReservation = this.tbodyNames.length > 0
         },
         error: (e) => console.error(e),
         complete: () => {
