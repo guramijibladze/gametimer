@@ -297,7 +297,7 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
               item.openDayTime = localStorage.getItem('openDayTime')
               item.orderedjuss = this.orderedjuss
               item.ordertime = this.getCurrentDate()
-              progress = this.getAllTimersInSeconds()
+              progress = this.getProgressPerSecond()
             }else if(this.minutes == 30){
               item.times.selectedhour = this.hours + ':' + this.minutes
               item.times.currenthours = this.hours;
@@ -313,7 +313,7 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
               item.moneyForSnacks.card = this.moneyForSnacksCard
               item.openDayTime = localStorage.getItem('openDayTime')
               item.ordertime = this.getCurrentDate()
-              progress = this.getAllTimersInSeconds()
+              progress = this.getProgressPerSecond()
             }else if(item.gameTimerType == true){
               item.clientname = this.clientName
               item.ativestatus = false
@@ -487,11 +487,16 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
                 item.times.minutes += Number(this.minutes);
                 item.times.seconds = 59;
                 item.progress = 0
-                progress = this.getAllTimersInSeconds('addtime')
+                progress = this.getProgressPerSecond(item)
               }else if(this.minutes == 30){
                 // item.times.currenthours += Number(this.hours);
 
-                if(item.times.minutes > 30){
+                const remainingSeconds = item.times.currenthours * 3600
+                  + item.times.minutes * 60
+                  + item.times.seconds
+                if (remainingSeconds === 0) {
+                  item.times.minutes = Number(this.minutes) - 1
+                }else if(item.times.minutes > 30){
                   // let currentMinutes = item.times.minutes - 30
                   item.times.currenthours ++;
                   item.times.minutes = item.times.minutes - 30
@@ -501,7 +506,7 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
 
                 item.times.seconds = 59;
                 item.progress = 0
-                progress = this.getAllTimersInSeconds('addtime')
+                progress = this.getProgressPerSecond(item)
               }else{
                 alert('დრო არ აგირჩევია ბაჭყატ!!!')
                 return
@@ -626,23 +631,12 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
 
 
     //გადაყავს დრო წამებში
-    private getAllTimersInSeconds(str?:string):number{
-      if(str){
-        let progress = 0
-         this.computersArrr.map((item:any) => {
-          if(item.roomsID == this.computerroomsID) {
-            
-            item.times.progress = 0
-            // console.log('getAllTimersInSeconds', item)
-            progress = (1 / (item.times.currenthours * 3600 + item.times.minutes * 60) * 100)
-          }
-        })
-        return progress
-      }else{
-        // console.log(1 / (this.hours * 3600 + this.minutes * 60) * 100)
-        return (1 / (this.hours * 3600 + this.minutes * 60) * 100) 
-      }
-      
+    private getProgressPerSecond(room?:ComputersRooms):number{
+      const durationSeconds = room
+        ? room.times.currenthours * 3600 + room.times.minutes * 60 + room.times.seconds
+        : this.hours * 3600 + this.minutes * 60
+
+      return durationSeconds > 0 ? 100 / durationSeconds : 0
     }
   
 
@@ -787,4 +781,3 @@ export class ForcomputersComponent implements OnInit, OnDestroy {
       }
     }
 }
-
