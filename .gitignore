@@ -42,4 +42,5 @@ testem.log
 Thumbs.db
 
 # Server File
-# /server
+/server/computerRooms.json
+/server/orderStatistic.json
